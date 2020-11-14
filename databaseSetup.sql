@@ -462,8 +462,6 @@ VALUES ('pasta', 'Just order it', 'flour', 'dinner', 7.99, 200001);
 INSERT INTO Menu_Items_Has (name, description, ingredient, category, price, restaurant_id)
 VALUES ('noodles', 'Just order it', 'flour', 'dinner', 7.99, 200001);
 
-
-
 INSERT INTO Menu_Items_Has (name, description, ingredient, category, price, restaurant_id)
 VALUES ('coffee', 'Just order it', 'milk', 'beverages', 3.99, 200002);
 
@@ -475,3 +473,33 @@ VALUES ('fries', 'Just order it', 'potato', 'dinner', 3.99, 200004);
 
 INSERT INTO Menu_Items_Has (name, description, ingredient, category, price, restaurant_id)
 VALUES ('noodles', 'Just order it', 'flour', 'dinner', 6.99, 200005);
+
+INSERT INTO Menu_Items_Has VALUES ('Pita Wrap', 'Tender souvlaki wrapped in a warm pita.', 
+				   'Chicken Souvlaki, White Pita, Tomatoes, Lettuce', 'Dinner', 7.99, 200005);
+
+INSERT INTO Menu_Items_Has VALUES ('Vegetable Samosas', 'Crispy patties stuffed with veggies. 2 pieces per order.', 
+				   'Peas, Potatoes, Spices', 'Lunch', 3.95, 200005);
+
+INSERT INTO Menu_Items_Has VALUES ('Fish Pakoras', 'Fish marinated and fried. Served with fries.', 
+				   'Fish, Yogurt, Ginger, Garlic, Potatoes', 'Lunch', 12.95, 200004);
+				   
+INSERT INTO Menu_Items_Has VALUES ('Vegetable Pakoras', 'Gluten friendly and vegetarian. Vegetables battered in chickpea flour.', 
+				   'Chickpea Flour, Garlic, Ginger, Herbs, Broccoli, Zucchini', 'Lunch', 12.95, 200004);
+				   
+INSERT INTO Menu_Items_Has VALUES ('Japanese Calamari', 'Deep-fried squid with spicy mayo.', 
+				   'Squid, Spicy Mayo, Lemon', 'Dinner', 7.99, 200004);
+				   
+INSERT INTO Menu_Items_Has VALUES ('Mango Turmeric Smoothie', 'Boosts energy and focus.', 
+				   'Mango, Banana, Turmeric, Cinnamon, Chia Seeds, Coconut Oil', 'Beverage', 7.99, 200001);
+				   
+INSERT INTO Menu_Items_Has VALUES ('Berry Beet Smoothie', 'Improves stamina, lowers cholesterol, and high in fibre.', 
+				   'Blueberry, Banana, Strawberry, Beetroot, Hemp, Vanilla Protein', 'Beverage', 7.99, 200001);	
+				   
+INSERT INTO Menu_Items_Has VALUES ('Miso Soup', 'Salty, savoury Japanese broth.', 
+				   'Green Onion, Tofu, Broth', 'Dinner', 3.99, 200003);
+
+INSERT INTO Menu_Items_Has VALUES ('Agedashi Tofu', 'Soft tofu coated with potato starch and deep fried.', 
+				   'Tofu, Potato Starch, Seaweed, Ground Radish, Sesame, Green Onion', 'Lunch', 5.95, 200003);
+
+INSERT INTO Menu_Items_Has VALUES ('Classic Cheeseburger', 'Lean beef patty served with veggies and a home-style sauce.', 
+				   'Beef, Onions, Tomatoes, Cheese, Mayo, Sriracha, Lettuce', 'Lunch', 6.95, 200002);
