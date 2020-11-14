@@ -249,6 +249,12 @@ VALUES (30004, 'Cart', 3.99, '7661112226');
 INSERT INTO Courier (courier_id, name, rating, phone_number)
 VALUES (30005, 'Meg', 4.5, '7661112227');
 
+INSERT INTO Courier VALUES (0000000, 'Ema Skye', 9.7, '7781112222');
+INSERT INTO Courier VALUES (0000001, 'Dick Gumshoe', 7.5, '7785550000');
+INSERT INTO Courier VALUES (0000002, 'Kristoph Gavin', 3.2, '7789112345');
+INSERT INTO Courier VALUES (0000003, 'Dahlia Hawthorne', 8.6, '7784446781');
+INSERT INTO Courier VALUES (0000004, 'Simon Blackquill', 9.6, '7787118322');
+
 -- creat tuples for vehicle courier
 INSERT INTO Vehicle_Courier (valid_vehicle, valid_insurance, drivers_license, courier_id )
 VALUES ('y', 'y', '772910239', 30001);
@@ -353,41 +359,79 @@ VALUES ('2788 90th Avenue', '2788 90th Avenue', 19.99, 1.99, 1.99, 'account bala
 
 INSERT INTO Order 
 (delivery_address, restaurant_address, food_subtotal, delivery_fee, courier_tips, payment_method, menu_items,date_placed, order_number, customer_id, courier_id, restaurant_id, card_number, coupon_code)
-VALUES ('2788 90th Avenue', '3521 Algonquin Blvd #400', 33.2, 2.99, 3.99, 'account balance', 'coffee', '2019-10-16', 500006, 100001, 30001, 200002, 1234567890, '20203');
+VALUES ('2788 90th Avenue', '3521 Algonquin Blvd #400', 33.2, 2.99, 3.99, 'account balance', 'coffee', '2019-10-16 10:01:30', 500006, 100001, 30001, 200002, 1234567890, '20203');
 
 INSERT INTO Order 
 (delivery_address, restaurant_address, food_subtotal, delivery_fee, courier_tips, payment_method, menu_items,date_placed, order_number, customer_id, courier_id, restaurant_id, card_number, coupon_code)
-VALUES ('2788 90th Avenue', '57 49th Avenue', 20, 3.99, 4.99, 'account balance', 'coffee', '2019-10-15', 500007, 100001, 30001, 200003, 1234567890, '20203');
+VALUES ('2788 90th Avenue', '57 49th Avenue', 20, 3.99, 4.99, 'account balance', 'coffee', '2019-10-15 12:45:10', 500007, 100001, 30001, 200003, 1234567890, '20203');
 
 INSERT INTO Order 
 (delivery_address, restaurant_address, food_subtotal, delivery_fee, courier_tips, payment_method, menu_items,date_placed, order_number, customer_id, courier_id, restaurant_id, card_number, coupon_code)
-VALUES ('2788 90th Avenue', '1441 5th Avenue', 19.99, 1.99, 1.99, 'account balance', 'coffee', '2019-10-12', 500008, 100001, 30001, 200004, NULL, NULL);
+VALUES ('2788 90th Avenue', '1441 5th Avenue', 19.99, 1.99, 1.99, 'account balance', 'coffee', '2019-10-12 14:02:23', 500008, 100001, 30001, 200004, NULL, NULL);
 
 INSERT INTO Order 
 (delivery_address, restaurant_address, food_subtotal, delivery_fee, courier_tips, payment_method, menu_items,date_placed, order_number, customer_id, courier_id, restaurant_id, card_number, coupon_code)
-VALUES ('2788 90th Avenue', '4727 Ste. Catherine Ouest', 19.99, 1.99, 1.99, 'account balance', 'coffee', '2019-10-13', 500009, 100001, 30001, 200005, NULL, NULL);
+VALUES ('2788 90th Avenue', '4727 Ste. Catherine Ouest', 19.99, 1.99, 1.99, 'account balance', 'coffee', '2019-10-13 08:13:20', 500009, 100001, 30001, 200005, NULL, NULL);
 
 INSERT INTO Order 
 (delivery_address, restaurant_address, food_subtotal, delivery_fee, courier_tips, payment_method, menu_items,date_placed, order_number, customer_id, courier_id, restaurant_id, card_number, coupon_code)
-VALUES ('2788 90th Avenue', '4729 Ste. Catherine Ouest', 19.99, 1.99, 1.99, 'account balance', 'coffee', '2019-10-14', 500010, 100001, 30001, 200006, NULL, NULL);
-
-
+VALUES ('2788 90th Avenue', '4729 Ste. Catherine Ouest', 19.99, 1.99, 1.99, 'account balance', 'coffee', '2019-10-14 16:24:12', 500010, 100001, 30001, 200006, NULL, NULL);
 
 INSERT INTO Order 
 (delivery_address, restaurant_address, food_subtotal, delivery_fee, courier_tips, payment_method, menu_items,date_placed, order_number, customer_id, courier_id, restaurant_id, card_number, coupon_code)
-VALUES ('3521 Algonquin Blvd #400', '3521 Algonquin Blvd #400', 33.2, 2.99, 3.99, 'account balance', 'coffee', '2020-10-11', 500002, 100002, 30002, 200002, 1234567891, '20204');
+VALUES ('3521 Algonquin Blvd #400', '3521 Algonquin Blvd #400', 33.2, 2.99, 3.99, 'account balance', 'coffee', '2020-10-11 05:54:58', 500002, 100002, 30002, 200002, 1234567891, '20204');
 
 INSERT INTO Order 
 (delivery_address, restaurant_address, food_subtotal, delivery_fee, courier_tips, payment_method, menu_items,date_placed, order_number, customer_id, courier_id, restaurant_id, card_number, coupon_code)
-VALUES ('57 49th Avenue', '57 49th Avenue', 20, 3.99, 4.99, 'account balance', 'burger', '2020-01-11', 500003, 100003, 30003, 200003, 1234567892, '20205');
+VALUES ('57 49th Avenue', '57 49th Avenue', 20, 3.99, 4.99, 'account balance', 'burger', '2020-01-11 11:09:18', 500003, 100003, 30003, 200003, 1234567892, '20205');
 
 INSERT INTO Order 
 (delivery_address, restaurant_address, food_subtotal, delivery_fee, courier_tips, payment_method, menu_items,date_placed, order_number, customer_id, courier_id, restaurant_id, card_number, coupon_code)
-VALUES ('1441 5th Avenue', '1441 5th Avenue', 11, 2.99, 3.99, 'account balance', 'fries', '2020-11-11', 500004, 100004, 30004, 200004, 1234567893, '20206');
+VALUES ('1441 5th Avenue', '1441 5th Avenue', 11, 2.99, 3.99, 'account balance', 'fries', '2020-11-11 07:09:51', 500004, 100004, 30004, 200004, 1234567893, '20206');
 
 INSERT INTO Order 
 (delivery_address, restaurant_address, food_subtotal, delivery_fee, courier_tips, payment_method, menu_items,date_placed, order_number, customer_id, courier_id, restaurant_id, card_number, coupon_code)
-VALUES ('4727 Ste. Catherine Ouest', '4727 Ste. Catherine Ouest', 5.99, 2.99, 3.99, 'account balance', 'noodles', '2019-10-11', 500005, 100005, 30005, 200005, 1234567894, '20207');
+VALUES ('4727 Ste. Catherine Ouest', '4727 Ste. Catherine Ouest', 5.99, 2.99, 3.99, 'account balance', 'noodles', '2019-10-11 09:18:18', 500005, 100005, 30005, 200005, 1234567894, '20207');
+
+INSERT INTO Order VALUES ('881 Anderson Court', '912 Westminister Avenue', '19.48', '4.49', '0.0', 'AMERICAN EXPRESS',
+                            'Big Mac, Large Fries, Diet Coke', '2020-03-14 09:30:45', 0192999, 100001, 0000000, 200003,
+                            null, null);
+			    
+INSERT INTO Order VALUES ('312 Ash Walk', '1112 Kinder Grove', '24.90', '2.49', '0.15', 'GOOGLE PAY',
+                            'Chicken Teriyaki Roll, Tuna Sashimi, Fried Gyoza', '2020-05-01 18:20:34', 7189012,
+                            100001, 0000000, 200003, null, null);
+			    
+INSERT INTO Order VALUES ('702 Lea Drive', '101 Commonwealth Avenue', '33.21', '3.49', '3.50', 'CASH',
+                            'Beef Pho, Spring Roll, Chicken Wings, Coffee', '2019-12-25 12:50:24', 0001249,
+                            100002, 0000001, 200003, null, null);
+			    
+INSERT INTO Order VALUES ('4532 Fieldway', '373 Hutton Bank', '120.45', '5.49', '10.0', 'VISA',
+                            'Vegetable Samosas, Veggie Platter, Tandoori Chicken, Butter Paneer',
+                            '2020-09-13 10:01:01', 1236895, 100002, 0000000, 200002, null, null);
+			    
+INSERT INTO Order VALUES ('333 Mayflower Avenue', '991 St Johns Avenue', '88.11', '2.49', '6.50', 'GOOGLE PAY',
+                            'Smoked Fish, Spicy Beef Tripe, Salted Duck, Chili Wontons, Seafood Soup',
+                            '2020-01-01 18:45:16', 9111245, 100002, 0000001, 200002, null, null);
+			    
+INSERT INTO Order VALUES ('1890 Kenry Street', '404 Cranwell Grove', '57.16', '4.49', '3.15', 'MASTERCARD',
+                            'Jasmine Green Tea, Winter Melon Drink, Caramel Milk Tea, Soft Tofu Soup, Kimchi Soup',
+                            '2020-05-16 13:14:15', 5436432, 100004, 0000001, 200006, null, null);
+			    
+INSERT INTO Order VALUES ('1775 Glentworth Road', '2341 Montfort Drive', '26.41', '4.49', '0.0', 'CASH',
+                            'Tex Mex Bowl, Fiesta Salad, Strawberry Banana Smoothie', '2019-12-04 11:08:12',
+                            4443511, 100004, 0000002, 200004, null, null);
+			    
+INSERT INTO Order VALUES ('512 Simpson Street', '522 Dickinson Road', '150.49', '2.49', '20.75', 'AMERICAN EXPRESS',
+                            'Sushi Party Tray D, Sashimi Tray', '2020-07-01 19:30:30', 2221492,
+                            100003, 0000002, 200004, null, null);
+			    
+INSERT INTO Order VALUES ('017 Tythings Street', '3667 Anthony Crescent', '52.65', '1.49', '5.0', 'VISA',
+                            'Vietnamese Sub, Rice Noodle Soup, Grilled Pork, Spring Roll', '2020-01-21 10:35:51',
+                            5281932, 100003, 0000003, 200005, null, null);
+			    
+INSERT INTO Order VALUES ('1546 Western Esplanade', '1781 Florence Gardens', '73.50', '3.49', '7.25', 'MASTERCARD',
+                            'Seafood Tofu Soup, Sweet Potato Noodles, BBQ Beef Short Ribs, Pork Bone Hot Pot',
+                            '2020-07-01 18:12:21', 8101012, 100003, 0000004, 200005, null, null);
 
 -- create tuples for order_fee
 INSERT INTO Order_Fee (delivery_fee, food_subtotal, courier_tips, total_price)
