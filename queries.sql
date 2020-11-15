@@ -35,4 +35,44 @@ WHERE NOT EXISTS (SELECT restaurant_id
                   WHERE NOT EXISTS (SELECT restaurant_id
                                     FROM Order
                                     WHERE Order.restaurant_id = Restaurant.restaurant_id AND Order.customer_id = Customer.customer_id))
+                                    
+ -- Insertion Query
+-- Create a customer account
+INSERT INTO Customer VALUES(customer_id, email, age, phone_number, street_address, postal_code,
+	                        name, reward_points, rewards_tier, account_balance);
+
+-- Deletion Query
+-- Delete a customer account
+-- (delete_cid is to be provided by the user)
+DELETE FROM Customer WHERE customer_id = delete_cid;
+
+-- Update a customer's information
+-- (updated_email and u_cid are to be provided by the user)
+UPDATE Customer
+SET email = updated_email
+WHERE customer_id = u_cid; 
+
+-- Selection Query
+-- Find all restaurants that have a rating greater than a specified number,
+-- where 0.0 is the minimum rating and 10.0 is the maximum rating.
+-- (num is to be provided by the user)
+SELECT restaurant_id, name
+FROM Restaurant
+WHERE rating > num;
+
+-- Join Query
+-- Join the Order, Customer, and Restaurant tables to find information about the 
+-- spending habits and restaurant preferences of customers of a specific rewards tier.
+-- (specify_tier is to be provided by the user)
+SELECT order_number, food_subtotal, customer_id, restaurant_id, rating
+FROM Customer JOIN Orders
+    ON Customer.customer_id = Orders.customer_id
+    JOIN Restaurant
+    ON Restaurant.restaurant_id = Orders.restaurant_id
+WHERE rewards_tier = 'specify_tier';
+
+
+
+
+
 
