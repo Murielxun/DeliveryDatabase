@@ -1,3 +1,13 @@
+
+
+-- IMPORTANT NOTE to any future editors (delete this before submitting): 
+-- if you plan to edit anything in this file, DO NOT CHANGE THE ORDER OF ANY DROP/CREATE/INSERT STATEMENTS. 
+-- The order needs to stay as it is because in SQL:
+-- 1. You cannot define a foreign key without defining the table it references first.
+-- 2. You cannot delete a foreign key without deleting the table it references first. 
+-- 3. You cannot insert a foreign key into a tuple without defining the foreign key in the table it references first. 
+
+
 -- Change the date format because the default in SQL is 'dd-mm-yyyy.' 
 ALTER SESSION SET NLS_DATE_FORMAT = 'yyyy-mm-dd HH24:mi:ss'; 
 
