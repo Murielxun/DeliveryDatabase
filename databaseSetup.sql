@@ -223,16 +223,16 @@ INSERT INTO Order_Fee VALUES (2.99, 33.2, 3.99, 40.18);
 INSERT INTO Order_Fee VALUES (3.99, 20, 4.99, 28.98);
 INSERT INTO Order_Fee VALUES (2.99, 11, 3.99, 17.98);
 INSERT INTO Order_Fee VALUES (2.99, 5.99, 3.99, 12.97);
-INSERT INTO Order_Fee VALUES (4.49, 19.48, 0.0, 23.97);
-INSERT INTO Order_Fee VALUES (2.49, 24.98, 0.15, 27.62);
-INSERT INTO Order_Fee VALUES (3.49, 33.21, 3.50, 40.2);
-INSERT INTO Order_Fee VALUES (5.49, 120.45, 10.0, 135.94);
-INSERT INTO Order_Fee VALUES (2.49, 88.11, 6.50, 97.18);
-INSERT INTO Order_Fee VALUES (4.49, 57.16, 3.15, 64.8);
-INSERT INTO Order_Fee VALUES (4.49, 26.41, 0.0, 30.9);
-INSERT INTO Order_Fee VALUES (2.49, 150.49, 20.75, 173.73);
-INSERT INTO Order_Fee VALUES (1.49, 52.65, 5.0, 59.14);
-INSERT INTO Order_Fee VALUES (3.49, 73.50, 7.25, 84.24);
+INSERT INTO Order_fee VALUES (4.49, 19.48, 0.0, 23.97);
+INSERT INTO Order_fee VALUES (2.49, 24.98, 0.15, 27.62);
+INSERT INTO Order_fee VALUES (3.49, 33.21, 3.50, 40.2);
+INSERT INTO Order_fee VALUES (5.49, 120.45, 10.0, 135.94);
+INSERT INTO Order_fee VALUES (2.49, 88.11, 6.50, 97.18);
+INSERT INTO Order_fee VALUES (4.49, 57.16, 3.15, 64.8);
+INSERT INTO Order_fee VALUES (4.49, 26.41, 0.0, 30.9);
+INSERT INTO Order_fee VALUES (2.49, 150.49, 20.75, 173.73);
+INSERT INTO Order_fee VALUES (1.49, 52.65, 5.0, 59.14);
+INSERT INTO Order_fee VALUES (3.49, 73.50, 7.25, 84.24);
 
 -- create tuples for coupon
 INSERT INTO Coupon VALUES ('20203', '2020-12-30 23:59:59', 50);
@@ -314,53 +314,53 @@ INSERT INTO Giftcard_Buys VALUES (100004, 1234567893, 'tracer@outlook.com', 'Tra
 INSERT INTO Giftcard_Buys VALUES (100005, 1234567894, 'dontawe@gmail.com', 'Ark', '2020-11-30 23:59:59', 500);
 
 -- create tuples for restaurant
-INSERT INTO Restaurant VALUES (200001, 'N2H 5A5', 'Qilin', 'Asian', 5, '2788 90th Avenue');
-INSERT INTO Restaurant VALUES (200002, 'H2A 2Z3', 'McBur', 'Fast food', 4.45, '3521 Algonquin Blvd #400');
-INSERT INTO Restaurant VALUES (200003, 'T0H 1N0', 'Tea House', 'Asian', 3.99, '57 49th Avenue');
-INSERT INTO Restaurant VALUES (200004, 'S4P 3Y2', 'GrilledCk', 'Fast food', 3.99, '1441 5th Avenue');
-INSERT INTO Restaurant VALUES (200005, 'G6P 5V8', 'Passione', 'Italian', 4.5, '4727 Ste. Catherine Ouest');
+INSERT INTO Restaurant VALUES (200001, 'N2H 5A5', 'Qilin', 'Asian', 7.8, '2788 90th Avenue');
+INSERT INTO Restaurant VALUES (200002, 'H2A 2Z3', 'McBur', 'Fast food', 9.4, '3521 Algonquin Blvd #400');
+INSERT INTO Restaurant VALUES (200003, 'T0H 1N0', 'Tea House', 'Asian', 3.8, '57 49th Avenue');
+INSERT INTO Restaurant VALUES (200004, 'S4P 3Y2', 'GrilledCk', 'Fast food', 8.0, '1441 5th Avenue');
+INSERT INTO Restaurant VALUES (200005, 'G6P 5V8', 'Passione', 'Italian', 6.7, '4727 Ste. Catherine Ouest');
 INSERT INTO Restaurant VALUES (200006, 'G6P 5V8', 'Highest Rating Italian Restaurant', 'Italian', 
-								4.9, '4729 Ste. Catherine Ouest');
+								8.7, '4729 Ste. Catherine Ouest');
 
 
 -- create tuples for Orders
-INSERT INTO Orders VALUES ('2788 90th Avenue', '57 49th Avenue', '19.48', '4.49', '0.0', 'AMERICAN EXPRESS',
+INSERT INTO Orders VALUES ('2788 90th Avenue', '57 49th Avenue', 19.48, 4.49, 0.0, 'AMERICAN EXPRESS',
                             'Big Mac, Large Fries, Diet Coke', '2020-03-14 09:30:45', 0192999, 100001, 0000000, 200003,
                             null, null);
 			    
-INSERT INTO Orders VALUES ('2788 90th Avenue', '2788 90th Avenue', '24.90', '2.49', '0.15', 'GOOGLE PAY',
+INSERT INTO Orders VALUES ('2788 90th Avenue', '2788 90th Avenue', 24.90, 2.49, 0.15, 'GOOGLE PAY',
                             'Chicken Teriyaki Roll, Tuna Sashimi, Fried Gyoza', '2020-05-01 18:20:34', 7189012,
                             100001, 0000000, 200001, null, null);
 			    
-INSERT INTO Orders VALUES ('702 Lea Drive', '57 49th Avenue', '33.21', '3.49', '3.50', 'CASH',
+INSERT INTO Orders VALUES ('702 Lea Drive', '57 49th Avenue', 33.21, 3.49, 3.50, 'CASH',
                             'Beef Pho, Spring Roll, Chicken Wings, Coffee', '2019-12-25 12:50:24', 0001249,
                             100002, 0000001, 200003, null, null);
 			    
-INSERT INTO Orders VALUES ('4532 Fieldway', '3521 Algonquin Blvd #400', '120.45', '5.49', '10.0', 'VISA',
+INSERT INTO Orders VALUES ('4532 Fieldway', '3521 Algonquin Blvd #400', 120.45, 5.49, 10.0, 'VISA',
                             'Vegetable Samosas, Veggie Platter, Tandoori Chicken, Butter Paneer',
                             '2020-09-13 10:01:01', 1236895, 100002, 0000000, 200002, null, null);
 			    
-INSERT INTO Orders VALUES ('333 Mayflower Avenue', '3521 Algonquin Blvd #400', '88.11', '2.49', '6.50', 'GOOGLE PAY',
+INSERT INTO Orders VALUES ('333 Mayflower Avenue', '3521 Algonquin Blvd #400', 88.11, 2.49, 6.50, 'GOOGLE PAY',
                             'Smoked Fish, Spicy Beef Tripe, Salted Duck, Chili Wontons, Seafood Soup',
                             '2020-01-01 18:45:16', 9111245, 100002, 0000001, 200002, null, null);
 			    
-INSERT INTO Orders VALUES ('1890 Kenry Street', '4729 Ste. Catherine Ouest', '57.16', '4.49', '3.15', 'MASTERCARD',
+INSERT INTO Orders VALUES ('1890 Kenry Street', '4729 Ste. Catherine Ouest', 57.16, 4.49, 3.15, 'MASTERCARD',
                             'Jasmine Green Tea, Winter Melon Drink, Caramel Milk Tea, Soft Tofu Soup, Kimchi Soup',
                             '2020-05-16 13:14:15', 5436432, 100004, 0000001, 200006, null, null);
 			    
-INSERT INTO Orders VALUES ('1775 Glentworth Road', '1441 5th Avenue', '26.41', '4.49', '0.0', 'CASH',
+INSERT INTO Orders VALUES ('1775 Glentworth Road', '1441 5th Avenue', 26.41, 4.49, 0.0, 'CASH',
                             'Tex Mex Bowl, Fiesta Salad, Strawberry Banana Smoothie', '2019-12-04 11:08:12',
                             4443511, 100004, 0000002, 200004, null, null);
 			    
-INSERT INTO Orders VALUES ('512 Simpson Street', '1441 5th Avenue', '150.49', '2.49', '20.75', 'AMERICAN EXPRESS',
+INSERT INTO Orders VALUES ('512 Simpson Street', '1441 5th Avenue', 150.49, 2.49, 20.75, 'AMERICAN EXPRESS',
                             'Sushi Party Tray D, Sashimi Tray', '2020-07-01 19:30:30', 2221492,
                             100003, 0000002, 200004, null, null);
 			    
-INSERT INTO Orders VALUES ('57 49th Avenue', '4727 Ste. Catherine Ouest', '52.65', '1.49', '5.0', 'VISA',
+INSERT INTO Orders VALUES ('57 49th Avenue', '4727 Ste. Catherine Ouest', 52.65, 1.49, 5.0, 'VISA',
                             'Vietnamese Sub, Rice Noodle Soup, Grilled Pork, Spring Roll', '2020-01-21 10:35:51',
                             5281932, 100003, 0000003, 200005, null, null);
 			    
-INSERT INTO Orders VALUES ('57 49th Avenue', '4727 Ste. Catherine Ouest', '73.50', '3.49', '7.25', 'MASTERCARD',
+INSERT INTO Orders VALUES ('57 49th Avenue', '4727 Ste. Catherine Ouest', 73.50, 3.49, 7.25, 'MASTERCARD',
                             'Seafood Tofu Soup, Sweet Potato Noodles, BBQ Beef Short Ribs, Pork Bone Hot Pot',
                             '2020-07-01 18:12:21', 8101012, 100003, 0000004, 200005, null, null);
 
