@@ -9,7 +9,7 @@
   <input name="newPage" type="button" value="Cutomer" onclick="window.open('customer.php')">
   <input name="newPage" type="button" value="Courier" onclick="window.open('courier.php')">
   <input name="newPage" type="button" value="Restaurant Staff" onclick="window.open('restaurant.php')">
-  <p>Proceed as Delivery App Staff:</p>
-  <input name="newPage" type="button" value="Open Delivery App Database" onclick="window.open('delivery.php')"/>
+  <p>Hard-coded Queries for Project:</p>
+  <input name="newPage" type="button" value="Check Them Out" onclick="window.open('304project.php')"/>
   </body>
 </html>
