@@ -487,7 +487,6 @@
             printFootCourierResult($result);
             $result = executePlainSQL("SELECT * FROM Vehicle_Drives");
             printVehicleDrivesResult($result);
-
         }
 
 

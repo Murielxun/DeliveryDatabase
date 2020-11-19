@@ -8,73 +8,35 @@
 
         <hr>
 
-        <h1>Become a Customer</h1>
         <h2>New to This Delivery App? First Register As a Customer!</h2>
         <form method="POST" action="customer.php">
             <input type="hidden" id="insertCustomer" name="insertCustomer">
-            Courier ID: <input type="text" name="courier_id"> <br /><br />
+            Customer ID: <input type="text" name="customer_id"> <br /><br />
+            Email: <input type="text" name="email"> <br /><br />
             Name: <input type="text" name="name"> <br /><br />
-            Rating: <input type="number" name="rating" step="0.01" min="0" max="10"> <br /><br />
             Phone Number: <input type="text" name="phone_number"> <br /><br />
+            Age:  <input type="number" name="age"  step="1" min="0" max="120"> <br /><br />
+            Postal Code: <input type="text" name="postal_code"> <br /><br />
+            Street Address: <input type="text" name="street_address"> <br /><br />
+            City: <input type="text" name="city"> <br /><br />
+            Province: <input type="text" name="province"> <br /><br />
             <input type="submit" value="Submit" name="insertSubmit"></p>
+        </form>
+    
+        <hr>
+        <h2>Enter Your Customer ID And Check Your Current Standing.</h2>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkSingleCustomer" name="checkSingleCustomer">
+            Your Customer ID: <input type="text" name="customer_id"><br /><br />
+            <input type="submit" name="displaySingleCustomer"></p>
         </form>
 
         <hr>
 
-        <h1>Already a Courier? More Options!</h1>
-        <h2>Become a Vehicle Courier!</h2>
-        <form method="POST" action="courier.php">
-            <input type="hidden" id="insertVehicleCourier" name="insertVehicleCourier">
-            Your Courier ID: <input type="text" name="courier_id"> <br /><br />
-            Your Driver License: <input type="text" name="driver_license"> <br /><br />
-            Have Valid Vehicle?: 
-            <select name="valid_vehicle" id="selectValidVehicle">
-                <option value="y">Yes</option>
-                <option value="n">No</option>
-            </select> <br /><br />
-            Have Valid Insurance?: 
-            <select name="valid_insurance" id="selectValidInsurance">
-                <option value="y">Yes</option>
-                <option value="n">No</option>
-            </select> <br /><br />
-            <input type="submit" value="Submit" name="insertSubmit"></p>
-        </form>
-        <h3>Register Your Vehicle!</h3>
-        <form method="POST" action="courier.php">
-            <input type="hidden" id="insertVehicle" name="insertVehicle">
-            Your Courier ID: <input type="text" name="courier_id"> <br /><br />
-            Vehicle ID: <input type="text" name="vehicle_id"> <br /><br />
-            Type : <input type="text" name="type"> <br /><br />
-            <input type="submit" value="Submit" name="insertSubmit"></p>
-        </form>
-
-        <h2>Become a Bicycle Courier!</h2>
-        <form method="POST" action="courier.php">
-            <input type="hidden" id="insertBicycleCourier" name="insertBicycleCourier">
-            Your Courier ID: <input type="text" name="courier_id"> <br /><br />
-            Have Valid Bicycle?: 
-            <select name="valid_bicycle" id="selectValidbicycle">
-                <option value="y">Yes</option>
-                <option value="n">No</option>
-            </select> <br /><br />
-            <input type="submit" value="Submit" name="insertSubmit"></p>
-        </form>
-        <h3>Become a Foot Courier!</h3>
-        <form method="POST" action="courier.php">
-            <input type="hidden" id="insertFootCourier" name="insertFootCourier">
-            Your Courier ID: <input type="text" name="courier_id"> <br /><br />
-            Your Bus Pass: <input type="text" name="bus_pass"> <br /><br />
-            <input type="submit" value="Submit" name="insertSubmit"></p>
-        </form>
-
-        <hr>
-
-        <h2>Enter Your Courier ID and Update Your Personal Info.</h2>
-        <form method="POST" action="courier.php">
-            <input type="hidden" id="updateCourierInfo" name="updateCourierInfo">
-
-            <h3>Update General Info:</h3>
-            Your Courier ID: <input type="text" name="courier_id"> <br /><br />
+        <h2>Enter Your Customer ID and Update Your Personal Info.</h2>
+        <form method="POST" action="customer.php">
+            <input type="hidden" id="updateCustomerInfo" name="updateCustomerInfo">
+            Your Customer ID: <input type="text" name="customer_id"> <br /><br />
             <input type="checkbox" name="updateName" id="updateName">
             <label for="updateName">
             New Name: <input type="text" name="newName">
@@ -83,80 +45,173 @@
             <label for="updatePhoneNumber">
             New Phone Number: <input type="text" name="newPhoneNumber">
             </label><br /><br />
-
-            <h3>Update Vehicle Courier Info:</h3>
-            <input type="checkbox" name="updateDriverLicense" id="updateDriverLicense">
-            <label for="updateDriverLicense">
-            New Driver License: <input type="text" name="newDriverLicense">
+            <input type="checkbox" name="updateEmail" id="updateEmail">
+            <label for="updateEmail">
+            New Email: <input type="text" name="newEmail">
             </label><br /><br />
-            <input type="checkbox" name="updateValidVehicle" id="updateValidVehicle">
-            <label for="updateValidVehicle">
-            Have Valid Vehicle?:             
-            <select name="newValidVehicle" id="newValidVehicle">
-                <option value="y">Yes</option>
-                <option value="n">No</option>
-            </select>
+            <input type="checkbox" name="updateAge" id="updatePhoneAge">
+            <label for="updateAge">
+            New Age: <input type="number" name="age"  step="1" min="0" max="120">
             </label><br /><br />
-            <input type="checkbox" name="updateValidInsurance" id="updateValidInsurance">
-            <label for="updateValidInsurance">
-            Have Valid Insurance?:             
-            <select name="newValidInsurance" id="newValidInsurance">
-                <option value="y">Yes</option>
-                <option value="n">No</option>
-            </select>
+            <input type="checkbox" name="updateStreetAddress" id="updateStreetAddress">
+            <label for="updateStreetAddress">
+            New Street Address: <input type="text" name="newStreetAddress">
             </label><br /><br />
-
-            <h3>Update Bicycle Courier Info:</h3>
-            <input type="checkbox" name="updateValidBicycle" id="updateValidBicycle">
-            <label for="updateValidBicycle">
-            Have Valid Bicycle?:             
-            <select name="newValidBicycle" id="newValidBicycle">
-                <option value="y">Yes</option>
-                <option value="n">No</option>
-            </select>
+            <input type="checkbox" name="updatePostalCode" id="updatePostalCode">
+            <label for="updatePostalCode">
+            New Postal Code: <input type="text" name="newPostalCode1">
             </label><br /><br />
-
-            <h3>Update Foot Courier Info:</h3>
-            <input type="checkbox" name="updateBusPass" id="updateBusPass">
-            <label for="updateBusPass">
-            New BusPass: <input type="text" name="newBusPass">
+            <input type="checkbox" name="updateCityAndProvince" id="updateCityAndProvince">
+            <label for="updateCityAndProvince">
+            New Postal Code: <input type="text" name="newPostalCode2"><br /><br />
+            New City: <input type="text" name="newCity"><br /><br />
+            New Province: <input type="text" name="newProvince">
             </label><br /><br />
             <input type="submit" value="Submit" name="updateSubmit"></p>
         </form>
 
-    
-
         <hr>
 
-        <h2>Enter Your Courier ID and Unregister Your Courier Standing.</h2>
-        <form method="POST" action="courier.php">
-            <input type="hidden" id="deleteCourier" name="deleteCourier">
-            Your Courier ID: <input type="text" name="courier_id">
+        <h2>Enter Your Customer ID And Unregister Your Customer Standing.</h2>
+        <form method="POST" action="customer.php">
+            <input type="hidden" id="deleteCustomer" name="deleteCustomer">
+            Your Customer ID: <input type="text" name="customer_id"><br /><br />
             <input type="submit" value="Submit" name="deleteSubmit"></p>
         </form>
 
         <hr>
+        <h2>Buy Giftcard For Yourself Or Your Friend!</h2>
+        <form method="POST" action="customer.php">
+            <input type="hidden" id="insertGiftCard" name="insertGiftCard">
+            Your Customer ID: <input type="text" name="customer_id"><br /><br />
+            Card Number: <input type="text" name="card_number"><br /><br />
+            Recipient Name: <input type="text" name="recipient_name" value="Friend"><br /><br />
+            Recipient Email: <input type="text" name="recipient_email"><br /><br />
+            Balance: <input type="number" name="balance"  step="0.01"><br /><br />
+            Expiry Date: <input type="datetime-local" name="expiry_date"><br /><br />
+            <input type="submit" value="Submit" name="insertSubmit"></p>
+        </form>
 
-        <h2>Enter Your Courier ID And Check All Orders You Have Delivered.</h2>
-        <form method="GET" action="courier.php">
-            <input type="hidden" id="checkAllOrders" name="checkAllOrders">
-            Your Courier ID: <input type="text" name="courier_id">
-            <input type="submit" name="displayOrders"></p>
+        <hr>
+        <h2>Search For Coupon Code And Redeem It!</h2>
+        <h3>Check All Coupon Code.</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="printAllCouponCode" name="printAllCouponCode">
+            <input type="submit" name="displayAllCouponCode"></p>
+        </form>
+        <h3>Search For Coupon Code With Discount Between A Given Price Range.</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkRelatedCouponCode" name="checkRelatedCouponCode">
+            <input type="checkbox" name="fromPrice" id="fromPrice">
+            <label for="fromPrice">
+            Higher Than: <input type="number" name="fromPrice"  step="0.01">
+            </label><br /><br />
+            <input type="checkbox" name="toPrice" id="toPrice">
+            <label for="toPrice">
+            Lower Than: <input type="number" name="toPrice"  step="0.01">
+            </label><br /><br />
+            <input type="submit" name="displayRelatedCouponCode"></p>
+        </form>
+        <h3>Redeem Coupon Code</h3>
+        <form method="POST" action="customer.php">
+            <input type="hidden" id="insertReceives" name="insertReceives">
+            Your Customer ID: <input type="text" name="customer_id"><br /><br />
+            Coupon Code: <input type="text" name="coupon_code"><br /><br />
+            <input type="submit" value="Submit" name="insertSubmit"></p>
         </form>
 
         <hr>
 
-        <h2>Enter Your Courier ID And Check Your Current Standing.</h2>
-        <form method="GET" action="courier.php">
-            <input type="hidden" id="printAllTables" name="printAllTables">
-            Your Courier ID: <input type="text" name="courier_id">
-            <input type="submit" name="displayTables"></p>
+        <h2>Search For Giftcard.</h2>
+        <h3>Enter Your Email And Check All Giftcards You Own.</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkOwnedGiftcards" name="checkOwnedGiftcards">
+            Your Email: <input type="text" name="recipient_email"><br /><br />
+            <input type="submit" name="displayOwnedGiftcards"></p>
+        </form>
+        <h3>Enter Your Customer ID And Check All Giftcard You Bought.</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkBoughtGiftcards" name="checkBoughtGiftcards">
+            Your Customer ID: <input type="text" name="customer_id"><br /><br />
+            <input type="submit" name="displayBoughtGiftcards"></p>
         </form>
 
-        <h2>Display All Courier Related Tables.</h2>
-        <form method="GET" action="courier.php">
-            <input type="hidden" id="checkAllTables" name="checkAllTables">
-            <input type="submit" name="checkTables"></p>
+        <hr>
+
+        <h2>Explore Restaurants!</h2>
+        <h3>Check All Restaurants.</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkAllRestaurants" name="checkAllRestaurants">
+            <input type="submit" name="displayAllRestaurants"></p>
+        </form>
+        <h3>Search For Resturant Within A Certain City.</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkCityRestaurants" name="checkCityRestaurants">
+            City: <input type="text" name="city"> <br /><br />
+            <input type="submit" name="displayCityRestaurants"></p>
+        </form>
+        <h3>Search For Resturant Within A Certain Category.</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkCategoryRestaurants" name="checkCategoryRestaurants">
+            Category: <input type="text" name="category"> <br /><br />
+            <input type="submit" name="displayCategoryRestaurants"></p>
+        </form>
+        <h3>Search For Restaurant With Rating Between A Given Range</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkRatingRestaurants" name="checkRatingRestaurants">
+            <input type="checkbox" name="fromRating" id="fromRating">
+            <label for="fromRating">
+            Higher Than: <input type="number" name="fromRating" step="0.01" min="0" max="10">
+            </label><br /><br />
+            <input type="checkbox" name="toRating" id="toRating">
+            <label for="toRating">
+            Lower Than: <input type="number" name="toRating" step="0.01" min="0" max="10">
+            </label><br /><br />
+            <input type="submit" name="displayRatingRestaurants"></p>
+        </form>
+        <h3>Advanced Search.</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkAdvancedRestaurants" name="checkkAdvancedRestaurants">
+            City: <input type="text" name="city"> <br /><br />
+            Category: <input type="text" name="category"> <br /><br />
+            Rating Higher Than: <input type="number" name="fromRating" step="0.01" min="0" max="10"> <br /><br />
+            Rating Lower Than: <input type="number" name="toRating" step="0.01" min="0" max="10"> <br /><br />
+            <input type="submit" name="displaykAdvancedRestaurants"></p>
+        </form>
+
+        <hr>
+
+        <h2>Check Your Order History And Place New Order!</h2>
+        <h3>Enter Your Customer ID And Check All Orders You Placed.</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkAllOrders" name="checkAllOrders">
+            Your Customer ID: <input type="text" name="customer_id"> <br /><br />
+            <input type="submit" name="displayAllOrders"></p>
+        </form>
+        <h3>Enter Restaurant ID To Check Their Menu.</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkMenuItems" name="checkMenuItems">
+            Restaurant ID: <input type="text" name="restaurant_id"> <br /><br />
+            <input type="submit" name="displayMenuItems"></p>
+        </form>
+        <h3>Enter Your Customer ID And Place Order!</h3>
+        <form method="POST" action="customer.php">
+            <input type="hidden" id="insertOrders" name="insertOrders">
+            Customer ID: <input type="text" name="customer_id"> <br /><br />
+            Order Number: <input type="text" name="order_number"> <br /><br />
+            Payment Method: <input type="text" name="payment_method"> <br /><br />
+            Delivery Address: <input type="text" name="delivery_address"> <br /><br />
+            Courier Tip: <input type="text" name="courier_tips"> <br /><br />
+            Menu Item: <input type="text" name="menu_items"> <br /><br />
+            <input type="checkbox" name="useCoupon" id="useCoupon">
+            <label for="useCoupon">
+            Coupon Code: <input type="text" name="couponUsed">
+            </label><br /><br />
+            <input type="checkbox" name="useGiftcard" id="useGiftcard">
+            <label for="useGiftcard">
+            Giftcard Number: <input type="text" name="giftcardUsed">
+            </label><br /><br />
+            <input type="submit" value="Submit" name="insertOrders"></p>
         </form>
 
         <a href="mainpage.php">Return to Main Page</a>
