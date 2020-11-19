@@ -1,5 +1,4 @@
 
-
   <html>
     <head>
         <title>Customer</title>
@@ -60,11 +59,10 @@
             </label><br /><br />
             <input type="checkbox" name="updatePostalCode" id="updatePostalCode">
             <label for="updatePostalCode">
-            New Postal Code: <input type="text" name="newPostalCode1">
+            New Postal Code: <input type="text" name="newPostalCode">
             </label><br /><br />
             <input type="checkbox" name="updateCityAndProvince" id="updateCityAndProvince">
             <label for="updateCityAndProvince">
-            New Postal Code: <input type="text" name="newPostalCode2"><br /><br />
             New City: <input type="text" name="newCity"><br /><br />
             New Province: <input type="text" name="newProvince">
             </label><br /><br />
@@ -73,7 +71,7 @@
 
         <hr>
 
-        <h2>Enter Your Customer ID And Unregister Your Customer Standing.</h2>
+        <h2>Enter Your Customer ID to Delete Your Account.</h2>
         <form method="POST" action="customer.php">
             <input type="hidden" id="deleteCustomer" name="deleteCustomer">
             Your Customer ID: <input type="text" name="customer_id"><br /><br />
@@ -81,7 +79,7 @@
         </form>
 
         <hr>
-        <h2>Buy Giftcard For Yourself Or Your Friend!</h2>
+        <h2>Buy Giftcard for Yourself or Your Friend!</h2>
         <form method="POST" action="customer.php">
             <input type="hidden" id="insertGiftCard" name="insertGiftCard">
             Your Customer ID: <input type="text" name="customer_id"><br /><br />
@@ -94,7 +92,7 @@
         </form>
 
         <hr>
-        <h2>Search For Coupon Code And Redeem It!</h2>
+        <h2>Search For Coupon Codes!</h2>
         <h3>Check All Coupon Code.</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="printAllCouponCode" name="printAllCouponCode">
@@ -182,20 +180,20 @@
 
         <hr>
 
-        <h2>Check Your Order History And Place New Order!</h2>
+        <h2>Check Your Order History And Place New Orders!</h2>
         <h3>Enter Your Customer ID And Check All Orders You Placed.</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkAllOrders" name="checkAllOrders">
             Your Customer ID: <input type="text" name="customer_id"> <br /><br />
             <input type="submit" name="displayAllOrders"></p>
         </form>
-        <h3>Enter Restaurant ID To Check Their Menu.</h3>
+        <h3>Enter a Restaurant ID To Check Their Menu.</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkMenuItems" name="checkMenuItems">
             Restaurant ID: <input type="text" name="restaurant_id"> <br /><br />
             <input type="submit" name="displayMenuItems"></p>
         </form>
-        <h3>Enter Your Customer ID And Place Order!</h3>
+        <h3>Enter Your Customer ID And Place an Order!</h3>
         <form method="POST" action="customer.php">
             <input type="hidden" id="insertOrders" name="insertOrders">
             Customer ID: <input type="text" name="customer_id"> <br /><br />
@@ -297,18 +295,6 @@
         }
 
 
-        function printOrderResults($result) {
-            echo "<br>Retrieved customer data:<br>";
-            echo "<table>";
-            echo "<tr><th>customer_id</th><th>restaurant_id</th><th>courier_id</th></tr>";
-
-            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td></tr>";
-            }
-
-            echo "</table>";
-        }
-
         function connectToDB() {
             global $db_conn;
 
@@ -335,7 +321,7 @@
 
         function handleInsertCustomer(){
             global $db_conn;
-            
+
             $cus_id = $_POST["customer_id"];
 
             // Check if customer_id already exists; if so, reject the input
@@ -370,11 +356,11 @@
                 $unique_pos_code = executePlainSQL("select count(*) from Address where postal_code = '$pos_code'");
                 $row = OCI_Fetch_Array($unique_pos_code, OCI_BOTH);
                 if ($row[0] == 0) {
-                    executePlainSQL("insert into Address values ('$pos_code', '$city', '$province')");
+                    executePlainSQL("INSERT into Address VALUES ('$pos_code', '$city', '$province')");
                 }
 
-                executePlainSQL("insert into Customer values ($cus_id, '$email', $age, '$phone_num', '$street_addr', 
-                                                            '$pos_code', '$name', $rew_points, '$rew_tier', $acc_balance)");
+                executePlainSQL("INSERT into Customer VALUES ($cus_id, '$email', $age, '$phone_num', '$street_addr', 
+                                                             '$pos_code', '$name', $rew_points, '$rew_tier', $acc_balance)");
             }
 
             OCICommit($db_conn);
@@ -392,38 +378,31 @@
         function handleUpdateCustomerInfo() {
             global $db_conn;
 
-            $courier_id = $_POST['courier_id'];
+            $cus_id = $_POST['customer_id'];
             if (isset($_POST['updateName'])) {
-                $newname = $_POST['newName'];
-                executePlainSQL("UPDATE Courier SET name='" . $newname . "' WHERE courier_id='" . $courier_id . "'");
+                $new_name = $_POST['newName'];
+                executePlainSQL("UPDATE Customer SET name= '$new_name' WHERE customer_id = $cus_id");
             }
             if (isset($_POST['updatePhoneNumber'])) {
-                $newphonenumber = $_POST['newPhoneNumber'];
-                executePlainSQL("UPDATE Courier SET phone_number='" . $newphonenumber . "' WHERE courier_id='" . $courier_id . "'");
+                $new_phone_number = $_POST['newPhoneNumber'];
+                executePlainSQL("UPDATE Customer SET phone_number= '$new_phone_number' WHERE customer_id = $cus_id");
             }
-            if (isset($_POST['updateDriverLicense'])) {
-                $newlicense = $_POST['newDriverLicense'];
-                executePlainSQL("UPDATE Vehicle_Courier SET drivers_license='" . $newlicense . "' WHERE courier_id='" . $courier_id . "'");
+            if (isset($_POST['updateEmail'])) {
+                $new_email = $_POST['newEmail'];
+                executePlainSQL("UPDATE Customer SET email= '$new_email' WHERE customer_id = $cus_id");
             }
-            if (isset($_POST['updateValidVehicle'])) {
-                $newvehicle = $_POST['newValidVehicle'];
-                executePlainSQL("UPDATE Vehicle_Courier SET valid_vehicle='" . $newvehicle . "' WHERE courier_id='" . $courier_id . "'");
+            if (isset($_POST['updateAge'])) {
+                $new_age = $_POST['age'];
+                executePlainSQL("UPDATE Customer SET age= '$new_age' WHERE customer_id = $cus_id");
             }
-            if (isset($_POST['updateValidInsurance'])) {
-                $newinsurance = $_POST['newValidInsurance'];
-                executePlainSQL("UPDATE Vehicle_Courier SET valid_insurance='" . $newinsurance. "' WHERE courier_id='" . $courier_id . "'");
-            }
-            if (isset($_POST['updateValidBicycle'])) {
-                $newbicycle = $_POST['newValidBicycle'];
-                executePlainSQL("UPDATE Bicycle_Courier SET valid_bicycle='" . $newbicycle. "' WHERE courier_id='" . $courier_id . "'");
-            }
-            if (isset($_POST['updateBusPass'])) {
-                $newbuspass = $_POST['newBusPass'];
-                executePlainSQL("UPDATE Foot_Courier SET bus_pass='" . $newbuspass. "' WHERE courier_id='" . $courier_id . "'");
-            }
+            if (isset($_POST['updateStreetAddress'])) {
+                $new_addr = $_POST['newStreetAddress'];
+                executePlainSQL("UPDATE Customer SET street_address= '$new_addr' WHERE customer_id = $cus_id");
+            }            
 
             OCICommit($db_conn);
         }
+
 
         function  handleDisplayOrders() {
             global $db_conn;
