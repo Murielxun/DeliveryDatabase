@@ -127,24 +127,26 @@
 
         <hr>
 
-        <h2>(Below Not Yet done)Search For Orders Your Restaurant Prepared!</h2>
+        <h2>Search For Orders Your Restaurant Prepared!</h2>
         <h3>Enter Your Restaurnt ID And Check All Orders.</h3>
-        <form method="GET" action="resturant.php">
+        <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkAllOrders" name="checkAllOrders">
             Your Restaurant ID: <input type="text" name="restaurant_id"><br /><br />
             <input type="submit" name="displayAllOrders"></p>
         </form>
+
+
         <h3>Search For Orders With Food Subtotal Between A Certain Range.</h3>
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkPriceOrders" name="checkPriceOrders">
             Your Restaurant ID: <input type="text" name="restaurant_id"><br /><br />
             <input type="checkbox" name="fromPrice" id="fromPrice">
             <label for="fromPrice">
-            Higher Than: <input type="number" name="fromPrice"  step="0.01">
+            Higher Than: <input type="number" name="min"  step="0.01">
             </label><br /><br />
             <input type="checkbox" name="toPrice" id="toPrice">
             <label for="toPrice">
-            Lower Than: <input type="number" name="toPrice"  step="0.01">
+            Lower Than: <input type="number" name="max"  step="0.01">
             </label><br /><br />
             <input type="submit" name="displayPriceOrders"></p>
         </form>
@@ -292,17 +294,7 @@
             echo "</table>";
         }
 
-        function printOrderResults($result) {
-            echo "<br>Retrieved data from table Orders:<br>";
-            echo "<table>";
-            echo "<tr><th>customer_id</th><th>restaurant_id</th><th>courier_id</th></tr>";
 
-            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td></tr>";
-            }
-
-            echo "</table>";
-        }
 
         function connectToDB() {
             global $db_conn;
@@ -654,12 +646,46 @@
             OCICommit($db_conn);
         }
 
-        function  handleDisplayOrders() {
+        function  handleDisplayAllOrders() {
             global $db_conn;
-            $courier_id = $_GET['courier_id'];
-            $result = executePlainSQL("SELECT customer_id, restaurant_id, courier_id FROM Orders WHERE courier_id='" . $courier_id . "'");
-            printOrderResults($result);
+            $restaurant_id = $_GET['restaurant_id'];
+            $result = executePlainSQL("SELECT order_number, customer_id, date_placed, food_subtotal FROM Orders WHERE restaurant_id=" . $restaurant_id);
+            printAllOrderResults($result);
 
+        }
+
+
+        function  handleDisplayOrdersWithInRange() {
+            global $db_conn;
+            $restaurant_id = $_GET['restaurant_id'];
+            $max = PHP_INT_MAX;
+            $min = 0;
+            if (isset($_GET['fromPrice'])) {
+                $min = $_GET['min'];
+                //executePlainSQL("UPDATE Courier SET name='" . $newname . "' WHERE courier_id='" . $courier_id . "'");
+            }
+            if (isset($_GET['toPrice'])) {
+                $max = $_GET['max'];
+                //executePlainSQL("UPDATE Courier SET phone_number='" . $newphonenumber . "' WHERE courier_id='" . $courier_id . "'");
+            }
+
+            $result = executePlainSQL("SELECT order_number, customer_id, date_placed, food_subtotal FROM Orders 
+                                        WHERE restaurant_id = " . $restaurant_id . " AND food_subtotal <= " . $max . " AND food_subtotal >= ". $min);
+            printAllOrderResults($result);
+
+        }
+
+
+        function printAllOrderResults($result) {
+            echo "<br>Retrieved all the orders from your restaurant:<br>";
+            echo "<table>";
+            echo "<tr><th>order_number</th><th>order_number</th><th>date_placed</th><th>food_subtotal</th></tr>";
+
+            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td><td>" . $row[3] . "</td></tr>";
+            }
+
+            echo "</table>";
         }
 
         function  handleDisplayTables() {
@@ -698,13 +724,13 @@
             if (connectToDB()) {
                 if (array_key_exists('insertCourier', $_POST)) {
                     handleInsertCourier();
-                } else if (array_key_exists('insertVehicleCourier', $_POST)) {
+                } else if (array_key_exists('can reuse', $_POST)) {
                     handleInsertVehicleCourier();
-                } else if (array_key_exists('insertVehicle', $_POST)) {
+                } else if (array_key_exists('can reuse', $_POST)) {
                     handleInsertVehicle();
-                }else if (array_key_exists('insertFootCourier', $_POST)) {
+                }else if (array_key_exists('can reuse', $_POST)) {
                     handleInsertFootCourier();
-                }else if (array_key_exists('insertBicycleCourier', $_POST)) {
+                }else if (array_key_exists('can reuse', $_POST)) {
                     handleInsertBicycleCourier();
                 }else if (array_key_exists('deleteSubmitDishes', $_POST)) {
                     handleDeleteMenu();
@@ -725,15 +751,18 @@
 
         function handleGETRequest() {
         if (connectToDB()) {
-                if (array_key_exists('displayOrders', $_GET)) {
-                    handleDisplayOrders();
+                if (array_key_exists('displayAllOrders', $_GET)) {
+                    handleDisplayAllOrders();
                 } else if (array_key_exists('displayTables', $_GET)) {
                     handleDisplayTables();
                 } else if (array_key_exists('checkTables', $_GET)) {
                     handleCheckTables();
                 } else if (array_key_exists('displayRestaurant', $_GET)) {
                     handleSelectRestaurant();
+                } else if (array_key_exists('displayPriceOrders', $_GET)) {
+                    handleDisplayOrdersWithInRange();
                 }
+
                 disconnectFromDB();
             }
         }
@@ -741,7 +770,7 @@
 		if (isset($_POST['insertRestaurant']) || isset($_POST['updateRestaurantInfo']) || isset($_POST['deleteRestaurant']) ||
                 isset($_POST['deleteMenuItem']) || isset($_POST['updateMenuItem']) || isset($_POST['insertMenuItem'])) {
             handlePOSTRequest();
-        } else if (isset($_GET['printAllTables']) || isset($_GET['checkAllOrders'])|| isset($_GET['checkAllTables'])) {
+        } else if (isset($_GET['checkPriceOrders']) || isset($_GET['checkAllOrders'])|| isset($_GET['(Can reuse)'])) {
             handleGETRequest();
         } else if (isset($_GET['checkRestaurant'])) {
             handleGETRequest();
