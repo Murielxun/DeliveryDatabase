@@ -157,7 +157,7 @@
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkAllCustomer" name="checkAllCustomer">
             Your Restaurant ID: <input type="text" name="restaurant_id">
-            <input type="submit" name="displayAllCustomer"></p>
+            <input type="submit" name="displayCustomerWithEmail"></p>
         </form>
 
         <hr>
@@ -234,68 +234,6 @@
             }
         }
 
-        function printCourierResult($result) { 
-            echo "<br>Retrieved data from table Courier:<br>";
-            echo "<table>";
-            echo "<tr><th>courier_id</th><th>name</th><th>rating</th><th>phone_number</th></tr>";
-
-            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td><td>" . $row[3] . "</td></tr>"; 
-            }
-
-            echo "</table>";
-        }
-
-        function printVehicleCourierResult($result) { 
-            echo "<br>Retrieved data from table Vehicle_Courier:<br>";
-            echo "<table>";
-            echo "<tr><th>valid_vehicle</th><th>valid_insurance</th><th>driver_license</th><th>courier_id</th></tr>";
-
-            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td><td>" . $row[3] . "</td></tr>"; 
-            }
-
-            echo "</table>";
-        }
-
-        function printBicycleCourierResult($result) { 
-            echo "<br>Retrieved data from table Bicycle_Courier:<br>";
-            echo "<table>";
-            echo "<tr><th>courier_id</th><th>valid_bicycle</th></tr>";
-
-            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td></tr>";
-            }
-
-            echo "</table>";
-        }
-
-        function printFootCourierResult($result) { 
-            echo "<br>Retrieved data from table Foot_Courier:<br>";
-            echo "<table>";
-            echo "<tr><th>courier_id</th><th>bus_pass</th></tr>";
-
-            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td></tr>";
-            }
-
-            echo "</table>";
-        }
-
-        function printVehicleDrivesResult($result) { 
-            echo "<br>Retrieved data from table Vehicle_Drives:<br>";
-            echo "<table>";
-            echo "<tr><th>vehicle_id</th><th>type</th><th>courier_id</th></tr>";
-
-            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td></tr>";
-            }
-
-            echo "</table>";
-        }
-
-
-
         function connectToDB() {
             global $db_conn;
 
@@ -320,91 +258,9 @@
             OCILogoff($db_conn);
         }
 
-        function handleInsertCourier(){
-            global $db_conn;
-            
-            $tuple = array (
-                ":bind1" => $_POST['courier_id'],
-                ":bind2" => $_POST['name'],
-                ":bind3" => $_POST['rating'],
-                ":bind4" => $_POST['phone_number']
-            );
 
-            $alltuples = array (
-                $tuple
-            );
 
-            executeBoundSQL("insert into Courier values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
-            OCICommit($db_conn);
-        }
-
-        function handleInsertVehicleCourier(){
-            global $db_conn;
-            
-            $tuple = array (
-                ":bind1" => $_POST['courier_id'],
-                ":bind2" => $_POST['name'],
-                ":bind3" => $_POST['rating'],
-                ":bind4" => $_POST['phone_number']
-            );
-
-            $alltuples = array (
-                $tuple
-            );
-
-            executeBoundSQL("insert into Vehicle_Courier values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
-            OCICommit($db_conn);
-        }
-
-        function handleInsertVehicle(){
-            global $db_conn;
-            
-            $tuple = array (
-                ":bind1" => $_POST['vehicle_id'],
-                ":bind2" => $_POST['type'],
-                ":bind3" => $_POST['courier_id']
-            );
-
-            $alltuples = array (
-                $tuple
-            );
-
-            executeBoundSQL("insert into Vehicle_Drives values (:bind1, :bind2, :bind3)", $alltuples);
-            OCICommit($db_conn);
-        }
-
-        function handleInsertBicycleCourier(){
-            global $db_conn;
-            
-            $tuple = array (
-                ":bind1" => $_POST['courier_id'],
-                ":bind2" => $_POST['valid_bycicle']
-            );
-
-            $alltuples = array (
-                $tuple
-            );
-
-            executeBoundSQL("insert into Bicycle_Courier values (:bind1, :bind2)", $alltuples);
-            OCICommit($db_conn);
-        }
-
-        function handleInsertFootCourier(){
-            global $db_conn;
-            
-            $tuple = array (
-                ":bind1" => $_POST['courier_id'],
-                ":bind2" => $_POST['bus_pass']
-            );
-
-            $alltuples = array (
-                $tuple
-            );
-
-            executeBoundSQL("insert into Foot_Courier values (:bind1, :bind2)", $alltuples);
-            OCICommit($db_conn);
-        }
-
+        //Insert Menu
         function handleInsertMenu() {
             global $db_conn;
 
@@ -426,6 +282,7 @@
             OCICommit($db_conn);
         }
 
+        //Insert Restaurant
         function handleInsertRestaurant() {
             global $db_conn;
 
@@ -458,6 +315,7 @@
             OCICommit($db_conn);
         }
 
+        //print results from a select restaurant
         function printRestaurant($result) { //prints results from a select statement
             echo "<br>Retrieved data from Restaurant:<br>";
             echo "<table>";
@@ -470,11 +328,13 @@
             echo "</table>";
         }
 
+        //print all restaurant
         function handleCheckRestaurant() {
             $result = executePlainSQL("SELECT * FROM restaurant");
             printRestaurant($result);
         }
 
+        //handle sql statement for select specific restaurant
         function handleSelectRestaurant() {
             global $db_conn;
 
@@ -494,6 +354,7 @@
             printRestaurant($result);
         }
 
+        //handle sql for deleting the specific row in menu
         function handleDeleteMenu() {
             global $db_conn;
 
@@ -503,6 +364,7 @@
             OCICommit($db_conn);
         }
 
+        //handle sql for deleting the specific row in restaurant
         function handleDeleteRestaurant() {
             global $db_conn;
 
@@ -515,15 +377,7 @@
             OCICommit($db_conn);
         }
 
-        function handleDeleteCourier() {
-            global $db_conn;
-
-            $courier_id = $_POST['courier_id'];
-
-            executePlainSQL("DELETE FROM Courier  WHERE courier_id='" . $courier_id . "'");
-            OCICommit($db_conn);
-        }
-
+        //update  menu
         function handleUpdateMenu() {
             global $db_conn;
             $restaurant_id = $_POST['restaurant_id'];
@@ -556,7 +410,7 @@
         }
 
 
-
+        //update restaurant
         function handleUpdateRestaurant() {
             global $db_conn;
 
@@ -610,42 +464,7 @@
             OCICommit($db_conn);
         }
 
-        function handleUpdateCourierInfo() {
-            global $db_conn;
-
-            $courier_id = $_POST['courier_id'];
-            if (isset($_POST['updateName'])) {
-                $newname = $_POST['newName'];
-                executePlainSQL("UPDATE Courier SET name='" . $newname . "' WHERE courier_id='" . $courier_id . "'");
-            }
-            if (isset($_POST['updatePhoneNumber'])) {
-                $newphonenumber = $_POST['newPhoneNumber'];
-                executePlainSQL("UPDATE Courier SET phone_number='" . $newphonenumber . "' WHERE courier_id='" . $courier_id . "'");
-            }
-            if (isset($_POST['updateDriverLicense'])) {
-                $newlicense = $_POST['newDriverLicense'];
-                executePlainSQL("UPDATE Vehicle_Courier SET drivers_license='" . $newlicense . "' WHERE courier_id='" . $courier_id . "'");
-            }
-            if (isset($_POST['updateValidVehicle'])) {
-                $newvehicle = $_POST['newValidVehicle'];
-                executePlainSQL("UPDATE Vehicle_Courier SET valid_vehicle='" . $newvehicle . "' WHERE courier_id='" . $courier_id . "'");
-            }
-            if (isset($_POST['updateValidInsurance'])) {
-                $newinsurance = $_POST['newValidInsurance'];
-                executePlainSQL("UPDATE Vehicle_Courier SET valid_insurance='" . $newinsurance. "' WHERE courier_id='" . $courier_id . "'");
-            }
-            if (isset($_POST['updateValidBicycle'])) {
-                $newbicycle = $_POST['newValidBicycle'];
-                executePlainSQL("UPDATE Bicycle_Courier SET valid_bicycle='" . $newbicycle. "' WHERE courier_id='" . $courier_id . "'");
-            }
-            if (isset($_POST['updateBusPass'])) {
-                $newbuspass = $_POST['newBusPass'];
-                executePlainSQL("UPDATE Foot_Courier SET bus_pass='" . $newbuspass. "' WHERE courier_id='" . $courier_id . "'");
-            }
-
-            OCICommit($db_conn);
-        }
-
+        //handle the sql statement for selecting all the orders from the restaurant
         function  handleDisplayAllOrders() {
             global $db_conn;
             $restaurant_id = $_GET['restaurant_id'];
@@ -654,7 +473,7 @@
 
         }
 
-
+        //handle the sql statement for selecting all the orders within the range(food_subtotal) from the restaurant
         function  handleDisplayOrdersWithInRange() {
             global $db_conn;
             $restaurant_id = $_GET['restaurant_id'];
@@ -675,9 +494,9 @@
 
         }
 
-
+        //print the orders
         function printAllOrderResults($result) {
-            echo "<br>Retrieved all the orders from your restaurant:<br>";
+            echo "<br>Retrieved orders from your restaurant:<br>";
             echo "<table>";
             echo "<tr><th>order_number</th><th>order_number</th><th>date_placed</th><th>food_subtotal</th></tr>";
 
@@ -688,35 +507,7 @@
             echo "</table>";
         }
 
-        function  handleDisplayTables() {
-            global $db_conn;
-            $courier_id = $_GET['courier_id'];
-            $result = executePlainSQL("SELECT * FROM Courier WHERE courier_id='" . $courier_id . "'");
-            printCourierResult($result);
-            $result = executePlainSQL("SELECT * FROM Vehicle_Courier WHERE courier_id='" . $courier_id . "'");
-            printVehicleCourierResult($result);
-            $result = executePlainSQL("SELECT * FROM Bicycle_Courier WHERE courier_id='" . $courier_id . "'");
-            printBicycleCourierResult($result);
-            $result = executePlainSQL("SELECT * FROM Foot_Courier WHERE courier_id='" . $courier_id . "'");
-            printFootCourierResult($result);
-            $result = executePlainSQL("SELECT * FROM Vehicle_Drives WHERE courier_id='" . $courier_id . "'");
-            printVehicleDrivesResult($result);
-        }
-
-        function  handleCheckTables() {
-            global $db_conn;
-            $result = executePlainSQL("SELECT * FROM Courier");
-            printCourierResult($result);
-            $result = executePlainSQL("SELECT * FROM Vehicle_Courier");
-            printVehicleCourierResult($result);
-            $result = executePlainSQL("SELECT * FROM Bicycle_Courier");
-            printBicycleCourierResult($result);
-            $result = executePlainSQL("SELECT * FROM Foot_Courier");
-            printFootCourierResult($result);
-            $result = executePlainSQL("SELECT * FROM Vehicle_Drives");
-            printVehicleDrivesResult($result);
-
-        }
+        
 
 
 
@@ -770,7 +561,7 @@
 		if (isset($_POST['insertRestaurant']) || isset($_POST['updateRestaurantInfo']) || isset($_POST['deleteRestaurant']) ||
                 isset($_POST['deleteMenuItem']) || isset($_POST['updateMenuItem']) || isset($_POST['insertMenuItem'])) {
             handlePOSTRequest();
-        } else if (isset($_GET['checkPriceOrders']) || isset($_GET['checkAllOrders'])|| isset($_GET['(Can reuse)'])) {
+        } else if (isset($_GET['checkPriceOrders']) || isset($_GET['checkAllOrders'])|| isset($_GET['checkAllCustomer'])) {
             handleGETRequest();
         } else if (isset($_GET['checkRestaurant'])) {
             handleGETRequest();
