@@ -24,11 +24,11 @@
         </form>
     
         <hr>
-        <h2>Enter Your Customer ID And Check Your Current Standing.</h2>
+        <h2>Enter Your Customer ID to View Your Current Reward Tier and Reward Point Balance.</h2>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkSingleCustomer" name="checkSingleCustomer">
             Your Customer ID: <input type="text" name="customer_id"><br /><br />
-            <input type="submit" name="displaySingleCustomer"></p>
+            <input type="submit" name="checkCustomer"></p>
         </form>
 
         <hr>
@@ -59,11 +59,10 @@
             </label><br /><br />
             <input type="checkbox" name="updatePostalCode" id="updatePostalCode">
             <label for="updatePostalCode">
-            New Postal Code: <input type="text" name="newPostalCode1">
+            New Postal Code: <input type="text" name="newPostalCode">
             </label><br /><br />
             <input type="checkbox" name="updateCityAndProvince" id="updateCityAndProvince">
             <label for="updateCityAndProvince">
-            New Postal Code: <input type="text" name="newPostalCode2"><br /><br />
             New City: <input type="text" name="newCity"><br /><br />
             New Province: <input type="text" name="newProvince">
             </label><br /><br />
@@ -72,7 +71,7 @@
 
         <hr>
 
-        <h2>Enter Your Customer ID And Unregister Your Customer Standing.</h2>
+        <h2>Enter Your Customer ID to Delete Your Account.</h2>
         <form method="POST" action="customer.php">
             <input type="hidden" id="deleteCustomer" name="deleteCustomer">
             Your Customer ID: <input type="text" name="customer_id"><br /><br />
@@ -80,7 +79,7 @@
         </form>
 
         <hr>
-        <h2>Buy Giftcard For Yourself Or Your Friend!</h2>
+        <h2>Buy Giftcard for Yourself or Your Friend!</h2>
         <form method="POST" action="customer.php">
             <input type="hidden" id="insertGiftCard" name="insertGiftCard">
             Your Customer ID: <input type="text" name="customer_id"><br /><br />
@@ -93,7 +92,7 @@
         </form>
 
         <hr>
-        <h2>Search For Coupon Code And Redeem It!</h2>
+        <h2>Search For Coupon Codes!</h2>
         <h3>Check All Coupon Code.</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="printAllCouponCode" name="printAllCouponCode">
@@ -181,20 +180,20 @@
 
         <hr>
 
-        <h2>Check Your Order History And Place New Order!</h2>
+        <h2>Check Your Order History And Place New Orders!</h2>
         <h3>Enter Your Customer ID And Check All Orders You Placed.</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkAllOrders" name="checkAllOrders">
             Your Customer ID: <input type="text" name="customer_id"> <br /><br />
             <input type="submit" name="displayAllOrders"></p>
         </form>
-        <h3>Enter Restaurant ID To Check Their Menu.</h3>
+        <h3>Enter a Restaurant ID To Check Their Menu.</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkMenuItems" name="checkMenuItems">
             Restaurant ID: <input type="text" name="restaurant_id"> <br /><br />
             <input type="submit" name="displayMenuItems"></p>
         </form>
-        <h3>Enter Your Customer ID And Place Order!</h3>
+        <h3>Enter Your Customer ID And Place an Order!</h3>
         <form method="POST" action="customer.php">
             <input type="hidden" id="insertOrders" name="insertOrders">
             Customer ID: <input type="text" name="customer_id"> <br /><br />
@@ -218,8 +217,9 @@
 
         <?php
 
+
         $success = True;
-        $db_conn =  OCILogon("ora_muriel98", "a32203168", "dbhost.students.cs.ubc.ca:1522/stu"); 
+        $db_conn =  OCILogon("ora_jeonseol", "a39733985", "dbhost.students.cs.ubc.ca:1522/stu"); 
         $show_debug_alert_messages = False;
 
         function debugAlertMessage($message) {
@@ -281,83 +281,25 @@
             }
         }
 
-        function printCourierResult($result) { 
-            echo "<br>Retrieved data from table Courier:<br>";
+        function printCustomerResult($result) { 
+            echo "<br>Retrieved customer data:<br>";
             echo "<table>";
-            echo "<tr><th>courier_id</th><th>name</th><th>rating</th><th>phone_number</th></tr>";
+            echo "<tr><th>reward_points</th><th>rewards_tier</th></tr>";
 
-            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td><td>" . $row[3] . "</td></tr>"; 
-            }
+            $row = OCI_Fetch_Array($result, OCI_BOTH);
+            echo "$row[0]";
+            echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td></tr>"; 
+            
 
             echo "</table>";
         }
 
-        function printVehicleCourierResult($result) { 
-            echo "<br>Retrieved data from table Vehicle_Courier:<br>";
-            echo "<table>";
-            echo "<tr><th>valid_vehicle</th><th>valid_insurance</th><th>driver_license</th><th>courier_id</th></tr>";
-
-            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td><td>" . $row[3] . "</td></tr>"; 
-            }
-
-            echo "</table>";
-        }
-
-        function printBicycleCourierResult($result) { 
-            echo "<br>Retrieved data from table Bicycle_Courier:<br>";
-            echo "<table>";
-            echo "<tr><th>courier_id</th><th>valid_bicycle</th></tr>";
-
-            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td></tr>";
-            }
-
-            echo "</table>";
-        }
-
-        function printFootCourierResult($result) { 
-            echo "<br>Retrieved data from table Foot_Courier:<br>";
-            echo "<table>";
-            echo "<tr><th>courier_id</th><th>bus_pass</th></tr>";
-
-            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td></tr>";
-            }
-
-            echo "</table>";
-        }
-
-        function printVehicleDrivesResult($result) { 
-            echo "<br>Retrieved data from table Vehicle_Drives:<br>";
-            echo "<table>";
-            echo "<tr><th>vehicle_id</th><th>type</th><th>courier_id</th></tr>";
-
-            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td></tr>";
-            }
-
-            echo "</table>";
-        }
-
-        function printOrderResults($result) {
-            echo "<br>Retrieved data from table Orders:<br>";
-            echo "<table>";
-            echo "<tr><th>customer_id</th><th>restaurant_id</th><th>courier_id</th></tr>";
-
-            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td></tr>";
-            }
-
-            echo "</table>";
-        }
 
         function connectToDB() {
             global $db_conn;
 
 
-            $db_conn = OCILogon("ora_muriel98", "a32203168", "dbhost.students.cs.ubc.ca:1522/stu");
+            $db_conn = OCILogon("ora_jeonseol", "a39733985", "dbhost.students.cs.ubc.ca:1522/stu");
 
             if ($db_conn) {
                 debugAlertMessage("Database is Connected");
@@ -377,135 +319,90 @@
             OCILogoff($db_conn);
         }
 
-        function handleInsertCourier(){
+        function handleInsertCustomer(){
             global $db_conn;
-            
-            $tuple = array (
-                ":bind1" => $_POST['courier_id'],
-                ":bind2" => $_POST['name'],
-                ":bind3" => $_POST['rating'],
-                ":bind4" => $_POST['phone_number']
-            );
 
-            $alltuples = array (
-                $tuple
-            );
+            $cus_id = $_POST["customer_id"];
 
-            executeBoundSQL("insert into Courier values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
+            // Check if customer_id already exists; if so, reject the input
+            $id_is_in_use = executePlainSQL("select count(*) from Customer where customer_id = $cus_id");
+            $row = OCI_Fetch_Array($id_is_in_use, OCI_BOTH);
+        
+            if ($row[0] != 0) {
+                $err_message = 'This Customer ID is already is use. Please choose another one.';
+                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+
+                // To not make the error message appear again after the page is refreshed
+                echo "<script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
+                </script>";
+            }
+            else {
+                $acc_balance = 0.0;
+                $rew_points = 0;
+                $rew_tier = 'Bronze';
+                $pos_code = $_POST['postal_code'];
+                $city = $_POST['city'];
+                $province = $_POST['province'];
+                $email = $_POST['email'];
+                $age = $_POST['age'];
+                $phone_num = $_POST['phone_number'];
+                $street_addr = $_POST['street_address'];
+                $name = $_POST['name'];
+                
+                // Check if postal code already exists in Address; if not, need to add it to Address
+                $unique_pos_code = executePlainSQL("select count(*) from Address where postal_code = '$pos_code'");
+                $row = OCI_Fetch_Array($unique_pos_code, OCI_BOTH);
+                if ($row[0] == 0) {
+                    executePlainSQL("INSERT into Address VALUES ('$pos_code', '$city', '$province')");
+                }
+
+                executePlainSQL("INSERT into Customer VALUES ($cus_id, '$email', $age, '$phone_num', '$street_addr', 
+                                                             '$pos_code', '$name', $rew_points, '$rew_tier', $acc_balance)");
+            }
+
             OCICommit($db_conn);
         }
 
-        function handleInsertVehicleCourier(){
+        function handleCheckCustomer() {
             global $db_conn;
-            
-            $tuple = array (
-                ":bind1" => $_POST['courier_id'],
-                ":bind2" => $_POST['name'],
-                ":bind3" => $_POST['rating'],
-                ":bind4" => $_POST['phone_number']
-            );
+            $cus_id = $_GET['customer_id'];
+            $result = executePlainSQL("SELECT * FROM Customer WHERE customer_id = $cus_id");
+            printCustomerResult($result);
 
-            $alltuples = array (
-                $tuple
-            );
 
-            executeBoundSQL("insert into Vehicle_Courier values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
-            OCICommit($db_conn);
         }
 
-        function handleInsertVehicle(){
-            global $db_conn;
-            
-            $tuple = array (
-                ":bind1" => $_POST['vehicle_id'],
-                ":bind2" => $_POST['type'],
-                ":bind3" => $_POST['courier_id']
-            );
-
-            $alltuples = array (
-                $tuple
-            );
-
-            executeBoundSQL("insert into Vehicle_Drives values (:bind1, :bind2, :bind3)", $alltuples);
-            OCICommit($db_conn);
-        }
-
-        function handleInsertBicycleCourier(){
-            global $db_conn;
-            
-            $tuple = array (
-                ":bind1" => $_POST['courier_id'],
-                ":bind2" => $_POST['valid_bycicle']
-            );
-
-            $alltuples = array (
-                $tuple
-            );
-
-            executeBoundSQL("insert into Bicycle_Courier values (:bind1, :bind2)", $alltuples);
-            OCICommit($db_conn);
-        }
-
-        function handleInsertFootCourier(){
-            global $db_conn;
-            
-            $tuple = array (
-                ":bind1" => $_POST['courier_id'],
-                ":bind2" => $_POST['bus_pass']
-            );
-
-            $alltuples = array (
-                $tuple
-            );
-
-            executeBoundSQL("insert into Foot_Courier values (:bind1, :bind2)", $alltuples);
-            OCICommit($db_conn);
-        }
-
-        function handleDeleteCourier() {
+        function handleUpdateCustomerInfo() {
             global $db_conn;
 
-            $courier_id = $_POST['courier_id'];
-
-            executePlainSQL("DELETE FROM Courier  WHERE courier_id='" . $courier_id . "'");
-            OCICommit($db_conn);
-        }
-
-        function handleUpdateCourierInfo() {
-            global $db_conn;
-
-            $courier_id = $_POST['courier_id'];
+            $cus_id = $_POST['customer_id'];
             if (isset($_POST['updateName'])) {
-                $newname = $_POST['newName'];
-                executePlainSQL("UPDATE Courier SET name='" . $newname . "' WHERE courier_id='" . $courier_id . "'");
+                $new_name = $_POST['newName'];
+                executePlainSQL("UPDATE Customer SET name= '$new_name' WHERE customer_id = $cus_id");
             }
             if (isset($_POST['updatePhoneNumber'])) {
-                $newphonenumber = $_POST['newPhoneNumber'];
-                executePlainSQL("UPDATE Courier SET phone_number='" . $newphonenumber . "' WHERE courier_id='" . $courier_id . "'");
+                $new_phone_number = $_POST['newPhoneNumber'];
+                executePlainSQL("UPDATE Customer SET phone_number= '$new_phone_number' WHERE customer_id = $cus_id");
             }
-            if (isset($_POST['updateDriverLicense'])) {
-                $newlicense = $_POST['newDriverLicense'];
-                executePlainSQL("UPDATE Vehicle_Courier SET drivers_license='" . $newlicense . "' WHERE courier_id='" . $courier_id . "'");
+            if (isset($_POST['updateEmail'])) {
+                $new_email = $_POST['newEmail'];
+                executePlainSQL("UPDATE Customer SET email= '$new_email' WHERE customer_id = $cus_id");
             }
-            if (isset($_POST['updateValidVehicle'])) {
-                $newvehicle = $_POST['newValidVehicle'];
-                executePlainSQL("UPDATE Vehicle_Courier SET valid_vehicle='" . $newvehicle . "' WHERE courier_id='" . $courier_id . "'");
+            if (isset($_POST['updateAge'])) {
+                $new_age = $_POST['age'];
+                executePlainSQL("UPDATE Customer SET age= '$new_age' WHERE customer_id = $cus_id");
             }
-            if (isset($_POST['updateValidInsurance'])) {
-                $newinsurance = $_POST['newValidInsurance'];
-                executePlainSQL("UPDATE Vehicle_Courier SET valid_insurance='" . $newinsurance. "' WHERE courier_id='" . $courier_id . "'");
-            }
-            if (isset($_POST['updateValidBicycle'])) {
-                $newbicycle = $_POST['newValidBicycle'];
-                executePlainSQL("UPDATE Bicycle_Courier SET valid_bicycle='" . $newbicycle. "' WHERE courier_id='" . $courier_id . "'");
-            }
-            if (isset($_POST['updateBusPass'])) {
-                $newbuspass = $_POST['newBusPass'];
-                executePlainSQL("UPDATE Foot_Courier SET bus_pass='" . $newbuspass. "' WHERE courier_id='" . $courier_id . "'");
-            }
+            if (isset($_POST['updateStreetAddress'])) {
+                $new_addr = $_POST['newStreetAddress'];
+                executePlainSQL("UPDATE Customer SET street_address= '$new_addr' WHERE customer_id = $cus_id");
+            }            
 
             OCICommit($db_conn);
         }
+
 
         function  handleDisplayOrders() {
             global $db_conn;
@@ -549,21 +446,13 @@
 
         function handlePOSTRequest() {
             if (connectToDB()) {
-                if (array_key_exists('insertCourier', $_POST)) {
-                    handleInsertCourier();
-                } else if (array_key_exists('insertVehicleCourier', $_POST)) {
-                    handleInsertVehicleCourier();
-                } else if (array_key_exists('insertVehicle', $_POST)) {
-                    handleInsertVehicle();
-                }else if (array_key_exists('insertFootCourier', $_POST)) {
-                    handleInsertFootCourier();
-                }else if (array_key_exists('insertBicycleCourier', $_POST)) {
-                    handleInsertBicycleCourier();
-                }else if (array_key_exists('updateCourierInfo', $_POST)) {
-                    handleUpdateCourierInfo();
-                }else if (array_key_exists('deleteCourier', $_POST)) {
-                    handleDeleteCourier();
-                }
+                if (array_key_exists('insertCustomer', $_POST)) {
+                    handleInsertCustomer();
+                } else if (array_key_exists('updateCustomerInfo', $_POST)) {
+                    handleUpdateCustomerInfo();
+                } else if (array_key_exists('deleteCustomer', $_POST)) {
+                    handleDeleteCustomer();
+                } 
 
                 disconnectFromDB();
             }
@@ -577,17 +466,19 @@
                     handleDisplayTables();
                 } else if (array_key_exists('checkTables', $_GET)) {
                     handleCheckTables();
+                } else if (array_key_exists('checkSingleCustomer', $_GET)) {
+                    handleCheckCustomer();
                 }
                 disconnectFromDB();
             }
         }
 
-		if (isset($_POST['insertSubmit']) || isset($_POST['updateSubmit']) || isset($_POST['deleteSubmit'])) {
+        if (isset($_POST['insertSubmit']) || isset($_POST['updateSubmit']) || isset($_POST['deleteSubmit'])) {
             handlePOSTRequest();
-        } else if (isset($_GET['printAllTables']) || isset($_GET['checkAllOrders'])|| isset($_GET['checkAllTables'])) {
+        } else if (isset($_GET['printAllTables']) || isset($_GET['checkAllOrders'])|| isset($_GET['checkAllTables']) ||
+            isset($_GET['checkCustomer'])) {
             handleGETRequest();
         }
 		?>
 	</body>
 </html>
-
