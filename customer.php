@@ -4,10 +4,13 @@
         <title>Customer</title>
     </head>
 
-    <body>
+    <link rel="stylesheet" href="style.css">
 
+    <body class = "courierBody">
+    <div class = "restaurant">
+        <h1>Customer Page</h1>
+    </div>
         <hr>
-
         <h2>New to This Delivery App? First Register As a Customer!</h2>
         <form method="POST" action="customer.php">
             <input type="hidden" id="insertCustomer" name="insertCustomer">
@@ -33,8 +36,7 @@
 
         <hr>
 
-        <h2>Enter Your Customer ID to Update Your Personal Info.</h2>
-        <h3> Check the boxes next to the information you would like to update. </h3>
+        <h2>Enter Your Customer ID and Update Your Personal Info.</h2>
         <form method="POST" action="customer.php">
             <input type="hidden" id="updateCustomerInfo" name="updateCustomerInfo">
             Your Customer ID: <input type="text" name="customer_id"> <br /><br />
@@ -54,14 +56,16 @@
             <label for="updateAge">
             New Age: <input type="number" name="age"  step="1" min="0" max="120">
             </label><br /><br />
-            <input type="checkbox" name="updateAddress" id="updateAddress">
-            <label for="updateAddress">
-            Update your Address (Please fill out all of the following 4 fields):
-            </label><br /><br />
+            <input type="checkbox" name="updateStreetAddress" id="updateStreetAddress">
+            <label for="updateStreetAddress">
             New Street Address: <input type="text" name="newStreetAddress">
             </label><br /><br />
+            <input type="checkbox" name="updatePostalCode" id="updatePostalCode">
+            <label for="updatePostalCode">
             New Postal Code: <input type="text" name="newPostalCode">
             </label><br /><br />
+            <input type="checkbox" name="updateCityAndProvince" id="updateCityAndProvince">
+            <label for="updateCityAndProvince">
             New City: <input type="text" name="newCity"><br /><br />
             New Province: <input type="text" name="newProvince">
             </label><br /><br />
@@ -77,63 +81,8 @@
             <input type="submit" value="Submit" name="deleteSubmit"></p>
         </form>
 
-        <hr>   
-    
-        <h3>Add a Coupon to Your Account</h3>
-        <form method="POST" action="customer.php">
-            <input type="hidden" id="redeemCoupon" name="redeemCoupon">
-            Your Customer ID: <input type="text" name="customer_id"><br /><br />
-            Coupon Code: <input type="text" name="coupon_code"><br /><br />
-            <input type="submit" value="Submit" name="insertSubmit"></p>
-        </form>
-
         <hr>
-
-        <h2>Explore Restaurants!</h2>
-        <h3>View All Restaurants In Your City.</h3>
-        <form method="GET" action="customer.php">
-            <input type="hidden" id="checkAllRestaurants" name="checkAllRestaurants">
-            <input type="submit" name="displayAllRestaurants"></p>
-        </form>
-        
-        <h3>Search For Resturants Within A Certain Category.</h3>
-        <form method="GET" action="customer.php">
-            <input type="hidden" id="checkCategoryRestaurants" name="checkCategoryRestaurants">
-            Category: <input type="text" name="category"> <br /><br />
-            <input type="submit" name="displayCategoryRestaurants"></p>
-        </form>
-
-        <hr>
-
-        <h3>View All Restaurants that Have a Rating Greater Than Some Value.</h3>
-        <form method="GET" action="customer.php">
-            <input type="hidden" id="checkRatingRestaurants" name="checkRatingRestaurants">
-            <input type="checkbox" name="fromRating" id="fromRating">
-            <label for="fromRating">
-            Higher Than: <input type="number" name="fromRating" step="0.01" min="0" max="10">
-            </label><br /><br />
-            <input type="checkbox" name="toRating" id="toRating">
-            <label for="toRating">
-            Lower Than: <input type="number" name="toRating" step="0.01" min="0" max="10">
-            </label><br /><br />
-            <input type="submit" name="displayRatingRestaurants"></p>
-        </form>
-
-        <hr>
-
-        <h3>For each restaurant category, find the restaurants that have the highest rating in that category.</h3>
-        <form method="GET" action="customer.php">
-            <input type="hidden" id="checkAdvancedRestaurants" name="checkkAdvancedRestaurants">
-            City: <input type="text" name="city"> <br /><br />
-            Category: <input type="text" name="category"> <br /><br />
-            Rating Higher Than: <input type="number" name="fromRating" step="0.01" min="0" max="10"> <br /><br />
-            Rating Lower Than: <input type="number" name="toRating" step="0.01" min="0" max="10"> <br /><br />
-            <input type="submit" name="displaykAdvancedRestaurants"></p>
-        </form>
-
-        <hr>
-
-        <h2>Find the restaurant categories that have the lowest average price of menu items compared to all other restaurant categories</h2>
+        <h2>Buy Giftcard for Yourself or Your Friend!</h2>
         <form method="POST" action="customer.php">
             <input type="hidden" id="insertGiftCard" name="insertGiftCard">
             Your Customer ID: <input type="text" name="customer_id"><br /><br />
@@ -146,13 +95,125 @@
         </form>
 
         <hr>
+        <h2>Search For Coupon Codes!</h2>
+        <h3>Check All Coupon Code.</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="printAllCouponCode" name="printAllCouponCode">
+            <input type="submit" name="displayAllCouponCode"></p>
+        </form>
+        <h3>Search For Coupon Code With Discount Between A Given Price Range.</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkRelatedCouponCode" name="checkRelatedCouponCode">
+            <input type="checkbox" name="fromPrice" id="fromPrice">
+            <label for="fromPrice">
+            Higher Than: <input type="number" name="fromPrice"  step="0.01">
+            </label><br /><br />
+            <input type="checkbox" name="toPrice" id="toPrice">
+            <label for="toPrice">
+            Lower Than: <input type="number" name="toPrice"  step="0.01">
+            </label><br /><br />
+            <input type="submit" name="displayRelatedCouponCode"></p>
+        </form>
+        <h3>Redeem Coupon Code</h3>
+        <form method="POST" action="customer.php">
+            <input type="hidden" id="insertReceives" name="insertReceives">
+            Your Customer ID: <input type="text" name="customer_id"><br /><br />
+            Coupon Code: <input type="text" name="coupon_code"><br /><br />
+            <input type="submit" value="Submit" name="insertSubmit"></p>
+        </form>
 
-        <h2>Check Your Order History</h2>
-        <h3>Enter Your Customer ID to Check Your Order History.</h3>
+        <hr>
+
+        <h2>Search For Giftcard.</h2>
+        <h3>Enter Your Email And Check All Giftcards You Own.</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkOwnedGiftcards" name="checkOwnedGiftcards">
+            Your Email: <input type="text" name="recipient_email"><br /><br />
+            <input type="submit" name="displayOwnedGiftcards"></p>
+        </form>
+        <h3>Enter Your Customer ID And Check All Giftcard You Bought.</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkBoughtGiftcards" name="checkBoughtGiftcards">
+            Your Customer ID: <input type="text" name="customer_id"><br /><br />
+            <input type="submit" name="displayBoughtGiftcards"></p>
+        </form>
+
+        <hr>
+
+        <h2>Explore Restaurants!</h2>
+        <h3>Check All Restaurants.</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkAllRestaurants" name="checkAllRestaurants">
+            <input type="submit" name="displayAllRestaurants"></p>
+        </form>
+        <h3>Search For Resturant Within A Certain City.</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkCityRestaurants" name="checkCityRestaurants">
+            City: <input type="text" name="city"> <br /><br />
+            <input type="submit" name="displayCityRestaurants"></p>
+        </form>
+        <h3>Search For Resturant Within A Certain Category.</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkCategoryRestaurants" name="checkCategoryRestaurants">
+            Category: <input type="text" name="category"> <br /><br />
+            <input type="submit" name="displayCategoryRestaurants"></p>
+        </form>
+        <h3>Search For Restaurant With Rating Between A Given Range</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkRatingRestaurants" name="checkRatingRestaurants">
+            <input type="checkbox" name="fromRating" id="fromRating">
+            <label for="fromRating">
+            Higher Than: <input type="number" name="fromRating" step="0.01" min="0" max="10">
+            </label><br /><br />
+            <input type="checkbox" name="toRating" id="toRating">
+            <label for="toRating">
+            Lower Than: <input type="number" name="toRating" step="0.01" min="0" max="10">
+            </label><br /><br />
+            <input type="submit" name="displayRatingRestaurants"></p>
+        </form>
+        <h3>Advanced Search.</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkAdvancedRestaurants" name="checkkAdvancedRestaurants">
+            City: <input type="text" name="city"> <br /><br />
+            Category: <input type="text" name="category"> <br /><br />
+            Rating Higher Than: <input type="number" name="fromRating" step="0.01" min="0" max="10"> <br /><br />
+            Rating Lower Than: <input type="number" name="toRating" step="0.01" min="0" max="10"> <br /><br />
+            <input type="submit" name="displaykAdvancedRestaurants"></p>
+        </form>
+
+        <hr>
+
+        <h2>Check Your Order History And Place New Orders!</h2>
+        <h3>Enter Your Customer ID And Check All Orders You Placed.</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkAllOrders" name="checkAllOrders">
             Your Customer ID: <input type="text" name="customer_id"> <br /><br />
             <input type="submit" name="displayAllOrders"></p>
+        </form>
+        <h3>Enter a Restaurant ID To Check Their Menu.</h3>
+        <form method="GET" action="customer.php">
+            <input type="hidden" id="checkMenuItems" name="checkMenuItems">
+            Restaurant ID: <input type="text" name="restaurant_id"> <br /><br />
+            <input type="submit" name="displayMenuItems"></p>
+        </form>
+        <h3>Enter Your Customer ID And Place an Order!</h3>
+        <form method="POST" action="customer.php">
+            <input type="hidden" id="insertOrders" name="insertOrders">
+            Customer ID: <input type="text" name="customer_id"> <br /><br />
+            Order Number: <input type="text" name="order_number"> <br /><br />
+            Payment Method: <input type="text" name="payment_method"> <br /><br />
+            Delivery Address: <input type="text" name="delivery_address"> <br /><br />
+            Courier Tip: <input type="text" name="courier_tips"> <br /><br />
+            Menu Item: <input type="text" name="menu_items"> <br /><br />
+            <input type="checkbox" name="useCoupon" id="useCoupon">
+            <label for="useCoupon">
+            Coupon Code: <input type="text" name="couponUsed">
+            </label><br /><br />
+            <input type="checkbox" name="useGiftcard" id="useGiftcard">
+            <label for="useGiftcard">
+            Giftcard Number: <input type="text" name="giftcardUsed">
+            </label><br /><br />
+            <input type="submit" value="Submit" name="insertOrders"></p>
         </form>
 
         <a href="mainpage.php">Return to Main Page</a>
@@ -224,11 +285,12 @@
         }
 
         function printCustomerResult($result) { 
-            echo "<br>Retrieved Customer Data:<br>";
+            echo "<br>Retrieved customer data:<br>";
             echo "<table>";
-            echo "<tr><th>Your Reward Points</th><th>Your Reward Tier</th></tr>";
+            echo "<tr><th>reward_points</th><th>rewards_tier</th></tr>";
 
             $row = OCI_Fetch_Array($result, OCI_BOTH);
+            echo "$row[0]";
             echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td></tr>"; 
             
 
@@ -265,69 +327,52 @@
 
             $cus_id = $_POST["customer_id"];
 
-            // Check if customer_id field was left empty
-            if (strlen($cus_id) == 0) {
-                $err_message = 'Customer ID cannot be empty. Please enter a customer ID and try again.';
+            // Check if customer_id already exists; if so, reject the input
+            $id_is_in_use = executePlainSQL("select count(*) from Customer where customer_id = $cus_id");
+            $row = OCI_Fetch_Array($id_is_in_use, OCI_BOTH);
+        
+            if ($row[0] != 0) {
+                $err_message = 'This Customer ID is already is use. Please choose another one.';
                 echo "<script type = 'text/javascript'> alert('$err_message');</script>";
 
                 // To not make the error message appear again after the page is refreshed
                 echo "<script>
                 if ( window.history.replaceState ) {
                     window.history.replaceState( null, null, window.location.href );
-                    }
+                }
                 </script>";
             }
             else {
-                // Check if customer_id already exists; if so, reject the input
-                $id_is_in_use = executePlainSQL("select count(*) from Customer where customer_id = $cus_id");
-                $row = OCI_Fetch_Array($id_is_in_use, OCI_BOTH);
-            
-                if ($row[0] != 0) {
-                    $err_message = 'This Customer ID is already is use. Please choose another one.';
-                    echo "<script type = 'text/javascript'> alert('$err_message');</script>";
-
-                    // To not make the error message appear again after the page is refreshed
-                    echo "<script>
-                    if ( window.history.replaceState ) {
-                        window.history.replaceState( null, null, window.location.href );
-                    }
-                    </script>";
-                }
-                else {
-                    $acc_balance = 0.0;
-                    $rew_points = 0;
-                    $rew_tier = 'Bronze';
-                    $pos_code = $_POST['postal_code'];
-                    $city = $_POST['city'];
-                    $province = $_POST['province'];
-                    $email = $_POST['email'];
-                    $age = $_POST['age'];
-                    $phone_num = $_POST['phone_number'];
-                    $street_addr = $_POST['street_address'];
-                    $name = $_POST['name'];
-                    
-                    // Check if postal code already exists in Address; if not, need to add it to Address
-                    $unique_pos_code = executePlainSQL("select count(*) from Address where postal_code = '$pos_code'");
-                    $row = OCI_Fetch_Array($unique_pos_code, OCI_BOTH);
-                    if ($row[0] == 0) {
-                        executePlainSQL("INSERT into Address VALUES ('$pos_code', '$city', '$province')");
-                    }
-
-                    executePlainSQL("INSERT into Customer VALUES ($cus_id, '$email', $age, '$phone_num', '$street_addr', 
-                                                                '$pos_code', '$name', $rew_points, '$rew_tier', $acc_balance)");
+                $acc_balance = 0.0;
+                $rew_points = 0;
+                $rew_tier = 'Bronze';
+                $pos_code = $_POST['postal_code'];
+                $city = $_POST['city'];
+                $province = $_POST['province'];
+                $email = $_POST['email'];
+                $age = $_POST['age'];
+                $phone_num = $_POST['phone_number'];
+                $street_addr = $_POST['street_address'];
+                $name = $_POST['name'];
+                
+                // Check if postal code already exists in Address; if not, need to add it to Address
+                $unique_pos_code = executePlainSQL("select count(*) from Address where postal_code = '$pos_code'");
+                $row = OCI_Fetch_Array($unique_pos_code, OCI_BOTH);
+                if ($row[0] == 0) {
+                    executePlainSQL("INSERT into Address VALUES ('$pos_code', '$city', '$province')");
                 }
 
-                OCICommit($db_conn);
-
+                executePlainSQL("INSERT into Customer VALUES ($cus_id, '$email', $age, '$phone_num', '$street_addr', 
+                                                             '$pos_code', '$name', $rew_points, '$rew_tier', $acc_balance)");
             }
 
-            
+            OCICommit($db_conn);
         }
 
         function handleCheckCustomer() {
             global $db_conn;
             $cus_id = $_GET['customer_id'];
-            $result = executePlainSQL("SELECT reward_points, rewards_tier FROM Customer WHERE customer_id = $cus_id");
+            $result = executePlainSQL("SELECT * FROM Customer WHERE customer_id = $cus_id");
             printCustomerResult($result);
 
 
@@ -336,193 +381,33 @@
         function handleUpdateCustomerInfo() {
             global $db_conn;
 
-            // Check if customer_id field was left empty
             $cus_id = $_POST['customer_id'];
-            if (strlen($cus_id) == 0) {
-                $err_message = 'Please enter a valid customer ID and try again.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
-
-                // To not make the error message appear again after the page is refreshed
-                echo "<script>
-                if ( window.history.replaceState ) {
-                    window.history.replaceState( null, null, window.location.href );
-                    }
-                </script>";
+            if (isset($_POST['updateName'])) {
+                $new_name = $_POST['newName'];
+                executePlainSQL("UPDATE Customer SET name= '$new_name' WHERE customer_id = $cus_id");
             }
-            else {
-                // Check if customer_id exists
-                $id_is_in_use = executePlainSQL("select count(*) from Customer where customer_id = $cus_id");
-                $row = OCI_Fetch_Array($id_is_in_use, OCI_BOTH);
-            
-                if ($row[0] == 0) {
-                    $err_message = 'This Customer ID does not exist. Please enter another one.';
-                    echo "<script type = 'text/javascript'> alert('$err_message');</script>";
-
-                    // To not make the error message appear again after the page is refreshed
-                    echo "<script>
-                    if ( window.history.replaceState ) {
-                        window.history.replaceState( null, null, window.location.href );
-                    }
-                    </script>";
-                }
-                
-                else {
-                    $cus_id = $_POST['customer_id'];
-                    if (isset($_POST['updateName'])) {
-                        $new_name = $_POST['newName'];
-                        executePlainSQL("UPDATE Customer SET name= '$new_name' WHERE customer_id = $cus_id");
-                    }
-                    if (isset($_POST['updatePhoneNumber'])) {
-                        $new_phone_number = $_POST['newPhoneNumber'];
-                        executePlainSQL("UPDATE Customer SET phone_number= '$new_phone_number' WHERE customer_id = $cus_id");
-                    }
-                    if (isset($_POST['updateEmail'])) {
-                        $new_email = $_POST['newEmail'];
-                        executePlainSQL("UPDATE Customer SET email= '$new_email' WHERE customer_id = $cus_id");
-                    }
-                    if (isset($_POST['updateAge'])) {
-                        $new_age = $_POST['age'];
-                        executePlainSQL("UPDATE Customer SET age= '$new_age' WHERE customer_id = $cus_id");
-                    }
-                    
-                    if (isset($_POST['updateAddress'])) {
-                        $new_addr = $_POST['newStreetAddress'];
-                        $new_pos_code = $_POST['newPostalCode'];
-                        $new_city = $_POST['newCity'];
-                        $new_province = $_POST['newProvince'];
-                        // Check for any empty strings
-                        if (strlen($new_addr) == 0 || strlen($new_pos_code) == 0 
-                            || strlen($new_city == 0) || strlen($new_province == 0)) {
-                                $err_message = 'One or more of the required fields are empty. 
-                                                Please fill out all the required fields and try again.';
-                                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
-
-                                // To not make the error message appear again after the page is refreshed
-                                echo "<script>
-                                if ( window.history.replaceState ) {
-                                    window.history.replaceState( null, null, window.location.href );
-                                }
-                                </script>";
-                            }
-                        else {
-                            $result = executePlainSQL("SELECT COUNT(*) FROM Address WHERE postal_code = '$new_pos_code'");
-                            $check_if_exists = OCI_Fetch_Array(result, OCI_BOTH);
-                            if ($check_if_exists[0] == 0) {
-                                executePlainSQL("INSERT INTO Address VALUES ('$new_pos_code', '$new_city', '$new_province')");
-                            }
-                            executePlainSQL("UPDATE Customer SET street_address= '$new_addr' WHERE customer_id = $cus_id");
-                            executePlainSQL("UPDATE Customer SET postal_code= '$new_pos_code' WHERE customer_id = $cus_id");
-                        }
-                    }
-
-
-                    $message = 'Update was successful!';
-                                echo "<script type = 'text/javascript'> alert('$message');</script>";
-
-                                // To not make the error message appear again after the page is refreshed
-                                echo "<script>
-                                if ( window.history.replaceState ) {
-                                    window.history.replaceState( null, null, window.location.href );
-                                }
-                                </script>";
-
-                }
-
+            if (isset($_POST['updatePhoneNumber'])) {
+                $new_phone_number = $_POST['newPhoneNumber'];
+                executePlainSQL("UPDATE Customer SET phone_number= '$new_phone_number' WHERE customer_id = $cus_id");
             }
+            if (isset($_POST['updateEmail'])) {
+                $new_email = $_POST['newEmail'];
+                executePlainSQL("UPDATE Customer SET email= '$new_email' WHERE customer_id = $cus_id");
+            }
+            if (isset($_POST['updateAge'])) {
+                $new_age = $_POST['age'];
+                executePlainSQL("UPDATE Customer SET age= '$new_age' WHERE customer_id = $cus_id");
+            }
+            if (isset($_POST['updateStreetAddress'])) {
+                $new_addr = $_POST['newStreetAddress'];
+                executePlainSQL("UPDATE Customer SET street_address= '$new_addr' WHERE customer_id = $cus_id");
+            }            
 
             OCICommit($db_conn);
-            
-        }
-
-        function handleDeleteCustomer() {
-            global $db_conn;
-
-            // Check if customer_id exists in the database
-            $cus_id = $_POST['customer_id'];
-            $id_is_in_use = executePlainSQL("select count(*) from Customer where customer_id = $cus_id");
-            $row = OCI_Fetch_Array($id_is_in_use, OCI_BOTH);
-            
-            if ($row[0] == 0) {
-                $err_message = 'This Customer ID does not exist. Please enter another one.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
-
-                // To not make the error message appear again after the page is refreshed
-                echo "<script>
-                if ( window.history.replaceState ) {
-                    window.history.replaceState( null, null, window.location.href );
-                }
-                </script>";
-            }
-            else {
-                executePlainSQL("DELETE FROM Customer WHERE customer_id = $cus_id");
-                $message = 'Your account has been successfully deleted!';
-                echo "<script type = 'text/javascript'> alert('$message');</script>";
-
-                // To not make the message appear again after the page is refreshed
-                echo "<script>
-                if ( window.history.replaceState ) {
-                    window.history.replaceState( null, null, window.location.href );
-                }
-                </script>";
-
-            }
-
-            OCICommit($db_conn);
-
-        }
-
-        function handleRedeemCoupon() {
-            global $db_conn;
-            $cus_id = $_POST['customer_id'];
-            $coupon = $_POST['coupon_code'];
-
-            // Check if customer_id and coupon_code exists in the database
-            $id_is_in_use = executePlainSQL("select count(*) from Customer where customer_id = $cus_id");
-            $row = OCI_Fetch_Array($id_is_in_use, OCI_BOTH);
-            $code_exists = executePlainSQL("select count(*) from Coupon where coupon_code = $coupon");
-            $row2 = OCI_Fetch_Array($code_exists, OCI_BOTH);
-            
-            if ($row[0] == 0) {
-                $err_message = 'This Customer ID does not exist. Please enter another one.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
-
-                // To not make the error message appear again after the page is refreshed
-                echo "<script>
-                if ( window.history.replaceState ) {
-                    window.history.replaceState( null, null, window.location.href );
-                }
-                </script>";
-            }
-            else if ($row2[0] == 0) {
-                $err_message = 'This coupon code is invalid. Please enter another one.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
-
-                // To not make the error message appear again after the page is refreshed
-                echo "<script>
-                if ( window.history.replaceState ) {
-                    window.history.replaceState( null, null, window.location.href );
-                }
-                </script>";
-            }
-            else {
-                executePlainSQL("INSERT INTO Receives VALUES($cus_id, '$coupon')");
-                $message = 'Coupon successfully added to account!';
-                echo "<script type = 'text/javascript'> alert('$message');</script>";
-
-                // To not make the message appear again after the page is refreshed
-                echo "<script>
-                if ( window.history.replaceState ) {
-                    window.history.replaceState( null, null, window.location.href );
-                }
-                </script>";
-            }
-
-            OCICommit($db_conn);
-
         }
 
 
-        function  handleDisplayAllRestaurants() {
+        function  handleDisplayOrders() {
             global $db_conn;
             $courier_id = $_GET['courier_id'];
             $result = executePlainSQL("SELECT customer_id, restaurant_id, courier_id FROM Orders WHERE courier_id='" . $courier_id . "'");
@@ -570,9 +455,7 @@
                     handleUpdateCustomerInfo();
                 } else if (array_key_exists('deleteCustomer', $_POST)) {
                     handleDeleteCustomer();
-                } else if (array_key_exists('redeemCoupon', $_POST)) {
-                    handleRedeemCoupon();
-                }
+                } 
 
                 disconnectFromDB();
             }
@@ -588,8 +471,6 @@
                     handleCheckTables();
                 } else if (array_key_exists('checkSingleCustomer', $_GET)) {
                     handleCheckCustomer();
-                } else if (array_key_exists('checkAllRestaurants', $_GET)) {
-                    handleDisplayAllRestaurants();
                 }
                 disconnectFromDB();
             }
@@ -597,7 +478,7 @@
 
         if (isset($_POST['insertSubmit']) || isset($_POST['updateSubmit']) || isset($_POST['deleteSubmit'])) {
             handlePOSTRequest();
-        } else if (isset($_GET['printAllTables']) || isset($_GET['displayAllRestaurants'])|| isset($_GET['checkAllTables']) ||
+        } else if (isset($_GET['printAllTables']) || isset($_GET['checkAllOrders'])|| isset($_GET['checkAllTables']) ||
             isset($_GET['checkCustomer'])) {
             handleGETRequest();
         }
