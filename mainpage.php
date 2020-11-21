@@ -20,7 +20,9 @@
   <input name="newPage" type="button" value="Restaurant Staff" onclick="window.open('restaurant.php')">
   <p>Hard-coded Queries for Project:</p>
   <input name="newPage" type="button" value="Check Them Out" onclick="window.open('hardcode.php')"/>
+      <hr>
 
+  <p>Your current position:</p>
   <button onclick="getLocation()">GPS</button>
   <div id="mapholder"></div>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBEfiGdCFozkk3ippbqmzcsrl-6tewyRM&callback=initMap"
