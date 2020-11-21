@@ -75,7 +75,7 @@ CREATE TABLE Foot_Courier(
 	bus_pass VARCHAR(20),
 	PRIMARY KEY (courier_id),
 	UNIQUE (bus_pass),
-	FOREIGN KEY (courier_id) REFERENCES Courier
+	FOREIGN KEY (courier_id) REFERENCES Courier ON DELETE CASCADE
 );
 
 GRANT SELECT ON Foot_Courier TO PUBLIC;
@@ -85,7 +85,7 @@ CREATE TABLE Bicycle_Courier(
 	courier_id INTEGER NOT NULL,
 	valid_bicycle CHAR(1) DEFAULT 'n',
 	PRIMARY KEY (courier_id),
-	FOREIGN KEY (courier_id) REFERENCES Courier,
+	FOREIGN KEY (courier_id) REFERENCES Courier ON DELETE CASCADE,
     CONSTRAINT bicycle_check CHECK (valid_bicycle = 'n' OR valid_bicycle = 'y')
 );
 
@@ -99,7 +99,7 @@ CREATE TABLE Vehicle_Courier(
 	courier_id INTEGER NOT NULL,
 	PRIMARY KEY (courier_id),
 	UNIQUE (drivers_license),
-	FOREIGN KEY (courier_id) REFERENCES Courier,
+	FOREIGN KEY (courier_id) REFERENCES Courier ON DELETE CASCADE,
     CONSTRAINT vehicle_check CHECK (valid_vehicle = 'n' OR valid_vehicle = 'y'),
     CONSTRAINT insurance_check CHECK (valid_insurance = 'n' OR valid_insurance = 'y')
 );
@@ -112,7 +112,7 @@ CREATE TABLE Vehicle_Drives(
 	type VARCHAR(20),
 	courier_id INTEGER NOT NULL,
 	PRIMARY KEY (vehicle_id),
-	FOREIGN KEY (courier_id) REFERENCES Vehicle_Courier
+	FOREIGN KEY (courier_id) REFERENCES Vehicle_Courier ON DELETE CASCADE
 );
 
 GRANT SELECT ON Vehicle_Drives TO PUBLIC;

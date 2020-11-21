@@ -4,8 +4,33 @@
     text-align: center;
 }
 
+.restaurant {
+    font: 15px Arial, sans-serif;
+    text-align: center;
+}
+
 .body1{
     background-image: url('image/1.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.restaurantBody{
+    background-image: url('image/Restaurant.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.courierBody{
+    background-image: url('image/courier.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;

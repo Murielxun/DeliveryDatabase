@@ -3,11 +3,14 @@
     <head>
         <title>Restaurant</title>
     </head>
+    <link rel="stylesheet" href="style.css">
+    <body class = "restaurantBody">
 
-    <body>
+    <div class = "restaurant">
+        <h1>Restaurant Page</h1>
+    </div>
 
         <hr>
-
         <h2>Become A Partner Restaurant!</h2>
         <form method="POST" action="restaurant.php">
             <input type="hidden" id="insertRestaurant" name="insertRestaurant">
@@ -506,9 +509,6 @@
 
             echo "</table>";
         }
-
-        
-
 
 
         function handlePOSTRequest() {
