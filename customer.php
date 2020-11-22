@@ -345,7 +345,7 @@
             else {
                 $acc_balance = 0.0;
                 $rew_points = 0;
-                $rew_tier = 'Bronze';
+                $rew_tier = 'Insider';
                 $pos_code = $_POST['postal_code'];
                 $city = $_POST['city'];
                 $province = $_POST['province'];

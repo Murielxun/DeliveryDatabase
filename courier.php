@@ -336,68 +336,114 @@
 
         function handleInsertCourier(){
             global $db_conn;
-            
-            $tuple = array (
-                ":bind1" => $_POST['courier_id'],
-                ":bind2" => $_POST['name'],
-                ":bind3" => $_POST['rating'],
-                ":bind4" => $_POST['phone_number']
-            );
+            $courier_id = $_POST["courier_id"];
 
-            $alltuples = array (
-                $tuple
-            );
+            $id_is_in_use = executePlainSQL("select count(*) from Courier where courier_id = $courier_id");
+            $row = OCI_Fetch_Array($id_is_in_use, OCI_BOTH);
+        
+            if ($row[0] != 0) {
+                $err_message = 'This Courier ID is already is use. Please choose another one.';
+                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
 
-            executeBoundSQL("insert into Courier values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
+                // To not make the error message appear again after the page is refreshed
+                echo "<script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
+                </script>";
+            } else {           
+                $tuple = array (
+                    ":bind1" => $courier_id,
+                    ":bind2" => $_POST['name'],
+                    ":bind3" => $_POST['rating'],
+                    ":bind4" => $_POST['phone_number']
+                );
+
+                $alltuples = array (
+                    $tuple
+                );
+                executeBoundSQL("insert into Courier values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
+            }
             OCICommit($db_conn);
         }
 
         //Insert Vehicle Courier
         function handleInsertVehicleCourier(){
             global $db_conn;
+            $driver_license = $_POST["driver_license"];
 
+            $id_is_in_use = executePlainSQL("select count(*) from Vehicle_Courier where drivers_license = $driver_license");
+            $row = OCI_Fetch_Array($id_is_in_use, OCI_BOTH);
+        
+            if ($row[0] != 0) {
+                $err_message = 'This Driver License is already is use. Please choose another one.';
+                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
 
-
-            $valid_vehicle = 'n';
-            $valid_insurance = 'n';
-
-            if ($_POST['selectValidVehicle'] = "y") {
-                $valid_vehicle = 'y';
+                // To not make the error message appear again after the page is refreshed
+                echo "<script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
+                </script>";
+            } else {
+                $valid_vehicle = 'n';
+                $valid_insurance = 'n';
+    
+                if ($_POST['selectValidVehicle'] = "y") {
+                    $valid_vehicle = 'y';
+                }
+    
+                if ($_POST['selectValidInsurance'] = "y") {
+                    $valid_insurance = 'y';
+                }
+    
+                $tuple = array (
+                    ":bind4" => $_POST['courier_id'],
+                    ":bind3" => $driver_license,
+                    ":bind1" => $_POST['selectValidVehicle'],
+                    ":bind2" => $_POST['selectValidInsurance'],
+                );
+    
+                $alltuples = array (
+                    $tuple
+                );
+    
+                executeBoundSQL("insert into Vehicle_Courier values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
             }
 
-            if ($_POST['selectValidInsurance'] = "y") {
-                $valid_insurance = 'y';
-            }
-
-            $tuple = array (
-                ":bind4" => $_POST['courier_id'],
-                ":bind3" => $_POST['driver_license'],
-                ":bind1" => $_POST['selectValidVehicle'],
-                ":bind2" => $_POST['selectValidInsurance'],
-            );
-
-            $alltuples = array (
-                $tuple
-            );
-
-            executeBoundSQL("insert into Vehicle_Courier values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
             OCICommit($db_conn);
         }
 
         function handleInsertVehicle(){
             global $db_conn;
+            $vehicle_id = $_POST['vehicle_id'];
+            $id_is_in_use = executePlainSQL("select count(*) from Vehicle_Drives where vehicle_id = $vehicle_id");
+            $row = OCI_Fetch_Array($id_is_in_use, OCI_BOTH);
+        
+            if ($row[0] != 0) {
+                $err_message = 'This Vehicle ID is already is use. Please choose another one.';
+                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+
+                // To not make the error message appear again after the page is refreshed
+                echo "<script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
+                </script>";
+            } else {
+                $tuple = array (
+                    ":bind1" => $_POST['vehicle_id'],
+                    ":bind2" => $_POST['type'],
+                    ":bind3" => $_POST['courier_id']
+                );
+    
+                $alltuples = array (
+                    $tuple
+                );
+    
+                executeBoundSQL("insert into Vehicle_Drives values (:bind1, :bind2, :bind3)", $alltuples);
+            }
             
-            $tuple = array (
-                ":bind1" => $_POST['vehicle_id'],
-                ":bind2" => $_POST['type'],
-                ":bind3" => $_POST['courier_id']
-            );
-
-            $alltuples = array (
-                $tuple
-            );
-
-            executeBoundSQL("insert into Vehicle_Drives values (:bind1, :bind2, :bind3)", $alltuples);
             OCICommit($db_conn);
         }
 
@@ -421,17 +467,34 @@
         //insert courier & bus pass to Foot_Courier table
         function handleInsertFootCourier(){
             global $db_conn;
+            $bus_pass = $_POST['bus_pass'];
+
+            $id_is_in_use = executePlainSQL("select count(*) from Foot_Courier where bus_pass = $bus_pass");
+            $row = OCI_Fetch_Array($id_is_in_use, OCI_BOTH);
+        
+            if ($row[0] != 0) {
+                $err_message = 'This Bus Pass is already is use. Please choose another one.';
+                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+
+                // To not make the error message appear again after the page is refreshed
+                echo "<script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
+                </script>";
+            } else {
+                $tuple = array (
+                    ":bind1" => $_POST['courier_id'],
+                    ":bind2" => $bus_pass
+                );
+    
+                $alltuples = array (
+                    $tuple
+                );
+    
+                executeBoundSQL("insert into Foot_Courier values (:bind1, :bind2)", $alltuples);
+            }
             
-            $tuple = array (
-                ":bind1" => $_POST['courier_id'],
-                ":bind2" => $_POST['bus_pass']
-            );
-
-            $alltuples = array (
-                $tuple
-            );
-
-            executeBoundSQL("insert into Foot_Courier values (:bind1, :bind2)", $alltuples);
             OCICommit($db_conn);
         }
 

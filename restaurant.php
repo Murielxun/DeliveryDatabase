@@ -278,55 +278,85 @@
         //Insert Menu
         function handleInsertMenu() {
             global $db_conn;
+            $name = $_POST['name'];
+            $restaurant_id = $_POST['restaurant_id'];
+            
+            $name_is_in_use = executePlainSQL("SELECT count(*) FROM Menu_Items_Has  WHERE restaurant_id=" . $restaurant_id . "AND name = '" . $name . "'");
+            $row = OCI_Fetch_Array($name_is_in_use, OCI_BOTH);
+        
+            if ($row[0] != 0) {
+                $err_message = 'This Dish Name is already is use. Please choose another one.';
+                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
 
-            //Getting the values from user and insert data into the table
-            $tuple1 = array (
-                ":bind6" => $_POST['restaurant_id'],
-                ":bind1" => $_POST['name'],
-                ":bind2" => $_POST['description'],
-                ":bind3" => $_POST['ingredient'],
-                ":bind4" => $_POST['category'],
-                ":bind5" => $_POST['price'],
-            );
+                // To not make the error message appear again after the page is refreshed
+                echo "<script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
+                </script>";
+            } else {
+                $tuple1 = array (
+                    ":bind6" => $restaurant_id,
+                    ":bind1" => $name,
+                    ":bind2" => $_POST['description'],
+                    ":bind3" => $_POST['ingredient'],
+                    ":bind4" => $_POST['category'],
+                    ":bind5" => $_POST['price'],
+                );
+    
+                $alltuples1 = array (
+                    $tuple1
+                );
+    
+                executeBoundSQL("insert into Menu_Items_Has values (:bind1, :bind2, :bind3, :bind4, :bind5, :bind6)", $alltuples1);
+            }
 
-            $alltuples1 = array (
-                $tuple1
-            );
-
-            executeBoundSQL("insert into Menu_items_has values (:bind1, :bind2, :bind3, :bind4, :bind5, :bind6)", $alltuples1);
             OCICommit($db_conn);
         }
 
         //Insert Restaurant
         function handleInsertRestaurant() {
             global $db_conn;
+            $restaurant_id = $_POST['restaurant_id'];
+            $id_is_in_use = executePlainSQL("SELECT count(*) FROM Restaurant WHERE restaurant_id = $restaurant_id");
+            $row = OCI_Fetch_Array($id_is_in_use, OCI_BOTH);
+        
+            if ($row[0] != 0) {
+                $err_message = 'This Restaurant ID is already is use. Please choose another one.';
+                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
 
-            //Getting the values from user and insert data into the table
-            $tuple1 = array (
-                ":bind1" => $_POST['restaurant_id'],
-                ":bind2" => $_POST['postal_code'],
-                ":bind3" => $_POST['name'],
-                ":bind4" => $_POST['category'],
-                ":bind5" => $_POST['rating'],
-                ":bind6" => $_POST['street_address'],
-            );
+                // To not make the error message appear again after the page is refreshed
+                echo "<script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
+                </script>";
+            } else {
+                $postal_code = $_POST['postal_code'];
+                $tuple1 = array (
+                    ":bind1" => $restaurant_id,
+                    ":bind2" => $postal_code,
+                    ":bind3" => $_POST['name'],
+                    ":bind4" => $_POST['category'],
+                    ":bind5" => $_POST['rating'],
+                    ":bind6" => $_POST['street_address'],
+                );
+    
+                $alltuples1 = array (
+                    $tuple1
+                );
 
-            $alltuples1 = array (
-                $tuple1
-            );
+                $city = $_POST['city'];
+                $province = $_POST['province'];
 
-            $tuple2 = array (
-                ":bind1" => $_POST['postal_code'],
-                ":bind2" => $_POST['city'],
-                ":bind3" => $_POST['province']
-            );
+                $unique_pos_code = executePlainSQL("select count(*) from Address where postal_code = '$postal_code'");
+                $row = OCI_Fetch_Array($unique_pos_code, OCI_BOTH);
+                if ($row[0] == 0) {
+                    executePlainSQL("INSERT into Address VALUES ('$postal_code', '$city', '$province')");
+                }
 
-            $alltuples2 = array (
-                $tuple2
-            );
-
-            executeBoundSQL("insert into Address values (:bind1, :bind2, :bind3)", $alltuples2);
-            executeBoundSQL("insert into Restaurant values (:bind1, :bind2, :bind3, :bind4, :bind5, :bind6)", $alltuples1);
+                executeBoundSQL("insert into Restaurant values (:bind1, :bind2, :bind3, :bind4, :bind5, :bind6)", $alltuples1);
+            }
             OCICommit($db_conn);
         }
 
