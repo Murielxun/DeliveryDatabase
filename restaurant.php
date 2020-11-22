@@ -9,19 +9,20 @@
     <div class = "restaurant">
         <h1>Restaurant Page</h1>
     </div>
+    
 
         <hr>
         <h2>Become A Partner Restaurant!</h2>
         <form method="POST" action="restaurant.php">
             <input type="hidden" id="insertRestaurant" name="insertRestaurant">
-            Restaurant ID: <input type="text" name="restaurant_id"> <br /><br />
-            Name: <input type="text" name="name"> <br /><br />
-            Rating: <input type="number" name="rating" step="0.01" min="0" max="10"> <br /><br />
-            Postal Code: <input type="text" name="postal_code"> <br /><br />
-            Street Address: <input type="text" name="street_address"> <br /><br />
-            Category: <input type="text" name="category"> <br /><br />
-            City: <input type="text" name="city"> <br /><br />
-            Province: <input type="text" name="province"> <br /><br />
+            <label>Restaurant ID: </label><input type="text" name="restaurant_id"> <br /><br />
+            <label>Name: </label> <input type="text" name="name"> <br /><br />
+            <label>Rating: </label> <input type="number" name="rating" step="0.01" min="0" max="10"> <br /><br />
+            <label>Postal Code: </label><input type="text" name="postal_code"> <br /><br />
+            <label>Street Address: </label><input type="text" name="street_address"> <br /><br />
+            <label>Category: </label><input type="text" name="category"> <br /><br />
+            <label>City: </label><input type="text" name="city"> <br /><br />
+            <label>Province: </label><input type="text" name="province"> <br /><br />
             <input type="submit" value="Submit" name="insertSubmit"></p>
         </form>
 
@@ -30,8 +31,8 @@
         <h2>Enter Your Restaurant ID And Check Current Standing.</h2>
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkRestaurant" name="checkRestaurant">
-            Restaurant ID: <input type="text" name="restaurant_id"><br /><br />
-            <input type="submit" value="Submit Query" name="displayRestaurant"></p>
+            <label>Restaurant ID: </label><input type="text" name="restaurant_id"><br /><br />
+            <input type="submit" value="Submit" name="displayRestaurant"></p>
         </form>
 
         <hr>
@@ -39,30 +40,32 @@
         <h2>Enter Your Restaurant ID and Update Restaurant Info.</h2>
         <form method="POST" action="restaurant.php">
             <input type="hidden" id="updateRestaurantInfo" name="updateRestaurantInfo">
-            Your Restaurant ID: <input type="text" name="restaurant_id"> <br /><br />
+            <label>Your Restaurant ID:</label> <input type="text" name="restaurant_id"> <br /><br />
             <input type="checkbox" name="updateName" id="updateName">
             <label for="updateName">
-                New Name: <input type="text" name="newName">
+            New Name: <input type="text" name="newName">
             </label><br /><br />
             <input type="checkbox" name="updateStreetAddress" id="updateStreetAddress">
             <label for="updateStreetAddress">
-                New Street Address: <input type="text" name="newStreetAddress">
+            New Street Address: <input type="text" name="newStreetAddress">
             </label><br /><br />
             <input type="checkbox" name="updateCategory" id="updateCategory">
             <label for="updateCategory">
-                New Category: <input type="text" name="newCategory">
+            New Category: <input type="text" name="newCategory">
             </label><br /><br />
             <input type="checkbox" name="updatePostalCode" id="updatePostalCode">
             <label for="updatePostalCode">
-                Old Postal Code: <input type="text" name="oldPostalCode1">
-                New Postal Code: <input type="text" name="newPostalCode1">
+            Move To A New Location Within The Same City?<br /><br />
+            New Postal Code: <input type="text" name="newPostalCode1">
             </label><br /><br />
             <input type="checkbox" name="updateCityAndProvince" id="updateCityAndProvince">
             <label for="updateCityAndProvince">
-                New City: <input type="text" name="newCity">
-                New Province: <input type="text" name="newProvince">
+            Move To Another City? <br /><br />
+            New Postal Code: <input type="text" name="newPostalCode2">
+            New City: <input type="text" name="newCity">
+            New Province: <input type="text" name="newProvince">
             </label><br /><br />
-            <input type="submit" value="Submit" name="updateSubmitRestaurant"></p>
+            <input type="submit" value="Submit" name="updateSubmit"></p>
         </form>
 
         <hr>
@@ -70,31 +73,40 @@
         <h2>Enter Your Restaurant ID And Unregister Your Restaurant.</h2>
         <form method="POST" action="restaurant.php">
             <input type="hidden" id="deleteRestaurant" name="deleteRestaurant">
-            Your Restaurant ID: <input type="text" name="restaurant_id"><br /><br />
-            <input type="submit" value="Submit" name="deleteSubmitRestaurant"></p>
+            <label>Your Restaurant ID: </label><input type="text" name="restaurant_id"><br /><br />
+            <input type="submit" value="Submit" name="deleteSubmit"></p>
         </form>
 
         <hr>
 
         <h2>Manage Dishes/Menu.</h2>
+
+        <h3>Enter Your Restaurant ID And Check All Dishes.</h3>
+        <form method="GET" action="restaurant.php">
+            <input type="hidden" id="checkDishes" name="checkDishes">
+            <label>Restaurant ID: </label><input type="text" name="restaurant_id"><br /><br />
+            <input type="submit" value="Submit" name="displayDishes"></p>
+        </form>
+
+
         <h3>Enter Your Restaurant ID And Add New Dishes.</h3>
         <form method="POST" action="restaurant.php">
             <input type="hidden" id="insertMenuItem" name="insertMenuItem">
-            Your Restaurant ID: <input type="text" name="restaurant_id"><br /><br />
-            Dish Name: <input type="text" name="name"><br /><br />
-            Dish Description: <input type="text" name="description"><br /><br />
-            Ingredient: <input type="text" name="ingredient"><br /><br />
-            Category: <input type="text" name="category"><br /><br />
-            Price: <input type="number" name="price"  step="0.01"><br /><br />
-            <input type="submit" value="Submit" name="insertSubmitMenu"></p>
+            <label>Your Restaurant ID: </label><input type="text" name="restaurant_id"><br /><br />
+            <label>Dish Name: </label><input type="text" name="name"><br /><br />
+            <label>Dish Description: </label><input type="text" name="description"><br /><br />
+            <label>Ingredient: </label><input type="text" name="ingredient"><br /><br />
+            <label>Category: </label><input type="text" name="category"><br /><br />
+            <label>Price: </label><input type="number" name="price"  step="0.01"><br /><br />
+            <input type="submit" value="Submit" name="insertSubmit"></p>
         </form>
 
         
         <h3>Enter Your Restaurant ID And Dish Name To Update Dishes/Menu.</h3>
         <form method="POST" action="restaurant.php">
             <input type="hidden" id="updateMenuItem" name="updateMenuItem">
-            Your Restaurant ID: <input type="text" name="restaurant_id"> <br /><br />
-            Dish Name: <input type="text" name="name"> <br /><br />
+            <label>Your Restaurant ID: </label><input type="text" name="restaurant_id"> <br /><br />
+            <label>Dish Name: </label><input type="text" name="name"> <br /><br />
             <input type="checkbox" name="updateName" id="updateName">
             <label for="updateName">
             New Name: <input type="text" name="newName">
@@ -115,7 +127,7 @@
             <label for="updatePrice">
             New Price: <input type="number" name="newPrice"  step="0.01">
             </label><br /><br />
-            <input type="submit" value="Submit" name="updateSubmitMenu"></p>
+            <input type="submit" value="Submit" name="updateSubmit"></p>
         </form>
 
 
@@ -123,9 +135,9 @@
         <h3>Enter Your Restaurant ID And Dish Name To Delete Dishes.</h3>
         <form method="POST" action="restaurant.php">
             <input type="hidden" id="deleteMenuItem" name="deleteMenuItem">
-            Your Restaurant ID: <input type="text" name="restaurant_id"><br /><br />
-            Dish Name: <input type="text" name="name"><br /><br />
-            <input type="submit" value="Submit" name="deleteSubmitDishes"></p>
+            <label>Your Restaurant ID: </label><input type="text" name="restaurant_id"><br /><br />
+            <label>Dish Name: </label><input type="text" name="name"><br /><br />
+            <input type="submit" value="Submit" name="deleteSubmit"></p>
         </form>
 
         <hr>
@@ -134,7 +146,7 @@
         <h3>Enter Your Restaurnt ID And Check All Orders.</h3>
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkAllOrders" name="checkAllOrders">
-            Your Restaurant ID: <input type="text" name="restaurant_id"><br /><br />
+            <label>Your Restaurant ID: </label><input type="text" name="restaurant_id"><br /><br />
             <input type="submit" name="displayAllOrders"></p>
         </form>
 
@@ -142,7 +154,7 @@
         <h3>Search For Orders With Food Subtotal Between A Certain Range.</h3>
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkPriceOrders" name="checkPriceOrders">
-            Your Restaurant ID: <input type="text" name="restaurant_id"><br /><br />
+            <label>Your Restaurant ID: </label><input type="text" name="restaurant_id"><br /><br />
             <input type="checkbox" name="fromPrice" id="fromPrice">
             <label for="fromPrice">
             Higher Than: <input type="number" name="min"  step="0.01">
@@ -156,26 +168,28 @@
 
         <hr>
 
-        <h2>Enter Your Email And Search For Customers Who Have Placed Orders In Your Restaurant.</h2>
+        <h2>Enter Your Restaurant ID And Search For Customers Who Have Placed Orders In Your Restaurant.</h2>
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkAllCustomer" name="checkAllCustomer">
-            Your Restaurant ID: <input type="text" name="restaurant_id">
-            <input type="submit" name="displayCustomerWithEmail"></p>
+            <label>Your Restaurant ID: </label><input type="text" name="restaurant_id"><br /><br />
+            <input type="submit" name="displayCustomer"></p>
         </form>
 
         <hr>
 
-        <a href="mainpage.php">Return to Main Page</a>
+        <h2>Display All Restaurant Related Tables.</h2>
+        <form method="GET" action="restaurant.php">
+            <input type="hidden" id="checkAllTables" name="checkAllTables">
+            <input type="submit" name="displayAllTables"></p>
+        </form>
+        <hr>
 
-        <hr />
-        <hr />
-        <hr />
-        <hr />
+        <a href="mainpage.php">Return to Main Page</a>
 
         <?php
 
         $success = True;
-        $db_conn =  NULL; // edit the login credentials in connectToDB()
+        $db_conn =  NULL;
         $show_debug_alert_messages = False;
 
         function debugAlertMessage($message) {
@@ -239,9 +253,7 @@
 
         function connectToDB() {
             global $db_conn;
-
-
-            $db_conn = OCILogon("ora_vicche04", "a13090618", "dbhost.students.cs.ubc.ca:1522/stu");
+            $db_conn = OCILogon("ora_muriel98", "a32203168", "dbhost.students.cs.ubc.ca:1522/stu");
 
             if ($db_conn) {
                 debugAlertMessage("Database is Connected");
@@ -313,7 +325,7 @@
                 $tuple2
             );
 
-            executeBoundSQL("insert into ADDRESS values (:bind1, :bind2, :bind3)", $alltuples2);
+            executeBoundSQL("insert into Address values (:bind1, :bind2, :bind3)", $alltuples2);
             executeBoundSQL("insert into Restaurant values (:bind1, :bind2, :bind3, :bind4, :bind5, :bind6)", $alltuples1);
             OCICommit($db_conn);
         }
@@ -331,34 +343,19 @@
             echo "</table>";
         }
 
-        //print all restaurant
-        function handleCheckRestaurant() {
-            $result = executePlainSQL("SELECT * FROM restaurant");
-            printRestaurant($result);
-        }
 
         //handle sql statement for select specific restaurant
         function handleSelectRestaurant() {
             global $db_conn;
 
-            //Getting the values from user and insert data into the table
-//            $tuple1 = array (
-//                ":bind1" => $_GET['restaurant_id'],
-//            );
-
-//            $alltuples1 = array (
-//                $tuple1
-//            );
-
             $value = $_GET['restaurant_id'];
-            $txt = "SELECT * FROM restaurant WHERE RESTAURANT_ID = " . $value;
-            //executeBoundSQL("insert into ADDRESS values (:bind1, :bind2, :bind3)", $alltuples2);
+            $txt = "SELECT * FROM Restaurant WHERE restaurant_id = " . $value;
             $result = executePlainSQL($txt);
             printRestaurant($result);
         }
 
         //handle sql for deleting the specific row in menu
-        function handleDeleteMenu() {
+        function handleDeleteMenuItem() {
             global $db_conn;
 
             $restaurant_id = $_POST['restaurant_id'];
@@ -372,16 +369,12 @@
             global $db_conn;
 
             $restaurant_id = $_POST['restaurant_id'];
-//            $txt = "SELECT * FROM restaurant WHERE RESTAURANT_ID = " . $restaurant_id;
-//            $result = executePlainSQL($txt);
-//            printRestaurant($result);
-
             executePlainSQL("DELETE FROM Restaurant  WHERE restaurant_id=" . $restaurant_id);
             OCICommit($db_conn);
         }
 
         //update  menu
-        function handleUpdateMenu() {
+        function handleUpdateMenuItem() {
             global $db_conn;
             $restaurant_id = $_POST['restaurant_id'];
             $olddishname = $_POST['name'];
@@ -418,52 +411,58 @@
             global $db_conn;
 
             $restaurant_id = $_POST['restaurant_id'];
-//            $txt = "SELECT * FROM restaurant WHERE RESTAURANT_ID = " . $restaurant_id;
-//            $result = executePlainSQL($txt);
-//            printRestaurant($result);
-
-
-            //$restaurant_id = $_POST['$restaurant_id'];
-
             if (isset($_POST['updateName'])) {
                 $newname = $_POST['newName'];
-                executePlainSQL("UPDATE Restaurant SET NAME ='" . $newname . "' WHERE restaurant_id = " . $restaurant_id);
+                executePlainSQL("UPDATE Restaurant SET name ='" . $newname . "' WHERE restaurant_id = " . $restaurant_id);
             }
-
             if (isset($_POST['updateStreetAddress'])) {
                 $newStreetAddress = $_POST['newStreetAddress'];
-                executePlainSQL("UPDATE Restaurant SET Street_Address ='" . $newStreetAddress . "' WHERE restaurant_id=" . $restaurant_id);
+                executePlainSQL("UPDATE Restaurant SET street_address ='" . $newStreetAddress . "' WHERE restaurant_id=" . $restaurant_id);
             }
 
             if (isset($_POST['updateCategory'])) {
                 $newCategory = $_POST['newCategory'];
-                executePlainSQL("UPDATE Restaurant SET Category ='" . $newCategory . "' WHERE restaurant_id=" . $restaurant_id );
+                executePlainSQL("UPDATE Restaurant SET category ='" . $newCategory . "' WHERE restaurant_id=" . $restaurant_id );
             }
-
-            $newPostalCode = $_POST['newPostalCode1'];
-            $oldpc = $_POST['oldPostalCode1'];
-            $newCity = $_POST['newCity'];
-            $newProvince = $_POST['newProvince'];
-            $tuple2 = array (
-                ":bind1" => $newPostalCode,
-                ":bind2" => $newCity,
-                ":bind3" => $newProvince
-            );
-
-            $alltuples2 = array (
-                $tuple2
-            );
             if (isset($_POST['updatePostalCode'])) {
-                //executePlainSQL("UPDATE Restaurant SET Postal_code='" . NULL. "' WHERE restaurant_id=" . $restaurant_id);
-                executeBoundSQL("insert into ADDRESS values (:bind1, :bind2, :bind3)", $alltuples2);
-                //executePlainSQL("UPDATE Address SET Postal_code='" . $newPostalCode. "' WHERE Postal_Code='" . $oldpc . "'");
-                executePlainSQL("UPDATE Restaurant SET Postal_code='" . $newPostalCode. "' WHERE restaurant_id=" . $restaurant_id);
+                $newPostalCode = $_POST['newPostalCode1'];
+                $postal_code;
+                $city;
+                $province;
+                $result = executePlainSQL("SELECT A.postal_code, A.city, A.province 
+                                            FROM Restaurant R, Address A  WHERE A.postal_code = R.postal_code AND R.restaurant_id =" . $restaurant_id);
+                while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                    $city = $row[1]; 
+                    $province = $row[2]; // get saved province and city
+                }
+                $tuple = array (
+                    ":bind1" => $newPostalCode,
+                    ":bind2" => $city,
+                    ":bind3" => $province
+                );
+    
+                $alltuples = array (
+                    $tuple
+                );
+                executeBoundSQL("insert into Address values (:bind1, :bind2, :bind3)", $alltuples);
+                executePlainSQL("UPDATE Restaurant SET postal_code='" . $newPostalCode. "' WHERE restaurant_id=" . $restaurant_id);
             }
-//            if (isset($_POST['updateCityAndProvince'])) {
-//
-//                executePlainSQL("UPDATE Address SET City='" . $newCity. "' WHERE Postal_Code='" . $newPostalCode . "'");
-//                executePlainSQL("UPDATE Address SET Province='" . $newProvince. "' WHERE Postal_Code='" . $newPostalCode . "'");
-//            }
+            if  (isset($_POST['updateCityAndProvince'])) {
+                $newPostalCode = $_POST['newPostalCode2'];
+                $newCity = $_POST['newCity'];
+                $newProvince = $_POST['newProvince'];
+                $tuple = array (
+                    ":bind1" => $newPostalCode,
+                    ":bind2" => $newCity,
+                    ":bind3" => $newProvince
+                );
+    
+                $alltuples = array (
+                    $tuple
+                );
+                executeBoundSQL("insert into Address values (:bind1, :bind2, :bind3)", $alltuples);
+                executePlainSQL("UPDATE Restaurant SET postal_code='" . $newPostalCode. "' WHERE restaurant_id=" . $restaurant_id);
+            }
             OCICommit($db_conn);
         }
 
@@ -471,7 +470,7 @@
         function  handleDisplayAllOrders() {
             global $db_conn;
             $restaurant_id = $_GET['restaurant_id'];
-            $result = executePlainSQL("SELECT order_number, customer_id, date_placed, food_subtotal FROM Orders WHERE restaurant_id=" . $restaurant_id);
+            $result = executePlainSQL("SELECT order_number, restaurant_id,customer_id, date_placed, food_subtotal FROM Orders WHERE restaurant_id=" . $restaurant_id);
             printAllOrderResults($result);
 
         }
@@ -484,14 +483,12 @@
             $min = 0;
             if (isset($_GET['fromPrice'])) {
                 $min = $_GET['min'];
-                //executePlainSQL("UPDATE Courier SET name='" . $newname . "' WHERE courier_id='" . $courier_id . "'");
             }
             if (isset($_GET['toPrice'])) {
                 $max = $_GET['max'];
-                //executePlainSQL("UPDATE Courier SET phone_number='" . $newphonenumber . "' WHERE courier_id='" . $courier_id . "'");
             }
 
-            $result = executePlainSQL("SELECT order_number, customer_id, date_placed, food_subtotal FROM Orders 
+            $result = executePlainSQL("SELECT order_number, restaurant_id, customer_id, date_placed, food_subtotal FROM Orders 
                                         WHERE restaurant_id = " . $restaurant_id . " AND food_subtotal <= " . $max . " AND food_subtotal >= ". $min);
             printAllOrderResults($result);
 
@@ -499,41 +496,94 @@
 
         //print the orders
         function printAllOrderResults($result) {
-            echo "<br>Retrieved orders from your restaurant:<br>";
+            echo "<br>Retrieved Orders from Restaurant:<br>";
             echo "<table>";
-            echo "<tr><th>order_number</th><th>order_number</th><th>date_placed</th><th>food_subtotal</th></tr>";
+            echo "<tr><th>order_number</th><th>restaurant_id</th><th>customer_id</th><th>date_placed</th><th>food_subtotal</th></tr>";
 
             while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td><td>" . $row[3] . "</td></tr>";
+                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td><td>" . $row[3] . "</td><td>" . $row[4] . "</td></tr>";
             }
 
             echo "</table>";
         }
 
+        function handleDisplayAllTables() {
+            global $db_conn;
+            $result = executePlainSQL("SELECT * FROM Restaurant");
+            printRestaurant($result);
+            $result = executePlainSQL("SELECT order_number, restaurant_id, customer_id, date_placed, food_subtotal FROM Orders");
+            printAllOrderResults($result);
+            $result = executePlainSQL("SELECT * FROM Menu_Items_Has");
+            printAllMenuItems($result);
+            $result = executePlainSQL("SELECT * FROM Address");
+            printAllAddress($result);
+        }
+
+        function handleDisplayDishes() {
+            global $db_conn;
+            $restaurant_id = $_GET['restaurant_id'];
+            $result = executePlainSQL("SELECT * FROM Menu_Items_Has WHERE restaurant_id = " . $restaurant_id);
+            printAllMenuItems($result);
+        }
+
+        function printAllAddress($result) {
+            echo "<br>Retrieved Dishes from Address:<br>";
+            echo "<table>";
+            echo "<tr><th>Postal_Code</th><th>City</th><th>Province</th></tr>";
+
+            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td></tr>";
+            }
+
+            echo "</table>";
+        }
+
+        function printAllMenuItems($result) {
+            echo "<br>Retrieved Dishes from your Restaurant:<br>";
+            echo "<table>";
+            echo "<tr><th>Name</th><th>Description</th><th>Ingredient</th><th>Category</th><th>Price</th><th>Restaurant_ID</th></tr>";
+
+            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td><td>" . $row[3] . "</td><td>" . $row[4] . "</td><td>" . $row[5] . "</td></tr>";
+            }
+
+            echo "</table>";
+        }
+
+        function handleDisplayCustomer() {
+            global $db_conn;
+            $restaurant_id = $_GET['restaurant_id'];
+            $result = executePlainSQL("SELECT o.order_number, c.customer_id, c.email, c.name, c.phone_number, c.street_address 
+                                        FROM Customer c, Restaurant r, Orders o 
+                                        WHERE o.customer_id = c.customer_id AND r.restaurant_id = o.restaurant_id AND r.restaurant_id = " . $restaurant_id);
+            printAllCustomer($result);
+        }
+        
+        function printAllCustomer($result) {
+            echo "<br>Retrieved Customer Who Have Placed Orders In Your Restaurant:<br>";
+            echo "<table>";
+            echo "<tr><th>Order_Number</th><th>Customer_ID</th><th>Email</th><th>Name</th><th>Phone_Number</th><th>Street_Address</th></tr>";
+
+            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td><td>" . $row[3] . "</td><td>" . $row[4] . "</td><td>" . $row[5] . "</td></tr>";
+            }
+
+            echo "</table>";
+        }
 
         function handlePOSTRequest() {
             if (connectToDB()) {
-                if (array_key_exists('insertCourier', $_POST)) {
-                    handleInsertCourier();
-                } else if (array_key_exists('can reuse', $_POST)) {
-                    handleInsertVehicleCourier();
-                } else if (array_key_exists('can reuse', $_POST)) {
-                    handleInsertVehicle();
-                }else if (array_key_exists('can reuse', $_POST)) {
-                    handleInsertFootCourier();
-                }else if (array_key_exists('can reuse', $_POST)) {
-                    handleInsertBicycleCourier();
-                }else if (array_key_exists('deleteSubmitDishes', $_POST)) {
-                    handleDeleteMenu();
-                }else if (array_key_exists('updateSubmitMenu', $_POST)) {
-                    handleUpdateMenu();
-                }else if (array_key_exists('insertSubmit', $_POST)) {
+                if (array_key_exists('deleteMenuItem', $_POST)) {
+                    handleDeleteMenuItem();
+                }else if (array_key_exists('updateMenuItem', $_POST)) {
+                    handleUpdateMenuItem();
+                }else if (array_key_exists('insertRestaurant', $_POST)) {
                     handleInsertRestaurant();
-                }else if (array_key_exists('updateSubmitRestaurant', $_POST)) {
+                }else if (array_key_exists('updateRestaurantInfo', $_POST)) {
                     handleUpdateRestaurant();
-                }else if (array_key_exists('deleteSubmitRestaurant', $_POST)) {
+                }else if (array_key_exists('deleteRestaurant', $_POST)) {
                     handleDeleteRestaurant();
-                }else if (array_key_exists('insertSubmitMenu', $_POST)) {
+                }else if (array_key_exists('insertMenuItem', $_POST)) {
                     handleInsertMenu();
                 }
                 disconnectFromDB();
@@ -544,26 +594,28 @@
         if (connectToDB()) {
                 if (array_key_exists('displayAllOrders', $_GET)) {
                     handleDisplayAllOrders();
-                } else if (array_key_exists('displayTables', $_GET)) {
-                    handleDisplayTables();
-                } else if (array_key_exists('checkTables', $_GET)) {
-                    handleCheckTables();
+                } else if (array_key_exists('displayAllTables', $_GET)) {
+                    handleDisplayAllTables();
+                } else if (array_key_exists('displayCustomer', $_GET)) {
+                    handleDisplayCustomer();
                 } else if (array_key_exists('displayRestaurant', $_GET)) {
                     handleSelectRestaurant();
                 } else if (array_key_exists('displayPriceOrders', $_GET)) {
                     handleDisplayOrdersWithInRange();
+                } else if (array_key_exists('displayDishes', $_GET)) {
+                    handleDisplayDishes();
                 }
 
                 disconnectFromDB();
             }
         }
 
-		if (isset($_POST['insertRestaurant']) || isset($_POST['updateRestaurantInfo']) || isset($_POST['deleteRestaurant']) ||
-                isset($_POST['deleteMenuItem']) || isset($_POST['updateMenuItem']) || isset($_POST['insertMenuItem'])) {
+		if (isset($_POST['insertSubmit']) || isset($_POST['updateSubmit']) || isset($_POST['deleteSubmit'])) {
             handlePOSTRequest();
-        } else if (isset($_GET['checkPriceOrders']) || isset($_GET['checkAllOrders'])|| isset($_GET['checkAllCustomer'])) {
+        } else if (isset($_GET['checkAllOrders']) || isset($_GET['checkAllCustomer']) 
+                    || isset($_GET['checkRestaurant']) || isset($_GET['checkAllTables'])) {
             handleGETRequest();
-        } else if (isset($_GET['checkRestaurant'])) {
+        } else if (isset($_GET['checkPriceOrders']) || isset($_GET['checkDishes'])) {
             handleGETRequest();
         }
 		?>

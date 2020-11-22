@@ -38,3 +38,10 @@
     -moz-background-size: cover;
     -o-background-size: cover;
 }
+
+
+input {
+    padding: 6px;
+    border-radius: 2px;
+}
+

@@ -365,13 +365,9 @@
                 $valid_vehicle = 'y';
             }
 
-                //executePlainSQL("UPDATE Courier SET name='" . $newname . "' WHERE courier_id='" . $courier_id . "'");
-
             if ($_POST['selectValidInsurance'] = "y") {
                 $valid_insurance = 'y';
             }
-
-                //executePlainSQL("UPDATE Courier SET phone_number='" . $newphonenumber . "' WHERE courier_id='" . $courier_id . "'");
 
             $tuple = array (
                 ":bind4" => $_POST['courier_id'],
@@ -554,10 +550,8 @@
                     handleDisplayOrders();
                 } else if (array_key_exists('displayTables', $_GET)) {
                     handleDisplayTables();
-                } else if (array_key_exists('checkTables', $_GET)) { //unused
+                } else if (array_key_exists('checkTables', $_GET)) {
                     handleCheckTables();
-                } else if (array_key_exists('unused', $_GET)) { //unused
-
                 }
                 disconnectFromDB();
             }
