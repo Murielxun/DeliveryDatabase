@@ -3,6 +3,9 @@
 -- Change the date format because the default in SQL is 'dd-mm-yyyy.' 
 ALTER SESSION SET NLS_DATE_FORMAT = 'yyyy-mm-dd HH24:mi:ss'; 
 
+-- Alters session so that queries use case-insensitive parameters.
+ALTER SESSION SET nls_sort=BINARY_CI;
+
 DROP TABLE Menu_Items_Has;
 DROP TABLE Orders;
 DROP TABLE Restaurant;
