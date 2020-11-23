@@ -812,19 +812,20 @@
                 $result = executePlainSQL("SELECT COUNT(*) FROM Giftcard_Buys WHERE card_number = $card_number");
                 $row = OCI_Fetch_Array($result, OCI_BOTH);
                 while ($row[0] != 0) {
-                    $order_number = rand(0, 20000);
+                    $card_number = rand(0, 20000);
                     $result = executePlainSQL("SELECT COUNT(*) FROM Giftcard_Buys WHERE card_number = $card_number");
                     $row = OCI_Fetch_Array($result, OCI_BOTH);
                 }
 
                 $email = $_POST['email'];
                 $name = $_POST['name'];
-                $expiry_date = '2021-DEC-31 23:59:59';
                 $balance = $_POST['balance'];
+                $balance = floor(($balance * 100) / 100);
 
                 
                 // Insert new gift card into Giftcard_Buys
-                executePlainSQL("INSERT into Giftcard_Buys VALUES ($cus_id, $card_number, '$email', '$name', '$expiry_date', $balance)");
+                executePlainSQL("INSERT into Giftcard_Buys VALUES ($cus_id, $card_number, '$email', '$name', 
+                                                    TO_DATE('2021-12-31 23:59:59', 'yyyy-mm-dd HH24:mi:ss'), $balance)");
             }
 
             OCICommit($db_conn);
