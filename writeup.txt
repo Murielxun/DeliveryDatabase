@@ -12,7 +12,7 @@ that should be noted here, as well."
 
 Project Description:
 
-Our database models a food delivery app, and its purpose is to manage data concerning the users of the app; there 
+Our database models a food delivery app, and its purpose is to manage data regarding the users of the app; there 
 are three different classes of users of our system: the customers, the restaurants, and the couriers. During Milestone 3, 
 we created an application that connects users to our database in a way that allows them to access/modify certain 
 information within the database using a set of queries accessible through a GUI. Each class of user has different functions 
@@ -54,7 +54,7 @@ After Milestone 1, we made the following changes to the ER diagram for Milestone
 
 From Milestone 2 to Milestone 3, we did not make any major changes to the schema. We did make a few minor
 adjustments to the data types used (e.g. changed the data type of the "date_placed" attribute in the Orders entity
-from 'string' to 'DATE'). Amusingly, we also had to change the name of our "Order" entity to "Orders", because
+from 'string' to 'DATE'). We also had to change the name of our "Order" entity to "Orders", because
 "Order" happened to be a reserved keyword in Oracle. 
 
 Script and Query File:
