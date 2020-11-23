@@ -1,18 +1,20 @@
 
-
--- 1) Insertion Query: Create a customer account
+-- (IMPLEMENTED IN CUSTOMER.PHP)
+-- 1) Insertion Query: Create a customer account 
 -- Inputs to be provided by user: customer_id, email, age, phone_number, street_address, postal_code, name
 INSERT INTO Customer 
     VALUES(customer_id, 'email', age, 'phone_number', 'street_address', 'postal_code', 'name', 0, 'Bronze', 0.0);
     
 
--- 2) Deletion Query: Deleting a customer account
+-- (IMPLEMENTED IN CUSTOMER.PHP)
+-- 2) Deletion Query: Deleting a customer account 
 -- Inputs to be provided by user: delete_cid
 DELETE FROM Customer 
 WHERE customer_id = delete_cid;
 
 
--- 3) Update Query: Update a customer's email
+-- (ALL UPDATE QUERIES IMPLEMENTED IN CUSTOMER.PHP)
+-- 3) Update Query: Update a customer's email 
 -- Inputs to be provided by user: new_email, u_cid
 UPDATE Customer
 SET email = 'new_email'
@@ -38,7 +40,8 @@ SET street_address = 'new_addr',
 WHERE customer_id = u_cid;
 
 
--- 7) Selection Query: Find all restaurants that have a rating greater than a specified number,
+-- (IMPLEMENTED IN CUSTOMER.PHP)
+-- 7) Selection Query: Find all restaurants that have a rating greater than a specified number, 
 -- where 0.0 is the minimum rating and 10.0 is the maximum rating.
 -- Inputs to be provided by the user: val
 SELECT restaurant_id, name, rating
@@ -62,7 +65,7 @@ FROM Restaurant R, (SELECT R2.restaurant_id AS res_id, avg(food_subtotal) AS avg
                     GROUP BY R2.restaurant_id)
 WHERE R.restaurant_id = res_id;
 
-
+-- (IMPLEMENTED IN CUSTOMER.PHP)
 -- 10) Aggregation with Group By Query: For each restaurant category, find the restaurants that have the highest rating in that category. 
 SELECT R.name, R.category, max_rating 
 FROM Restaurant R, (SELECT R2.category AS current_category, MAX(rating) AS max_rating
@@ -80,6 +83,7 @@ GROUP BY C.customer_id
 HAVING COUNT(*) > 2;
 
 
+-- (IMPLEMENTED IN CUSTOMER.PHP)
 -- 12) Nested Aggregation with Group By Query: Find the restaurant categories that have the lowest average price of menu items  
 -- compared to all other restaurant categories.  
 SELECT R.category, AVG(M.price)
