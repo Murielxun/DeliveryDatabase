@@ -5,27 +5,36 @@
     </head>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+    * {
+      font-family: sans-serif;
+    }
+    </style>
+
     <body class = "courierBody">
 
     <div class = "restaurant">
         <h1>Courier Page</h1>
     </div>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
         <hr>
-        <h1>Become a Courier</h1>
         <h2>New to This Delivery App? First Register As a Courier!</h2>
         <form method="POST" action="courier.php">
             <input type="hidden" id="insertCourier" name="insertCourier">
             Courier ID: <input type="text" name="courier_id"> <br /><br />
             Name: <input type="text" name="name"> <br /><br />
-            Rating: <input type="number" name="rating" step="0.01" min="0" max="10"> <br /><br />
             Phone Number: <input type="text" name="phone_number"> <br /><br />
             <input type="submit" value="Submit" name="insertCourierSubmit"></p>
         </form>
 
         <hr>
 
-        <h1>Already a Courier? More Options!</h1>
-        <h2>Become a Vehicle Courier!</h2>
+        <h2>Already a Courier? More Options!</h2>
+        <h3>Become a Vehicle Courier!</h3>
         <form method="POST" action="courier.php">
             <input type="hidden" id="insertVehicleCourier" name="insertVehicleCourier">
             Your Courier ID: <input type="text" name="courier_id"> <br /><br />
@@ -52,7 +61,7 @@
             <input type="submit" value="Submit" name="insertVehicleSubmit"></p>
         </form>
 
-        <h2>Become a Bicycle Courier!</h2>
+        <h3>Become a Bicycle Courier!</h3>
         <form method="POST" action="courier.php">
             <input type="hidden" id="insertBicycleCourier" name="insertBicycleCourier">
             Your Courier ID: <input type="text" name="courier_id"> <br /><br />
@@ -75,7 +84,7 @@
 
         <hr>
 
-        <h2>Enter Your Courier ID and Update Your Personal Info.</h2>
+        <h2>Update Your Personal Info:</h2>
         <form method="POST" action="courier.php">
             <input type="hidden" id="updateCourierInfo" name="updateCourierInfo">
 
@@ -134,7 +143,7 @@
 
         <hr>
 
-        <h2>Enter Your Courier ID and Unregister Your Courier Standing.</h2>
+        <h2>Delete Your Courier Account:</h2>
         <form method="POST" action="courier.php">
             <input type="hidden" id="deleteCourier" name="deleteCourier">
             Your Courier ID: <input type="text" name="courier_id">
@@ -143,7 +152,7 @@
 
         <hr>
 
-        <h2>Enter Your Courier ID And Check All Orders You Have Delivered.</h2>
+        <h2>Check All Orders You Have Delivered:</h2>
         <form method="GET" action="courier.php">
             <input type="hidden" id="checkAllOrders" name="checkAllOrders">
             Your Courier ID: <input type="text" name="courier_id">
@@ -152,14 +161,16 @@
 
         <hr>
 
-        <h2>Enter Your Courier ID And Check Your Current Standing.</h2>
+        <h2>Check Your Current Information:</h2>
         <form method="GET" action="courier.php">
             <input type="hidden" id="printAllTables" name="printAllTables">
             Your Courier ID: <input type="text" name="courier_id">
             <input type="submit" name="displayTables"></p>
         </form>
 
-        <h2>Display All Courier Related Tables.</h2>
+        <hr>
+
+        <h2>Display All Courier Related Tables:</h2>
         <form method="GET" action="courier.php">
             <input type="hidden" id="checkAllTables" name="checkAllTables">
             <input type="submit" name="checkTables"></p>
@@ -314,7 +325,7 @@
             global $db_conn;
 
 
-            $db_conn = OCILogon("ora_vicche04", "a13090618", "dbhost.students.cs.ubc.ca:1522/stu");
+            $db_conn = OCILogon("ora_jeonseol", "a39733985", "dbhost.students.cs.ubc.ca:1522/stu");
 
             if ($db_conn) {
                 debugAlertMessage("Database is Connected");
@@ -338,33 +349,61 @@
             global $db_conn;
             $courier_id = $_POST["courier_id"];
 
-            $id_is_in_use = executePlainSQL("select count(*) from Courier where courier_id = $courier_id");
-            $row = OCI_Fetch_Array($id_is_in_use, OCI_BOTH);
-        
-            if ($row[0] != 0) {
-                $err_message = 'This Courier ID is already is use. Please choose another one.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+            // Check if courier_id field was left empty
+            if (strlen($courier_id) == 0) {
+                $err_message = 'Courier ID cannot be empty. Please enter a valid courier ID and try again.';
+                echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
 
                 // To not make the error message appear again after the page is refreshed
                 echo "<script>
                 if ( window.history.replaceState ) {
                     window.history.replaceState( null, null, window.location.href );
-                }
+                    }
                 </script>";
-            } else {           
-                $tuple = array (
-                    ":bind1" => $courier_id,
-                    ":bind2" => $_POST['name'],
-                    ":bind3" => $_POST['rating'],
-                    ":bind4" => $_POST['phone_number']
-                );
-
-                $alltuples = array (
-                    $tuple
-                );
-                executeBoundSQL("insert into Courier values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
             }
+            else {
+                $id_is_in_use = executePlainSQL("select count(*) from Courier where courier_id = $courier_id");
+                $row = OCI_Fetch_Array($id_is_in_use, OCI_BOTH);
+                if ($row[0] != 0) {
+                    $err_message = 'This Courier ID is already is use. Please choose another one.';
+                    echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
+    
+                    // To not make the error message appear again after the page is refreshed
+                    echo "<script>
+                    if ( window.history.replaceState ) {
+                        window.history.replaceState( null, null, window.location.href );
+                    }
+                    </script>";
+                } else {           
+                    $tuple = array (
+                        ":bind1" => $courier_id,
+                        ":bind2" => $_POST['name'],
+                        ":bind3" => 10.0,
+                        ":bind4" => $_POST['phone_number']
+                    );
+    
+                    $alltuples = array (
+                        $tuple
+                    );
+                    executeBoundSQL("insert into Courier values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
+    
+                    $message = 'Courier Account was Successfully Created!';
+                    echo "<script type='text/javascript'> swal('Success!', '$message', 'success'); </script>";
+    
+                    // To not make the message appear again after the page is refreshed
+                    echo "<script>
+                    if ( window.history.replaceState ) {
+                        window.history.replaceState( null, null, window.location.href );
+                    }
+                    </script>";
+    
+                }
+
+            }
+            
+
             OCICommit($db_conn);
+
         }
 
         //Insert Vehicle Courier
@@ -377,7 +416,7 @@
         
             if ($row[0] != 0) {
                 $err_message = 'This Driver License is already is use. Please choose another one.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+                echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
 
                 // To not make the error message appear again after the page is refreshed
                 echo "<script>
@@ -409,6 +448,16 @@
                 );
     
                 executeBoundSQL("insert into Vehicle_Courier values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
+
+                $message = 'Successfully Registered as a Vehicle Courier!';
+                echo "<script type='text/javascript'> swal('Success!', '$message', 'success'); </script>";
+
+                // To not make the message appear again after the page is refreshed
+                echo "<script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
+                </script>";
             }
 
             OCICommit($db_conn);
@@ -422,7 +471,7 @@
         
             if ($row[0] != 0) {
                 $err_message = 'This Vehicle ID is already is use. Please choose another one.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+                echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
 
                 // To not make the error message appear again after the page is refreshed
                 echo "<script>
@@ -442,6 +491,16 @@
                 );
     
                 executeBoundSQL("insert into Vehicle_Drives values (:bind1, :bind2, :bind3)", $alltuples);
+
+                $message = 'Vehicle Was Successfully Registered!';
+                echo "<script type='text/javascript'> swal('Success!', '$message', 'success'); </script>";
+
+                // To not make the message appear again after the page is refreshed
+                echo "<script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
+                </script>";
             }
             
             OCICommit($db_conn);
@@ -461,6 +520,17 @@
             );
 
             executeBoundSQL("insert into Bicycle_Courier values (:bind1, :bind2)", $alltuples);
+
+            $message = 'Successfully Registered as a Bicycle Courier!';
+            echo "<script type='text/javascript'> swal('Success!', '$message', 'success'); </script>";
+
+            // To not make the message appear again after the page is refreshed
+            echo "<script>
+            if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+            }
+            </script>";
+
             OCICommit($db_conn);
         }
 
@@ -473,8 +543,8 @@
             $row = OCI_Fetch_Array($id_is_in_use, OCI_BOTH);
         
             if ($row[0] != 0) {
-                $err_message = 'This Bus Pass is already is use. Please choose another one.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+                $err_message = 'This Bus Pass is already is use. Please enter another one.';
+                echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
 
                 // To not make the error message appear again after the page is refreshed
                 echo "<script>
@@ -493,6 +563,16 @@
                 );
     
                 executeBoundSQL("insert into Foot_Courier values (:bind1, :bind2)", $alltuples);
+
+                $message = 'Successfully Registered as a Foot Courier!';
+                echo "<script type='text/javascript'> swal('Success!', '$message', 'success'); </script>";
+
+                // To not make the message appear again after the page is refreshed
+                echo "<script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
+                </script>";
             }
             
             OCICommit($db_conn);
@@ -503,7 +583,36 @@
 
             $courier_id = $_POST['courier_id'];
 
-            executePlainSQL("DELETE FROM Courier WHERE courier_id=" . $courier_id);
+            // Check if courier_id exists
+            $id_is_in_use = executePlainSQL("select count(*) from Courier where courier_id = $courier_id");
+            $row = OCI_Fetch_Array($id_is_in_use, OCI_BOTH);
+        
+            if ($row[0] == 0) {
+                $err_message = 'This Courier ID does not exist. Please enter another one and try again.';
+                echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
+
+                // To not make the error message appear again after the page is refreshed
+                echo "<script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
+                </script>";
+            }
+            else {
+                executePlainSQL("DELETE FROM Courier WHERE courier_id=" . $courier_id);
+                $message = 'Your Courier Account Was Successfully Deleted!';
+                echo "<script type='text/javascript'> swal('Success!', '$message', 'success'); </script>";
+
+                // To not make the message appear again after the page is refreshed
+                echo "<script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
+                </script>";
+
+            }
+
+            
             OCICommit($db_conn);
         }
 
@@ -511,34 +620,64 @@
             global $db_conn;
 
             $courier_id = $_POST['courier_id'];
-            if (isset($_POST['updateName'])) {
-                $newname = $_POST['newName'];
-                executePlainSQL("UPDATE Courier SET name='" . $newname . "' WHERE courier_id=" . $courier_id );
+
+            // Check if courier_id exists
+            $id_is_in_use = executePlainSQL("select count(*) from Courier where courier_id = $courier_id");
+            $row = OCI_Fetch_Array($id_is_in_use, OCI_BOTH);
+        
+            if ($row[0] == 0) {
+                $err_message = 'This Courier ID does not exist. Please enter another one and try again.';
+                echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
+
+                // To not make the error message appear again after the page is refreshed
+                echo "<script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
+                </script>";
             }
-            if (isset($_POST['updatePhoneNumber'])) {
-                $newphonenumber = $_POST['newPhoneNumber'];
-                executePlainSQL("UPDATE Courier SET phone_number='" . $newphonenumber . "' WHERE courier_id=" . $courier_id);
+            else {
+                if (isset($_POST['updateName'])) {
+                    $newname = $_POST['newName'];
+                    executePlainSQL("UPDATE Courier SET name='" . $newname . "' WHERE courier_id=" . $courier_id );
+                }
+                if (isset($_POST['updatePhoneNumber'])) {
+                    $newphonenumber = $_POST['newPhoneNumber'];
+                    executePlainSQL("UPDATE Courier SET phone_number='" . $newphonenumber . "' WHERE courier_id=" . $courier_id);
+                }
+                if (isset($_POST['updateDriverLicense'])) {
+                    $newlicense = $_POST['newDriverLicense'];
+                    executePlainSQL("UPDATE Vehicle_Courier SET drivers_license='" . $newlicense . "' WHERE courier_id=" . $courier_id);
+                }
+                if (isset($_POST['updateValidVehicle'])) {
+                    $newvehicle = $_POST['newValidVehicle'];
+                    executePlainSQL("UPDATE Vehicle_Courier SET valid_vehicle='" . $newvehicle . "' WHERE courier_id=" . $courier_id);
+                }
+                if (isset($_POST['updateValidInsurance'])) {
+                    $newinsurance = $_POST['newValidInsurance'];
+                    executePlainSQL("UPDATE Vehicle_Courier SET valid_insurance='" . $newinsurance. "' WHERE courier_id=" . $courier_id);
+                }
+                if (isset($_POST['updateValidBicycle'])) {
+                    $newbicycle = $_POST['newValidBicycle'];
+                    executePlainSQL("UPDATE Bicycle_Courier SET valid_bicycle='" . $newbicycle. "' WHERE courier_id=" . $courier_id);
+                }
+                if (isset($_POST['updateBusPass'])) {
+                    $newbuspass = $_POST['newBusPass'];
+                    executePlainSQL("UPDATE Foot_Courier SET bus_pass='" . $newbuspass. "' WHERE courier_id=" . $courier_id);
+                }
+
+                $message = 'Your Courier Account Was Successfully Updated!';
+                echo "<script type='text/javascript'> swal('Success!', '$message', 'success'); </script>";
+
+                // To not make the message appear again after the page is refreshed
+                echo "<script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
+                </script>";
+
             }
-            if (isset($_POST['updateDriverLicense'])) {
-                $newlicense = $_POST['newDriverLicense'];
-                executePlainSQL("UPDATE Vehicle_Courier SET drivers_license='" . $newlicense . "' WHERE courier_id=" . $courier_id);
-            }
-            if (isset($_POST['updateValidVehicle'])) {
-                $newvehicle = $_POST['newValidVehicle'];
-                executePlainSQL("UPDATE Vehicle_Courier SET valid_vehicle='" . $newvehicle . "' WHERE courier_id=" . $courier_id);
-            }
-            if (isset($_POST['updateValidInsurance'])) {
-                $newinsurance = $_POST['newValidInsurance'];
-                executePlainSQL("UPDATE Vehicle_Courier SET valid_insurance='" . $newinsurance. "' WHERE courier_id=" . $courier_id);
-            }
-            if (isset($_POST['updateValidBicycle'])) {
-                $newbicycle = $_POST['newValidBicycle'];
-                executePlainSQL("UPDATE Bicycle_Courier SET valid_bicycle='" . $newbicycle. "' WHERE courier_id=" . $courier_id);
-            }
-            if (isset($_POST['updateBusPass'])) {
-                $newbuspass = $_POST['newBusPass'];
-                executePlainSQL("UPDATE Foot_Courier SET bus_pass='" . $newbuspass. "' WHERE courier_id=" . $courier_id);
-            }
+            
 
             OCICommit($db_conn);
         }
@@ -630,4 +769,3 @@
 		?>
 	</body>
 </html>
-
