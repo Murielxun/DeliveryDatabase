@@ -6,10 +6,20 @@
 
     <link rel="stylesheet" href="style.css">
 
+    <style>
+    * {
+      font-family: sans-serif;
+    }
+    </style>
+
     <body class = "customerBody">
     <div class = "customer">
         <h1> Customer Page </h1>
     </div>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
 
         <hr>
 
@@ -311,7 +321,8 @@
             // Check if customer_id field was left empty
             if (strlen($cus_id) == 0) {
                 $err_message = 'Customer ID cannot be empty. Please enter a customer ID and try again.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+                echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
+
 
                 // To not make the error message appear again after the page is refreshed
                 echo "<script>
@@ -327,7 +338,7 @@
             
                 if ($row[0] != 0) {
                     $err_message = 'This Customer ID is already is use. Please choose another one.';
-                    echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+                    echo "<<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
 
                     // To not make the error message appear again after the page is refreshed
                     echo "<script>
@@ -360,7 +371,7 @@
                                                                 '$pos_code', '$name', $rew_points, '$rew_tier', $acc_balance)");
 
                     $message = 'Account successfully created!';
-                    echo "<script type = 'text/javascript'> alert('$message');</script>";
+                    echo "<script type='text/javascript'> swal('Success!', '$message', 'success'); </script>";
 
                     // To not make the message appear again after the page is refreshed
                     echo "<script>
@@ -393,7 +404,7 @@
             $cus_id = $_POST['customer_id'];
             if (strlen($cus_id) == 0) {
                 $err_message = 'Please enter a valid customer ID and try again.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+                echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
 
                 // To not make the error message appear again after the page is refreshed
                 echo "<script>
@@ -409,7 +420,7 @@
             
                 if ($row[0] == 0) {
                     $err_message = 'This Customer ID does not exist. Please enter another one.';
-                    echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+                    echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
 
                     // To not make the error message appear again after the page is refreshed
                     echo "<script>
@@ -448,7 +459,7 @@
                             || strlen($new_city == 0) || strlen($new_province == 0)) {
                                 $err_message = 'One or more of the required fields are empty. 
                                                 Please fill out all the required fields and try again.';
-                                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+                                echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
 
                                 // To not make the error message appear again after the page is refreshed
                                 echo "<script>
@@ -470,14 +481,14 @@
 
 
                     $message = 'Update was successful!';
-                                echo "<script type = 'text/javascript'> alert('$message');</script>";
+                    echo "<script type='text/javascript'> swal('Success!', '$message', 'success'); </script>";
 
-                                // To not make the error message appear again after the page is refreshed
-                                echo "<script>
-                                if ( window.history.replaceState ) {
-                                    window.history.replaceState( null, null, window.location.href );
-                                }
-                                </script>";
+                    // To not make the message appear again after the page is refreshed
+                    echo "<script>
+                    if ( window.history.replaceState ) {
+                        window.history.replaceState( null, null, window.location.href );
+                    }
+                    </script>";
 
                 }
 
@@ -497,7 +508,7 @@
             
             if ($row[0] == 0) {
                 $err_message = 'This Customer ID does not exist. Please enter another one.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+                echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
 
                 // To not make the error message appear again after the page is refreshed
                 echo "<script>
@@ -509,7 +520,7 @@
             else {
                 executePlainSQL("DELETE FROM Customer WHERE customer_id = $cus_id");
                 $message = 'Your account has been successfully deleted!';
-                echo "<script type = 'text/javascript'> alert('$message');</script>";
+                echo "<script type='text/javascript'> swal('Success!', '$message', 'success'); </script>";
 
                 // To not make the message appear again after the page is refreshed
                 echo "<script>
@@ -537,7 +548,7 @@
             
             if ($row[0] == 0) {
                 $err_message = 'This Customer ID does not exist. Please enter another one.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+                echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
 
                 // To not make the error message appear again after the page is refreshed
                 echo "<script>
@@ -548,7 +559,7 @@
             }
             else if ($row2[0] == 0) {
                 $err_message = 'This coupon code is invalid. Please enter another one.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+                echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
 
                 // To not make the error message appear again after the page is refreshed
                 echo "<script>
@@ -560,7 +571,7 @@
             else {
                 executePlainSQL("INSERT INTO Receives VALUES($cus_id, '$coupon')");
                 $message = 'Coupon successfully added to account!';
-                echo "<script type = 'text/javascript'> alert('$message');</script>";
+                echo "<script type='text/javascript'> swal('Success!', '$message', 'success'); </script>";
 
                 // To not make the message appear again after the page is refreshed
                 echo "<script>
@@ -591,7 +602,7 @@
             $row = OCI_Fetch_Array($result, OCI_BOTH);
             if ($row[0] == 0) {
                 $err_message = 'This Category does not exist. Please enter another one.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+                echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
 
                 // To not make the error message appear again after the page is refreshed
                 echo "<script>
@@ -684,7 +695,7 @@
             $row = OCI_Fetch_Array($id_is_in_use, OCI_BOTH);
             if ($row[0] == 0) {
                 $err_message = 'This Customer ID does not exist. Please enter another one.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+                echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
 
                 // To not make the error message appear again after the page is refreshed
                 echo "<script>
@@ -725,7 +736,7 @@
             
             if ($row[0] == 0) {
                 $err_message = 'This Customer ID does not exist. Please choose another one.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+                echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
 
                 // To not make the error message appear again after the page is refreshed
                 echo "<script>
@@ -736,7 +747,7 @@
             }
             else if ($row2[0] == 0) {
                 $err_message = 'This Restaurant ID does not exist. Please choose another one.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+                echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
 
                 // To not make the error message appear again after the page is refreshed
                 echo "<script>
@@ -797,7 +808,7 @@
                                                             $res_id, $card_number, '$coupon_code')");
 
                 $message = 'Order was successfully placed!';
-                echo "<script type = 'text/javascript'> alert('$message');</script>";
+                echo "<script type='text/javascript'> swal('Success!', '$message', 'success'); </script>";
 
                 // To not make the message appear again after the page is refreshed
                 echo "<script>
@@ -822,7 +833,7 @@
             
             if ($row[0] == 0) {
                 $err_message = 'This Customer ID does not exist. Please choose another one.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+                echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
 
                 // To not make the error message appear again after the page is refreshed
                 echo "<script>
@@ -853,7 +864,7 @@
                                                     TO_DATE('2021-12-31 23:59:59', 'yyyy-mm-dd HH24:mi:ss'), $balance)");
 
                 $message = 'Gift card was successfully purchased!';
-                echo "<script type = 'text/javascript'> alert('$message');</script>";
+                echo "<script type='text/javascript'> swal('Success!', '$message', 'success'); </script>";
 
                 // To not make the message appear again after the page is refreshed
                 echo "<script>
