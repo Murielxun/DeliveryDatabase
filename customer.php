@@ -4,7 +4,12 @@
         <title>Customer</title>
     </head>
 
-    <body>
+    <link rel="stylesheet" href="style.css">
+
+    <body class = "customerBody">
+    <div class = "customer">
+        <h1> Customer Page </h1>
+    </div>
 
         <hr>
 
@@ -780,6 +785,16 @@
                 executePlainSQL("INSERT into Orders VALUES ('$delivery_addr', '$res_addr', $food_subtotal, $delivery_fee, $courier_tip, 
                                                             '$payment_meth', '$menu_items', sysdate, $order_number, $cus_id, $courier_id, 
                                                             $res_id, $card_number, '$coupon_code')");
+
+                $message = 'Order was successfully placed!';
+                echo "<script type = 'text/javascript'> alert('$message');</script>";
+
+                // To not make the message appear again after the page is refreshed
+                echo "<script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                    }
+                </script>";
             }
 
             OCICommit($db_conn);
@@ -826,6 +841,16 @@
                 // Insert new gift card into Giftcard_Buys
                 executePlainSQL("INSERT into Giftcard_Buys VALUES ($cus_id, $card_number, '$email', '$name', 
                                                     TO_DATE('2021-12-31 23:59:59', 'yyyy-mm-dd HH24:mi:ss'), $balance)");
+
+                $message = 'Gift card was successfully purchased!';
+                echo "<script type = 'text/javascript'> alert('$message');</script>";
+
+                // To not make the message appear again after the page is refreshed
+                echo "<script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                    }
+                </script>";
             }
 
             OCICommit($db_conn);
