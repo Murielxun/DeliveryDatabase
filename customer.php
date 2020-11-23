@@ -27,15 +27,15 @@
         <h2>New to This Delivery App? First Register As a Customer!</h2>
         <form method="POST" action="customer.php">
             <input type="hidden" id="insertCustomer" name="insertCustomer">
-            Customer ID: <input type="text" name="customer_id"> <br /><br />
-            Email: <input type="text" name="email"> <br /><br />
-            Name: <input type="text" name="name"> <br /><br />
-            Phone Number: <input type="text" name="phone_number"> <br /><br />
-            Age:  <input type="number" name="age"  step="1" min="0" max="120"> <br /><br />
-            Postal Code: <input type="text" name="postal_code"> <br /><br />
-            Street Address: <input type="text" name="street_address"> <br /><br />
-            City: <input type="text" name="city"> <br /><br />
-            Province: <input type="text" name="province"> <br /><br />
+            Customer ID: <input type="text" style= "color: black" name="customer_id"> <br /><br />
+            Email: <input type="text" style= "color: black" name="email"> <br /><br />
+            Name: <input type="text" style= "color: black" name="name"> <br /><br />
+            Phone Number: <input type="text" style= "color: black" name="phone_number"> <br /><br />
+            Age:  <input type="number" style= "color: black" name="age"  step="1" min="0" max="120"> <br /><br />
+            Postal Code: <input type="text" style= "color: black" name="postal_code"> <br /><br />
+            Street Address: <input type="text" style= "color: black" name="street_address"> <br /><br />
+            City: <input type="text" style= "color: black" name="city"> <br /><br />
+            Province: <input type="text" style= "color: black" name="province"> <br /><br />
             <input type="submit" style= "color: black" value="Submit" name="insertSubmit"></p>
         </form>
     
@@ -45,7 +45,7 @@
         <h3>View Your Current Reward Tier and Reward Point Balance:</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkSingleCustomer" name="checkSingleCustomer">
-            Your Customer ID: <input type="text" name="customer_id"><br /><br />
+            Your Customer ID: <input type="text" style= "color: black" name="customer_id"><br /><br />
             <input type="submit" style= "color: black" name="checkCustomer"></p>
         </form>
 
@@ -55,33 +55,33 @@
         <h4> (Check the boxes next to the information you would like to update.) </h4>
         <form method="POST" action="customer.php">
             <input type="hidden" id="updateCustomerInfo" name="updateCustomerInfo">
-            Your Customer ID: <input type="text" name="customer_id"> <br /><br />
+            Your Customer ID: <input type="text" style= "color: black" name="customer_id"> <br /><br />
             <input type="checkbox" name="updateName" id="updateName">
             <label for="updateName">
-            New Name: <input type="text" name="newName">
+            New Name: <input type="text" style= "color: black" name="newName">
             </label><br /><br />
             <input type="checkbox" name="updatePhoneNumber" id="updatePhoneNumber">
             <label for="updatePhoneNumber">
-            New Phone Number: <input type="text" name="newPhoneNumber">
+            New Phone Number: <input type="text" style= "color: black" name="newPhoneNumber">
             </label><br /><br />
             <input type="checkbox" name="updateEmail" id="updateEmail">
             <label for="updateEmail">
-            New Email: <input type="text" name="newEmail">
+            New Email: <input type="text" style= "color: black" name="newEmail">
             </label><br /><br />
-            <input type="checkbox" name="updateAge" id="updatePhoneAge">
+            <input type="checkbox" style= "color: black" name="updateAge" id="updatePhoneAge">
             <label for="updateAge">
-            New Age: <input type="number" name="age"  step="1" min="0" max="120">
+            New Age: <input type="number" style= "color: black" name="age"  step="1" min="0" max="120">
             </label><br /><br />
             <input type="checkbox" name="updateAddress" id="updateAddress">
             <label for="updateAddress">
             Update your Address (Please fill out all of the following 4 fields):
             </label><br /><br />
-            New Street Address: <input type="text" name="newStreetAddress">
+            New Street Address: <input type="text" style= "color: black" name="newStreetAddress">
             </label><br /><br />
-            New Postal Code: <input type="text" name="newPostalCode">
+            New Postal Code: <input type="text" style= "color: black" name="newPostalCode">
             </label><br /><br />
-            New City: <input type="text" name="newCity"><br /><br />
-            New Province: <input type="text" name="newProvince">
+            New City: <input type="text" style= "color: black" name="newCity"><br /><br />
+            New Province: <input type="text" style= "color: black" name="newProvince">
             </label><br /><br />
             <input type="submit" style= "color: black" value="Submit" name="updateSubmit"></p>
         </form>
@@ -92,7 +92,7 @@
         <h4>Warning: This action cannot be undone! </h4>
         <form method="POST" action="customer.php">
             <input type="hidden" id="deleteCustomer" name="deleteCustomer">
-            Your Customer ID: <input type="text" name="customer_id"><br /><br />
+            Your Customer ID: <input type="text" style= "color: black" name="customer_id"><br /><br />
             <input type="submit" style= "color: black" value="Submit" name="deleteSubmit"></p>
         </form>
 
@@ -101,8 +101,8 @@
         <h3>Add a Coupon to Your Account:</h3>
         <form method="POST" action="customer.php">
             <input type="hidden" id="redeemCoupon" name="redeemCoupon">
-            Your Customer ID: <input type="text" name="customer_id"><br /><br />
-            Coupon Code: <input type="text" name="coupon_code"><br /><br />
+            Your Customer ID: <input type="text" style= "color: black" name="customer_id"><br /><br />
+            Coupon Code: <input type="text" style= "color: black" name="coupon_code"><br /><br />
             <input type="submit" style= "color: black" value="Submit" name="insertSubmit"></p>
         </form>
 
@@ -114,10 +114,10 @@
         <h3> Buy a Gift Card for Yourself or a Friend! </h3>
         <form method="POST" action="customer.php">
             <input type="hidden" id="buyGiftCard" name="buyGiftCard">
-            Your Customer ID: <input type="text" name="customer_id"><br /><br />
-            Recipient's Email: <input type="text" name="email"><br /><br />
-            Recipient's Name: <input type="text" name="name"><br /><br />
-            Gift Card Balance (minimum $5): <input type="number" min= "5" name="balance"><br /><br />
+            Your Customer ID: <input type="text" style= "color: black" name="customer_id"><br /><br />
+            Recipient's Email: <input type="text" style= "color: black" name="email"><br /><br />
+            Recipient's Name: <input type="text" style= "color: black" name="name"><br /><br />
+            Gift Card Balance (minimum $5): <input type="number" style= "color: black" min= "5" name="balance"><br /><br />
             <input type="submit" style= "color: black" value="Submit" name="insertSubmit"></p>
         </form>
 
@@ -137,7 +137,7 @@
         <h3>Search For Resturants Within A Certain Category:</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkCategoryRestaurants" name="checkCategoryRestaurants">
-            Category: <input type="text" name="category"> <br /><br />
+            Category: <input type="text" style= "color: black" name="category"> <br /><br />
             <input type="submit" style= "color: black" name="displayCategoryRestaurants"></p>
         </form>
 
@@ -146,7 +146,7 @@
         <h3>View All Restaurants that Have a Rating Greater Than Some Value:</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkRatingRestaurants" name="checkRatingRestaurants">
-            Higher Than: <input type="number" name="fromRating" step="0.1" min="0" max="10"> <br/><br/>
+            Higher Than: <input type="number" style= "color: black" name="fromRating" step="0.1" min="0" max="10"> <br/><br/>
             <input type="submit" style= "color: black" name="displayRatingRestaurants"></p>
         </form>
 
@@ -175,7 +175,7 @@
         <h3>Check Your Order History:</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkAllOrders" name="checkAllOrders">
-            Your Customer ID: <input type="text" name="customer_id"> <br /><br />
+            Your Customer ID: <input type="text" style= "color: black" name="customer_id"> <br /><br />
             <input type="submit" style= "color: black" name="displayAllOrders"></p>
         </form>
 
@@ -184,14 +184,14 @@
         <h3>Place a New Order:</h3>
         <form method="POST" action="customer.php">
         <input type="hidden" id="insertOrder" name="insertOrder">
-            Customer ID: <input type="text" name="customer_id"> <br /><br />
-            Restaurant ID: <input type="text" name="restaurant_id"> <br /><br />
-            Delivery Address: <input type="text" name="delivery_addr"> <br /><br />
-            Menu Items (Separate items with a comma): <input type="text" name="menu_items"> <br /><br />
-            Courier Tip:  <input type="number" name="tip" step="0.01" min="0"> <br /><br />
-            Payment Method: <input type="text" name="payment_meth"> <br /><br />
-            (Optional) Gift Card Number: <input type="number" name="card_number"> <br /><br />
-            (Optional) Coupon Code: <input type="text" name="coupon_code"> <br /><br />
+            Customer ID: <input type="text" style= "color: black" name="customer_id"> <br /><br />
+            Restaurant ID: <input type="text" style= "color: black" name="restaurant_id"> <br /><br />
+            Delivery Address: <input type="text" style= "color: black" name="delivery_addr"> <br /><br />
+            Menu Items (Separate items with a comma): <input type="text" style= "color: black" name="menu_items"> <br /><br />
+            Courier Tip:  <input type="number" style= "color: black" name="tip" step="0.01" min="0"> <br /><br />
+            Payment Method: <input type="text" style= "color: black" name="payment_meth"> <br /><br />
+            (Optional) Gift Card Number: <input type="number" style= "color: black" name="card_number"> <br /><br />
+            (Optional) Coupon Code: <input type="text" style= "color: black" name="coupon_code"> <br /><br />
             <input type="submit" style= "color: black" value="Submit" name="insertSubmit"></p>
         </form>
 
