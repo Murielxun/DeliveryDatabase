@@ -1,16 +1,13 @@
+
+
 .myDiv {
     background-color: #f8f2f2;
     text-align: center;
 }
 
 
-.restaurant {
-    font: 15px Arial, sans-serif;
-    text-align: center;
-}
-
 .body1{
-    background-image: url('image/1.jpg');
+    background-image: url('1.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -20,7 +17,7 @@
 }
 
 .restaurantBody{
-    background-image: url('image/Restaurant.jpg');
+    background-image: url('restaurant.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -30,7 +27,17 @@
 }
 
 .courierBody{
-    background-image: url('image/courier.jpg');
+    background-image: url('courier.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.customerBody{
+    background-image: url('customer.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -44,4 +51,3 @@ input {
     padding: 6px;
     border-radius: 2px;
 }
-
