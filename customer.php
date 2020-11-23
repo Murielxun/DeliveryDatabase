@@ -25,16 +25,18 @@
     
         <hr>
 
-        <h3> Manage Your Customer Account. </h3>
-        <h2>Enter Your Customer ID to View Your Current Reward Tier and Reward Point Balance.</h2>
+        <h2> Manage Your Customer Account Here! </h2>
+        <h3>View Your Current Reward Tier and Reward Point Balance:</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkSingleCustomer" name="checkSingleCustomer">
             Your Customer ID: <input type="text" name="customer_id"><br /><br />
             <input type="submit" name="checkCustomer"></p>
         </form>
 
-        <h2>Enter Your Customer ID to Update Your Personal Info.</h2>
-        <h3> Check the boxes next to the information you would like to update. </h3>
+        <br>
+
+        <h3>Update Your Personal Info:</h3>
+        <h4> (Check the boxes next to the information you would like to update.) </h4>
         <form method="POST" action="customer.php">
             <input type="hidden" id="updateCustomerInfo" name="updateCustomerInfo">
             Your Customer ID: <input type="text" name="customer_id"> <br /><br />
@@ -68,20 +70,27 @@
             <input type="submit" value="Submit" name="updateSubmit"></p>
         </form>
 
-        <h2>Delete Your Account.</h2>
+        <br>
+
+        <h3>Delete Your Account:</h3>
+        <h4>Warning: This action cannot be undone! </h4>
         <form method="POST" action="customer.php">
             <input type="hidden" id="deleteCustomer" name="deleteCustomer">
             Your Customer ID: <input type="text" name="customer_id"><br /><br />
             <input type="submit" value="Submit" name="deleteSubmit"></p>
         </form>
 
-        <h3>Add a Coupon to Your Account</h3>
+        <br>
+
+        <h3>Add a Coupon to Your Account:</h3>
         <form method="POST" action="customer.php">
             <input type="hidden" id="redeemCoupon" name="redeemCoupon">
             Your Customer ID: <input type="text" name="customer_id"><br /><br />
             Coupon Code: <input type="text" name="coupon_code"><br /><br />
             <input type="submit" value="Submit" name="insertSubmit"></p>
         </form>
+
+        <br>
 
         <hr>
 
@@ -90,68 +99,87 @@
         <form method="POST" action="customer.php">
             <input type="hidden" id="buyGiftCard" name="buyGiftCard">
             Your Customer ID: <input type="text" name="customer_id"><br /><br />
-            Coupon Code: <input type="text" name="coupon_code"><br /><br />
+            Recipient's Email: <input type="text" name="email"><br /><br />
+            Recipient's Name: <input type="text" name="name"><br /><br />
+            Gift Card Balance (minimum $5): <input type="number" min= "5" name="balance"><br /><br />
             <input type="submit" value="Submit" name="insertSubmit"></p>
         </form>
+
+        <br>
 
         <hr>
 
         <h2>Explore Restaurants!</h2>
-        <h3>View The List Of All Restaurants.</h3>
+        <h3>View The List Of All Restaurants:</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkAllRestaurants" name="checkAllRestaurants">
             <input type="submit" name="displayAllRestaurants"></p>
         </form>
+
+        <br>
         
-        <h3>Search For Resturants Within A Certain Category.</h3>
+        <h3>Search For Resturants Within A Certain Category:</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkCategoryRestaurants" name="checkCategoryRestaurants">
             Category: <input type="text" name="category"> <br /><br />
             <input type="submit" name="displayCategoryRestaurants"></p>
         </form>
 
-        <h3>View All Restaurants that Have a Rating Greater Than Some Value.</h3>
+        <br>
+
+        <h3>View All Restaurants that Have a Rating Greater Than Some Value:</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkRatingRestaurants" name="checkRatingRestaurants">
             Higher Than: <input type="number" name="fromRating" step="0.1" min="0" max="10"> <br/><br/>
             <input type="submit" name="displayRatingRestaurants"></p>
         </form>
 
-        <h3>For each restaurant category, find the restaurants that have the highest rating in that category.</h3>
+        <br>
+
+        <h3>For Each Restaurant Category, Find the Restaurant(s) that Has the Highest Rating in that Category:</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkHighestRating" name="checkHighestRating">
             <input type="submit" name="displayHighestRating"></p>
         </form>
 
-        <h3>Find the restaurant categories that have the lowest average price of menu items compared to all other restaurant categories.</h3>
+        <br>
+
+        <h3>Find Which Restaurant Category Has the Lowest Average Price of Menu Items Compared to All Other Restaurant Categories:</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkLowestMenuPrice" name="checkLowestMenuPrice">
             <input type="submit" name="displayLowestMenuPrice"></p>
         </form>
 
+        <br>
+
+
         <hr>
 
         <h2>Check Your Order History And Place a New Order!</h2>
-        <h3>Enter Your Customer ID to Check Your Order History.</h3>
+        <h3>Check Your Order History:</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkAllOrders" name="checkAllOrders">
             Your Customer ID: <input type="text" name="customer_id"> <br /><br />
             <input type="submit" name="displayAllOrders"></p>
         </form>
 
-        <h3>Place a New Order.</h3>
+        <br>
+
+        <h3>Place a New Order:</h3>
         <form method="POST" action="customer.php">
         <input type="hidden" id="insertOrder" name="insertOrder">
             Customer ID: <input type="text" name="customer_id"> <br /><br />
             Restaurant ID: <input type="text" name="restaurant_id"> <br /><br />
             Delivery Address: <input type="text" name="delivery_addr"> <br /><br />
             Menu Items (Separate items with a comma): <input type="text" name="menu_items"> <br /><br />
-            Courier Tip:  <input type="number" name="tip" min="0"> <br /><br />
+            Courier Tip:  <input type="number" name="tip" step="0.01" min="0"> <br /><br />
             Payment Method: <input type="text" name="payment_meth"> <br /><br />
             (Optional) Gift Card Number: <input type="number" name="card_number"> <br /><br />
             (Optional) Coupon Code: <input type="text" name="coupon_code"> <br /><br />
             <input type="submit" value="Submit" name="insertSubmit"></p>
         </form>
+
+        <br>
 
         <a href="mainpage.php">Return to Main Page</a> <br/><br/>
 
@@ -711,12 +739,12 @@
                 $res_addr = $row[0];
 
                 // Randomly generate a food subtotal
-                $food_subtotal = rand(15, 145) + lcg_value();
+                $food_subtotal = floor((rand(15, 145) + lcg_value()) * 100) / 100;
 
                 // Randomly generate a delivery fee
-                $input = array(4.99, 3.99, 2.99, 5.99);
-                $rand_fee = array_rand($input, 1);
-                $delivery_fee = $rand_fee[0]; 
+                $rand_fees = array(4.99, 3.99, 2.99, 5.99);
+                $index = array_rand($rand_fees, 1);
+                $delivery_fee = $rand_fees[$index]; 
 
                 $courier_tip = $_POST['tip'];
                 $payment_meth = $_POST['payment_meth'];
@@ -735,16 +763,68 @@
                 // Choose a random courier
                 $result = executePlainSQL("SELECT courier_id FROM Courier");
                 $rand_array = OCI_Fetch_Array($result, OCI_BOTH);
-                $courier_id = array_rand($rand_array, 1);
+                $index = array_rand($rand_array, 1);
+                $courier_id = $rand_array[$index];
 
                 $card_number = $_POST['card_number'];
                 $coupon_code = $_POST['coupon_code'];
+                if (strlen($_POST['card_number']) == 0) {
+                    $card_number = 1000000000;
+                }
+                if (strlen($_POST['coupon_code']) == 0) {
+                    $coupon_code = 'NO_COUPON';
+                }
 
                 
                 // Insert new order into Orders
                 executePlainSQL("INSERT into Orders VALUES ('$delivery_addr', '$res_addr', $food_subtotal, $delivery_fee, $courier_tip, 
                                                             '$payment_meth', '$menu_items', sysdate, $order_number, $cus_id, $courier_id, 
                                                             $res_id, $card_number, '$coupon_code')");
+            }
+
+            OCICommit($db_conn);
+
+        }
+
+        function handleInsertGiftCard() {
+            global $db_conn;
+
+            $cus_id = $_POST["customer_id"];
+            
+            // Check if customer_id exists
+            $result = executePlainSQL("select count(*) from Customer where customer_id = $cus_id");
+            $row = OCI_Fetch_Array($result, OCI_BOTH);
+            
+            if ($row[0] == 0) {
+                $err_message = 'This Customer ID does not exist. Please choose another one.';
+                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+
+                // To not make the error message appear again after the page is refreshed
+                echo "<script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
+                </script>";
+            }
+            else {
+                // Generate random card number and check if it already exists
+                $card_number = rand(0, 20000);
+                $result = executePlainSQL("SELECT COUNT(*) FROM Giftcard_Buys WHERE card_number = $card_number");
+                $row = OCI_Fetch_Array($result, OCI_BOTH);
+                while ($row[0] != 0) {
+                    $order_number = rand(0, 20000);
+                    $result = executePlainSQL("SELECT COUNT(*) FROM Giftcard_Buys WHERE card_number = $card_number");
+                    $row = OCI_Fetch_Array($result, OCI_BOTH);
+                }
+
+                $email = $_POST['email'];
+                $name = $_POST['name'];
+                $expiry_date = '2021-DEC-31 23:59:59';
+                $balance = $_POST['balance'];
+
+                
+                // Insert new gift card into Giftcard_Buys
+                executePlainSQL("INSERT into Giftcard_Buys VALUES ($cus_id, $card_number, '$email', '$name', '$expiry_date', $balance)");
             }
 
             OCICommit($db_conn);
@@ -763,6 +843,8 @@
                     handleRedeemCoupon();
                 } else if (array_key_exists('insertOrder', $_POST)) {
                     handleInsertOrder();
+                } else if (array_key_exists('buyGiftCard', $_POST)) {
+                    handleInsertGiftCard();
                 }
 
                 disconnectFromDB();
@@ -791,7 +873,7 @@
                     handleDisplayLowestMenuPrice();
                 } else if (array_key_exists('checkAllOrders', $_GET)) {
                     handleDisplayAllOrders();
-                }
+                } 
                 disconnectFromDB();
             }
         }
