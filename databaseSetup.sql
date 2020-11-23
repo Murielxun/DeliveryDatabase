@@ -233,6 +233,7 @@ INSERT INTO Coupon VALUES ('20204', '2021-12-30 23:59:59', 10);
 INSERT INTO Coupon VALUES ('20205', '2020-11-30 23:59:59', 5);
 INSERT INTO Coupon VALUES ('20206', '2021-01-30 23:59:59', 55);
 INSERT INTO Coupon VALUES ('20207', '2021-01-01 23:59:59', 100);
+INSERT INTO Coupon VALUES ('NO_COUPON', '2100-01-01 23:59:59', 0);
 
 
 -- create tuples for address 
@@ -289,6 +290,7 @@ INSERT INTO Customer VALUES (100002, 'adfe@hotmail.com', 21, '7781112224', '3521
 INSERT INTO Customer VALUES (100003, 'hamm0nd@gmail.com', 33, '7781112225', '57 49th Avenue', 'T0H 1N0', 'Waston', 0, 'Insider', 11);
 INSERT INTO Customer VALUES (100004, 'tracer@outlook.com', 19, '7781112226', '1441 5th Avenue', 'S4P 3Y2', 'Tracer', 1001, 'Rouge', 32);
 INSERT INTO Customer VALUES (100005, 'dontawe@gmail.com', 45, '7781112227', '4727 Ste. Catherine Ouest', 'G6P 5V8', 'Ark', 1, 'Insider', 103);
+INSERT INTO Customer VALUES (100000, 'placeholder@gmail.com', 45, '1234567890', 'Skip the Dishes HQ', 'G6P 5V8', 'John Doe', 1, 'Insider', 103);
 
 
 -- create tuples for receives
@@ -305,6 +307,7 @@ INSERT INTO Giftcard_Buys VALUES (100002, 1234567891, 'adfe@hotmail.com', 'Jack'
 INSERT INTO Giftcard_Buys VALUES (100003, 1234567892, 'hamm0nd@gmail.com', 'Waston', '2020-11-30 23:59:59', 300);
 INSERT INTO Giftcard_Buys VALUES (100004, 1234567893, 'tracer@outlook.com', 'Tracer', '2020-11-30 23:59:59', 400);
 INSERT INTO Giftcard_Buys VALUES (100005, 1234567894, 'dontawe@gmail.com', 'Ark', '2020-11-30 23:59:59', 500);
+INSERT INTO Giftcard_Buys VALUES (100000, 1000000000, 'dontawe@gmail.com', 'Amelia', '2100-11-30 23:59:59', 0);
 
 -- create tuples for restaurant
 INSERT INTO Restaurant VALUES (200001, 'N2H 5A5', 'Qilin', 'Asian', 7.8, '2788 90th Avenue');
