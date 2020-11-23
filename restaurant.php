@@ -4,11 +4,20 @@
         <title>Restaurant</title>
     </head>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+    * {
+      font-family: sans-serif;
+    }
+    </style>
+
     <body class = "restaurantBody">
 
     <div class = "restaurant">
         <h1>Restaurant Page</h1>
     </div>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     
 
         <hr>
@@ -17,7 +26,6 @@
             <input type="hidden" id="insertRestaurant" name="insertRestaurant">
             <label>Restaurant ID: </label><input type="text" name="restaurant_id"> <br /><br />
             <label>Name: </label> <input type="text" name="name"> <br /><br />
-            <label>Rating: </label> <input type="number" name="rating" step="0.01" min="0" max="10"> <br /><br />
             <label>Postal Code: </label><input type="text" name="postal_code"> <br /><br />
             <label>Street Address: </label><input type="text" name="street_address"> <br /><br />
             <label>Category: </label><input type="text" name="category"> <br /><br />
@@ -28,7 +36,7 @@
 
         <hr>
 
-        <h2>Enter Your Restaurant ID And Check Current Standing.</h2>
+        <h2>Check Your Restaurant's Current Info:</h2>
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkRestaurant" name="checkRestaurant">
             <label>Restaurant ID: </label><input type="text" name="restaurant_id"><br /><br />
@@ -37,7 +45,7 @@
 
         <hr>
 
-        <h2>Enter Your Restaurant ID and Update Restaurant Info.</h2>
+        <h2>Update Your Restaurant's Info:</h2>
         <form method="POST" action="restaurant.php">
             <input type="hidden" id="updateRestaurantInfo" name="updateRestaurantInfo">
             <label>Your Restaurant ID:</label> <input type="text" name="restaurant_id"> <br /><br />
@@ -70,7 +78,7 @@
 
         <hr>
 
-        <h2>Enter Your Restaurant ID And Unregister Your Restaurant.</h2>
+        <h2>Delete Your Restaurant From the App:</h2>
         <form method="POST" action="restaurant.php">
             <input type="hidden" id="deleteRestaurant" name="deleteRestaurant">
             <label>Your Restaurant ID: </label><input type="text" name="restaurant_id"><br /><br />
@@ -79,9 +87,9 @@
 
         <hr>
 
-        <h2>Manage Dishes/Menu.</h2>
+        <h2>Manage Your Restaurant's Dishes/Menu:</h2>
 
-        <h3>Enter Your Restaurant ID And Check All Dishes.</h3>
+        <h3>View Your Restaurant's Dishes:</h3>
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkDishes" name="checkDishes">
             <label>Restaurant ID: </label><input type="text" name="restaurant_id"><br /><br />
@@ -89,7 +97,7 @@
         </form>
 
 
-        <h3>Enter Your Restaurant ID And Add New Dishes.</h3>
+        <h3>Add New Dishes to Your Restaurant's Menu:</h3>
         <form method="POST" action="restaurant.php">
             <input type="hidden" id="insertMenuItem" name="insertMenuItem">
             <label>Your Restaurant ID: </label><input type="text" name="restaurant_id"><br /><br />
@@ -102,7 +110,7 @@
         </form>
 
         
-        <h3>Enter Your Restaurant ID And Dish Name To Update Dishes/Menu.</h3>
+        <h3>Change the Information of a Dish in Your Restaurant's Menu:</h3>
         <form method="POST" action="restaurant.php">
             <input type="hidden" id="updateMenuItem" name="updateMenuItem">
             <label>Your Restaurant ID: </label><input type="text" name="restaurant_id"> <br /><br />
@@ -132,7 +140,7 @@
 
 
         
-        <h3>Enter Your Restaurant ID And Dish Name To Delete Dishes.</h3>
+        <h3>Delete a Dish from Your Restaurant's Menu:</h3>
         <form method="POST" action="restaurant.php">
             <input type="hidden" id="deleteMenuItem" name="deleteMenuItem">
             <label>Your Restaurant ID: </label><input type="text" name="restaurant_id"><br /><br />
@@ -142,8 +150,8 @@
 
         <hr>
 
-        <h2>Search For Orders Your Restaurant Prepared!</h2>
-        <h3>Enter Your Restaurnt ID And Check All Orders.</h3>
+        <h2>Search For Orders Prepared By Your Restaurant!</h2>
+        <h3>View All Orders Your Restaurant Has Prepared:</h3>
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkAllOrders" name="checkAllOrders">
             <label>Your Restaurant ID: </label><input type="text" name="restaurant_id"><br /><br />
@@ -151,7 +159,7 @@
         </form>
 
 
-        <h3>Search For Orders With Food Subtotal Between A Certain Range.</h3>
+        <h3>Search For Orders That Have a Food Subtotal Between A Certain Range:</h3>
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkPriceOrders" name="checkPriceOrders">
             <label>Your Restaurant ID: </label><input type="text" name="restaurant_id"><br /><br />
@@ -168,7 +176,7 @@
 
         <hr>
 
-        <h2>Enter Your Restaurant ID And Search For Customers Who Have Placed Orders In Your Restaurant.</h2>
+        <h2>View All Customers Who Have Placed Orders With Your Restaurant:</h2>
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkAllCustomer" name="checkAllCustomer">
             <label>Your Restaurant ID: </label><input type="text" name="restaurant_id"><br /><br />
@@ -177,7 +185,7 @@
 
         <hr>
 
-        <h2>Display All Restaurant Related Tables.</h2>
+        <h2>Display All Restaurant Related Tables:</h2>
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkAllTables" name="checkAllTables">
             <input type="submit" name="displayAllTables"></p>
@@ -185,19 +193,19 @@
         <hr>
 
         <h2>Hardcoded Queries</h2>
-        <h3>Find all customers who have ordered from all restaurants in Montreal, Quebec.</h3>
+        <h3>Find all customers who have ordered from all restaurants in Montreal, Quebec:</h3>
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkHardCodeCustomerQuery" name="checkHardCodeCustomerQuery">
             <input type="submit" name="displayHardCodeCustomerQuery"></p>
         </form>
 
-        <h3>Find IDs of Customers Who Have Placed At Least Three Orders, With Food Subtotal Higher Than $20.</h3>
+        <h3>Find IDs of Customers Who Have Placed At Least Three Orders, With Food Subtotal Higher Than $20:</h3>
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkMoreOrderCustomerQuery" name="checkMoreOrderCustomerQuery">
             <input type="submit" name="displayMoreOrderCustomerQuery"></p>
         </form>
 
-        <h3>Return Info For The Orders Made At Each of Restaurant With Rating Higher Than Specific Value.</h3>
+        <h3>Return Info For The Orders Made At Each of Restaurant With Rating Higher Than Specific Value:</h3>
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkHigherRatingRestaurantQuery" name="checkHigherRatingRestaurantQuery">
             Rating: <input type="number" name="rating" step="0.01" min="0" max="10"> <br /><br />
@@ -205,6 +213,9 @@
         </form>
 
         <a href="mainpage.php">Return to Main Page</a>
+
+        <br>
+        <br>
 
         <?php
 
@@ -306,7 +317,7 @@
         
             if ($row[0] != 0) {
                 $err_message = 'This Dish Name is already is use. Please choose another one.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+                echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
 
                 // To not make the error message appear again after the page is refreshed
                 echo "<script>
@@ -329,6 +340,16 @@
                 );
     
                 executeBoundSQL("insert into Menu_Items_Has values (:bind1, :bind2, :bind3, :bind4, :bind5, :bind6)", $alltuples1);
+
+                $message = 'Menu Item Was Successfully Added!';
+                echo "<script type='text/javascript'> swal('Success!', '$message', 'success'); </script>";
+
+                // To not make the message appear again after the page is refreshed
+                echo "<script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
+                </script>";
             }
 
             OCICommit($db_conn);
@@ -338,45 +359,73 @@
         function handleInsertRestaurant() {
             global $db_conn;
             $restaurant_id = $_POST['restaurant_id'];
-            $id_is_in_use = executePlainSQL("SELECT count(*) FROM Restaurant WHERE restaurant_id = $restaurant_id");
-            $row = OCI_Fetch_Array($id_is_in_use, OCI_BOTH);
-        
-            if ($row[0] != 0) {
-                $err_message = 'This Restaurant ID is already is use. Please choose another one.';
-                echo "<script type = 'text/javascript'> alert('$err_message');</script>";
+
+            // Check if restaurant_id field was left empty
+            if (strlen($restaurant_id) == 0) {
+                $err_message = 'Restaurant ID cannot be empty. Please enter a valid restaurant ID and try again.';
+                echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
+
 
                 // To not make the error message appear again after the page is refreshed
                 echo "<script>
                 if ( window.history.replaceState ) {
                     window.history.replaceState( null, null, window.location.href );
-                }
+                    }
                 </script>";
-            } else {
-                $postal_code = $_POST['postal_code'];
-                $tuple1 = array (
-                    ":bind1" => $restaurant_id,
-                    ":bind2" => $postal_code,
-                    ":bind3" => $_POST['name'],
-                    ":bind4" => $_POST['category'],
-                    ":bind5" => $_POST['rating'],
-                    ":bind6" => $_POST['street_address'],
-                );
-    
-                $alltuples1 = array (
-                    $tuple1
-                );
+            }
+            else {
+                $id_is_in_use = executePlainSQL("SELECT count(*) FROM Restaurant WHERE restaurant_id = $restaurant_id");
+                $row = OCI_Fetch_Array($id_is_in_use, OCI_BOTH);
+        
+                if ($row[0] != 0) {
+                    $err_message = 'This Restaurant ID is already is use. Please choose another one.';
+                    echo "<script type='text/javascript'> swal('Error!', '$err_message', 'error'); </script>";
 
-                $city = $_POST['city'];
-                $province = $_POST['province'];
+                    // To not make the error message appear again after the page is refreshed
+                    echo "<script>
+                    if ( window.history.replaceState ) {
+                        window.history.replaceState( null, null, window.location.href );
+                    }
+                    </script>";
+                } else {
+                    $postal_code = $_POST['postal_code'];
+                    $tuple1 = array (
+                        ":bind1" => $restaurant_id,
+                        ":bind2" => $postal_code,
+                        ":bind3" => $_POST['name'],
+                        ":bind4" => $_POST['category'],
+                        ":bind5" => 10.0,
+                        ":bind6" => $_POST['street_address'],
+                    );
+        
+                    $alltuples1 = array (
+                        $tuple1
+                    );
 
-                $unique_pos_code = executePlainSQL("select count(*) from Address where postal_code = '$postal_code'");
-                $row = OCI_Fetch_Array($unique_pos_code, OCI_BOTH);
-                if ($row[0] == 0) {
-                    executePlainSQL("INSERT into Address VALUES ('$postal_code', '$city', '$province')");
+                    $city = $_POST['city'];
+                    $province = $_POST['province'];
+
+                    $unique_pos_code = executePlainSQL("select count(*) from Address where postal_code = '$postal_code'");
+                    $row = OCI_Fetch_Array($unique_pos_code, OCI_BOTH);
+                    if ($row[0] == 0) {
+                        executePlainSQL("INSERT into Address VALUES ('$postal_code', '$city', '$province')");
+                    }
+
+                    executeBoundSQL("insert into Restaurant values (:bind1, :bind2, :bind3, :bind4, :bind5, :bind6)", $alltuples1);
+
+                    $message = 'Restaurant Was Successfully Registered!';
+                    echo "<script type='text/javascript'> swal('Success!', '$message', 'success'); </script>";
+
+                    // To not make the message appear again after the page is refreshed
+                    echo "<script>
+                    if ( window.history.replaceState ) {
+                        window.history.replaceState( null, null, window.location.href );
+                    }
+                    </script>";
                 }
 
-                executeBoundSQL("insert into Restaurant values (:bind1, :bind2, :bind3, :bind4, :bind5, :bind6)", $alltuples1);
             }
+            
             OCICommit($db_conn);
         }
 
@@ -411,6 +460,17 @@
             $restaurant_id = $_POST['restaurant_id'];
             $dishname = $_POST['name'];
             executePlainSQL("DELETE FROM Menu_Items_Has  WHERE restaurant_id=" . $restaurant_id . "AND name = '" . $dishname . "'");
+
+            $message = 'Menu Item Was Successfully Deleted!';
+            echo "<script type='text/javascript'> swal('Success!', '$message', 'success'); </script>";
+
+            // To not make the message appear again after the page is refreshed
+            echo "<script>
+            if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+            }
+            </script>";
+
             OCICommit($db_conn);
         }
 
@@ -420,6 +480,17 @@
 
             $restaurant_id = $_POST['restaurant_id'];
             executePlainSQL("DELETE FROM Restaurant  WHERE restaurant_id=" . $restaurant_id);
+
+            $message = 'Your Restaurant Was Successfully Deleted!';
+            echo "<script type='text/javascript'> swal('Success!', '$message', 'success'); </script>";
+
+            // To not make the message appear again after the page is refreshed
+            echo "<script>
+            if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+            }
+            </script>";
+
             OCICommit($db_conn);
         }
 
@@ -451,6 +522,16 @@
                 $newName = $_POST['newName'];
                 executePlainSQL("UPDATE Menu_Items_Has SET name ='" . $newName . "' WHERE restaurant_id = " . $restaurant_id . " AND name = '" . $olddishname . "'");
             }
+
+            $message = 'Menu Item Was Successfully Updated!';
+            echo "<script type='text/javascript'> swal('Success!', '$message', 'success'); </script>";
+
+            // To not make the message appear again after the page is refreshed
+            echo "<script>
+            if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+            }
+            </script>";
 
             OCICommit($db_conn);
         }
@@ -513,7 +594,19 @@
                 executeBoundSQL("insert into Address values (:bind1, :bind2, :bind3)", $alltuples);
                 executePlainSQL("UPDATE Restaurant SET postal_code='" . $newPostalCode. "' WHERE restaurant_id=" . $restaurant_id);
             }
+
+            $message = 'Restaurant Information Was Successfully Updated!';
+            echo "<script type='text/javascript'> swal('Success!', '$message', 'success'); </script>";
+
+            // To not make the message appear again after the page is refreshed
+            echo "<script>
+            if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+            }
+            </script>";
+
             OCICommit($db_conn);
+
         }
 
         //handle the sql statement for selecting all the orders from the restaurant
@@ -748,4 +841,3 @@
 		?>
 	</body>
 </html>
-
