@@ -199,7 +199,7 @@
             <input type="submit" name="displayHardCodeCustomerQuery"></p>
         </form>
 
-        <h3>Find IDs of Customers Who Have Placed At Least Three Orders, With Food Subtotal Higher Than $20:</h3>
+        <h3>Find IDs of Customers Who Have Placed At Least Three Orders With a Food Subtotal Greater Than $20:</h3>
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkMoreOrderCustomerQuery" name="checkMoreOrderCustomerQuery">
             <input type="submit" name="displayMoreOrderCustomerQuery"></p>
