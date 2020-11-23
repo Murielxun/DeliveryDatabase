@@ -9,6 +9,7 @@
     <style>
     * {
       font-family: sans-serif;
+      color: white;
     }
     </style>
 
@@ -35,7 +36,7 @@
             Street Address: <input type="text" name="street_address"> <br /><br />
             City: <input type="text" name="city"> <br /><br />
             Province: <input type="text" name="province"> <br /><br />
-            <input type="submit" value="Submit" name="insertSubmit"></p>
+            <input type="submit" style= "color: black" value="Submit" name="insertSubmit"></p>
         </form>
     
         <hr>
@@ -45,7 +46,7 @@
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkSingleCustomer" name="checkSingleCustomer">
             Your Customer ID: <input type="text" name="customer_id"><br /><br />
-            <input type="submit" name="checkCustomer"></p>
+            <input type="submit" style= "color: black" name="checkCustomer"></p>
         </form>
 
         <br>
@@ -82,7 +83,7 @@
             New City: <input type="text" name="newCity"><br /><br />
             New Province: <input type="text" name="newProvince">
             </label><br /><br />
-            <input type="submit" value="Submit" name="updateSubmit"></p>
+            <input type="submit" style= "color: black" value="Submit" name="updateSubmit"></p>
         </form>
 
         <br>
@@ -92,7 +93,7 @@
         <form method="POST" action="customer.php">
             <input type="hidden" id="deleteCustomer" name="deleteCustomer">
             Your Customer ID: <input type="text" name="customer_id"><br /><br />
-            <input type="submit" value="Submit" name="deleteSubmit"></p>
+            <input type="submit" style= "color: black" value="Submit" name="deleteSubmit"></p>
         </form>
 
         <br>
@@ -102,7 +103,7 @@
             <input type="hidden" id="redeemCoupon" name="redeemCoupon">
             Your Customer ID: <input type="text" name="customer_id"><br /><br />
             Coupon Code: <input type="text" name="coupon_code"><br /><br />
-            <input type="submit" value="Submit" name="insertSubmit"></p>
+            <input type="submit" style= "color: black" value="Submit" name="insertSubmit"></p>
         </form>
 
         <br>
@@ -117,7 +118,7 @@
             Recipient's Email: <input type="text" name="email"><br /><br />
             Recipient's Name: <input type="text" name="name"><br /><br />
             Gift Card Balance (minimum $5): <input type="number" min= "5" name="balance"><br /><br />
-            <input type="submit" value="Submit" name="insertSubmit"></p>
+            <input type="submit" style= "color: black" value="Submit" name="insertSubmit"></p>
         </form>
 
         <br>
@@ -128,7 +129,7 @@
         <h3>View The List Of All Restaurants:</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkAllRestaurants" name="checkAllRestaurants">
-            <input type="submit" name="displayAllRestaurants"></p>
+            <input type="submit" style= "color: black" name="displayAllRestaurants"></p>
         </form>
 
         <br>
@@ -137,7 +138,7 @@
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkCategoryRestaurants" name="checkCategoryRestaurants">
             Category: <input type="text" name="category"> <br /><br />
-            <input type="submit" name="displayCategoryRestaurants"></p>
+            <input type="submit" style= "color: black" name="displayCategoryRestaurants"></p>
         </form>
 
         <br>
@@ -146,7 +147,7 @@
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkRatingRestaurants" name="checkRatingRestaurants">
             Higher Than: <input type="number" name="fromRating" step="0.1" min="0" max="10"> <br/><br/>
-            <input type="submit" name="displayRatingRestaurants"></p>
+            <input type="submit" style= "color: black" name="displayRatingRestaurants"></p>
         </form>
 
         <br>
@@ -154,7 +155,7 @@
         <h3>For Each Restaurant Category, Find the Restaurant(s) that Has the Highest Rating in that Category:</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkHighestRating" name="checkHighestRating">
-            <input type="submit" name="displayHighestRating"></p>
+            <input type="submit" style= "color: black" name="displayHighestRating"></p>
         </form>
 
         <br>
@@ -162,7 +163,7 @@
         <h3>Find Which Restaurant Category Has the Lowest Average Price of Menu Items Compared to All Other Restaurant Categories:</h3>
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkLowestMenuPrice" name="checkLowestMenuPrice">
-            <input type="submit" name="displayLowestMenuPrice"></p>
+            <input type="submit" style= "color: black" name="displayLowestMenuPrice"></p>
         </form>
 
         <br>
@@ -175,7 +176,7 @@
         <form method="GET" action="customer.php">
             <input type="hidden" id="checkAllOrders" name="checkAllOrders">
             Your Customer ID: <input type="text" name="customer_id"> <br /><br />
-            <input type="submit" name="displayAllOrders"></p>
+            <input type="submit" style= "color: black" name="displayAllOrders"></p>
         </form>
 
         <br>
@@ -191,7 +192,7 @@
             Payment Method: <input type="text" name="payment_meth"> <br /><br />
             (Optional) Gift Card Number: <input type="number" name="card_number"> <br /><br />
             (Optional) Coupon Code: <input type="text" name="coupon_code"> <br /><br />
-            <input type="submit" value="Submit" name="insertSubmit"></p>
+            <input type="submit" style= "color: black" value="Submit" name="insertSubmit"></p>
         </form>
 
         <br>
