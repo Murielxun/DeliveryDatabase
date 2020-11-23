@@ -48,12 +48,12 @@ SELECT restaurant_id, name, rating
 FROM Restaurant
 WHERE rating > val;
 
-
+-- (IMPLEMENTED IN RESTAURANT.PHP)
 -- 8) Projection Query: Find the date placed, food subtotal, and payment method for all orders.
-SELECT date_placed, food_subtotal, payment_method
-FROM Orders;
+SELECT order_number, restaurant_id, customer_id, date_placed, food_subtotal 
+FROM Orders
 
-
+-- IMPLEMENTED IN RESTAURANT.PHP
 -- 9) Join Query: For all restaurants that have a rating that is higher than some value, return the average food subtotal for 
 -- the orders made at each of those restaurants, as well as the IDs, names, and ratings of the restaurants.
 -- Inputs to be provided by the user: val
@@ -73,7 +73,7 @@ FROM Restaurant R, (SELECT R2.category AS current_category, MAX(rating) AS max_r
                     GROUP BY R2.category)
 WHERE R.rating >= max_rating AND R.category = current_category;
 
-
+-- IMPLEMENTED IN RESTAURANT.PHP
 -- 11) Aggregation with Having Query: Find the IDs of customers who have placed at least three orders, where only
 -- orders with a food subtotal > 20 are considered. 
 SELECT DISTINCT C.customer_id, COUNT(*)
@@ -96,6 +96,7 @@ HAVING AVG(M.price) <= ALL (SELECT AVG(M2.price)
                             GROUP BY R2.category);
                             
 
+-- IMPLEMENTED IN RESTAURANT.PHP
 -- 13) Division Query: Find all customers who have ordered from all restaurants in Montreal, Quebec.
 SELECT C.name, C.customer_id
 FROM Customer C
@@ -111,6 +112,48 @@ WHERE NOT EXISTS ((SELECT R.restaurant_id
                                 AND R2.postal_code = A2.postal_code
                                 AND A2.city = 'Montreal'
                                 AND A2.province = 'Quebec'));
+
+-- Other Hardcoded Simple Queries
+
+-- IN Restaurant.php
+-- 14) An Example For A Simple Aggregation Using Count
+SELECT count(*) 
+FROM Menu_Items_Has  
+WHERE restaurant_id= 'user_input' AND name = 'user_input';
+
+-- 15) An Example For Delete
+DELETE FROM Menu_Items_Has  
+WHERE restaurant_id= 'user_input' AND name = 'user_input';
+
+-- 16) An Example For Update
+UPDATE Menu_Items_Has 
+SET description = 'user_input' 
+WHERE restaurant_id= 'user_input' AND name = 'user_input';
+
+-- 17) Select Order With A Certain Food Subtotal Range For A Specific Restaurant
+SELECT order_number, restaurant_id, customer_id, date_placed, food_subtotal 
+FROM Orders 
+WHERE restaurant_id = 'user_input' AND food_subtotal <= 'user_input' AND food_subtotal >= 'user_input';
+
+-- 18) Display Customer Info Who Has Ordered In A Specific Restaurant
+SELECT o.order_number, c.customer_id, c.email, c.name, c.phone_number, c.street_address 
+FROM Customer c, Restaurant r, Orders o 
+WHERE o.customer_id = c.customer_id AND r.restaurant_id = o.restaurant_id AND r.restaurant_id = 'user_input';
+
+-- IN Courier.php
+-- 19) An Example Of Aggregation Using Count
+SELECT count(*) 
+FROM Foot_Courier 
+WHERE bus_pass = 'user_input';
+
+-- 20) An Example Of Delete
+DELETE FROM Courier
+WHERE courier_id= 'user_input';
+
+-- 21) An Example of Update
+UPDATE Bicycle_Courier 
+SET valid_bicycle= 'user_input' 
+WHERE courier_id= 'user_input';
                                     
 
 

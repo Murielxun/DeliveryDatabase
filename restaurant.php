@@ -184,6 +184,26 @@
         </form>
         <hr>
 
+        <h2>Hardcoded Queries</h2>
+        <h3>Find all customers who have ordered from all restaurants in Montreal, Quebec.</h3>
+        <form method="GET" action="restaurant.php">
+            <input type="hidden" id="checkHardCodeCustomerQuery" name="checkHardCodeCustomerQuery">
+            <input type="submit" name="displayHardCodeCustomerQuery"></p>
+        </form>
+
+        <h3>Find IDs of Customers Who Have Placed At Least Three Orders, With Food Subtotal Higher Than $20.</h3>
+        <form method="GET" action="restaurant.php">
+            <input type="hidden" id="checkMoreOrderCustomerQuery" name="checkMoreOrderCustomerQuery">
+            <input type="submit" name="displayMoreOrderCustomerQuery"></p>
+        </form>
+
+        <h3>Return Info For The Orders Made At Each of Restaurant With Rating Higher Than Specific Value.</h3>
+        <form method="GET" action="restaurant.php">
+            <input type="hidden" id="checkHigherRatingRestaurantQuery" name="checkHigherRatingRestaurantQuery">
+            Rating: <input type="number" name="rating" step="0.01" min="0" max="10"> <br /><br />
+            <input type="submit" name="displayHigherRatingRestaurantQuery"></p>
+        </form>
+
         <a href="mainpage.php">Return to Main Page</a>
 
         <?php
@@ -620,6 +640,76 @@
             }
         }
 
+        // Find all customers who have ordered from all restaurants in Montreal, Quebec.
+        function handleDisplayHardCodeCustomerQuery() {
+            global $db_conn;
+            $result = executePlainSQL("SELECT C.name, C.customer_id
+                                       FROM Customer C
+                                       WHERE NOT EXISTS ((SELECT R.restaurant_id
+                                                        FROM Restaurant R, Address A
+                                                        WHERE R.postal_code = A.postal_code 
+                                                            AND A.city = 'Montreal' 
+                                                            AND A.province = 'Quebec')
+                                                            MINUS (SELECT O.restaurant_id
+                                                                    FROM Orders O, Restaurant R2, Address A2
+                                                                    WHERE O.restaurant_id = R2.restaurant_id 
+                                                                        AND O.customer_id = C.customer_id
+                                                                        AND R2.postal_code = A2.postal_code
+                                                                        AND A2.city = 'Montreal'
+                                                                        AND A2.province = 'Quebec'))");
+            
+            echo "<br>Find all customers who have ordered from all restaurants in Montreal, Quebec:<br>";
+            echo "<table>";
+            echo "<tr><th>Name</th><th>Customer ID</th></tr>";
+
+            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td></tr>"; 
+            }
+            
+            echo "</table>"; 
+        }
+
+        function handleDisplayHigherRatingRestaurantQuery() {
+            global $db_conn;
+            $rating = $_GET['rating'];
+            $result = executePlainSQL("SELECT avg_subtotal, R.restaurant_id, R.name, R.rating
+                                        FROM Restaurant R, (SELECT R2.restaurant_id AS res_id, avg(food_subtotal) AS avg_subtotal
+                                                            FROM Restaurant R2 JOIN Orders O
+                                                            ON R2.restaurant_id = O.restaurant_id
+                                                            WHERE R2.rating > '$rating'
+                                                            GROUP BY R2.restaurant_id)
+                                        WHERE R.restaurant_id = res_id");
+            echo "<br>Return Info For The Orders Made At Each of Restaurant With Rating Higher Than Specific Value: <br>";
+            echo "<table>";
+            echo "<tr><th>Average Food Subtotal</th><th>Restaurant ID</th><th>Name</th><th>Rating</th></tr>";
+
+            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td><td>" . $row[3] . "</td></tr>"; 
+            }
+            
+            echo "</table>";                        
+        }
+
+        //Find the IDs of customers who have placed at least three orders, where only orders with a food subtotal > 20 are considered. 
+        function handleDisplayMoreOrderCustomerQuery() {
+            global $db_conn;
+            $result = executePlainSQL("SELECT DISTINCT C.customer_id, COUNT(*)
+                                        FROM Orders O, Customer C
+                                        WHERE O.customer_id = C.customer_id AND O.food_subtotal > 20
+                                        GROUP BY C.customer_id
+                                        HAVING COUNT(*) > 2");
+            
+            echo "<br>Find IDs of Customers Who Have Placed At Least Three Orders, With Food Subtotal Higher Than $20:<br>";
+            echo "<table>";
+            echo "<tr><th>Customer ID</th></tr>";
+
+            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                echo "<tr><td>" . $row[0] . "</td></tr>"; 
+            }
+            
+            echo "</table>"; 
+        }
+
         function handleGETRequest() {
         if (connectToDB()) {
                 if (array_key_exists('displayAllOrders', $_GET)) {
@@ -634,6 +724,12 @@
                     handleDisplayOrdersWithInRange();
                 } else if (array_key_exists('displayDishes', $_GET)) {
                     handleDisplayDishes();
+                } else if (array_key_exists('displayHardCodeCustomerQuery', $_GET)) {
+                    handleDisplayHardCodeCustomerQuery();
+                } else if (array_key_exists('displayMoreOrderCustomerQuery', $_GET)) {
+                    handleDisplayMoreOrderCustomerQuery();
+                } else if (array_key_exists('displayHigherRatingRestaurantQuery', $_GET)) {
+                    handleDisplayHigherRatingRestaurantQuery();
                 }
 
                 disconnectFromDB();
@@ -645,7 +741,8 @@
         } else if (isset($_GET['checkAllOrders']) || isset($_GET['checkAllCustomer']) 
                     || isset($_GET['checkRestaurant']) || isset($_GET['checkAllTables'])) {
             handleGETRequest();
-        } else if (isset($_GET['checkPriceOrders']) || isset($_GET['checkDishes'])) {
+        } else if (isset($_GET['checkPriceOrders']) || isset($_GET['checkDishes']) 
+                    || isset($_GET['checkHardCodeCustomerQuery']) || isset($_GET['checkMoreOrderCustomerQuery']) || isset($_GET['checkHigherRatingRestaurantQuery'])) {
             handleGETRequest();
         }
 		?>

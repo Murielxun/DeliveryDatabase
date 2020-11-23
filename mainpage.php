@@ -18,9 +18,9 @@
   <input name="newPage" type="button" value="Cutomer" onclick="window.open('customer.php')">
   <input name="newPage" type="button" value="Courier" onclick="window.open('courier.php')">
   <input name="newPage" type="button" value="Restaurant Staff" onclick="window.open('restaurant.php')">
-  <p>Hard-coded Queries for Project:</p>
-  <input name="newPage" type="button" value="Check Them Out" onclick="window.open('hardcode.php')"/>
-      <hr>
+  <!-- <p>Hard-coded Queries for Project:</p>
+  <input name="newPage" type="button" value="Check Them Out" onclick="window.open('hardcode.php')"/> -->
+  <hr>
 
   <p>Your current position:</p>
   <button onclick="getLocation()">GPS</button>
