@@ -358,6 +358,16 @@
 
                     executePlainSQL("INSERT into Customer VALUES ($cus_id, '$email', $age, '$phone_num', '$street_addr', 
                                                                 '$pos_code', '$name', $rew_points, '$rew_tier', $acc_balance)");
+
+                    $message = 'Account successfully created!';
+                    echo "<script type = 'text/javascript'> alert('$message');</script>";
+
+                    // To not make the message appear again after the page is refreshed
+                    echo "<script>
+                    if ( window.history.replaceState ) {
+                        window.history.replaceState( null, null, window.location.href );
+                    }
+                    </script>";
                 }
 
                 OCICommit($db_conn);
