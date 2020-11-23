@@ -5,19 +5,8 @@
     text-align: center;
 }
 
-
-.body1{
-    background-image: url('1.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-}
-
 .restaurantBody{
-    background-image: url('restaurant.jpg');
+    background-image: url('image/restaurant.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -27,7 +16,7 @@
 }
 
 .courierBody{
-    background-image: url('courier.png');
+    background-image: url('image/courier.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -37,7 +26,7 @@
 }
 
 .customerBody{
-    background-image: url('customer.jpg');
+    background-image: url('image/customer.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
