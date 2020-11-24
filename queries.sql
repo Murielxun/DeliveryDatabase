@@ -49,9 +49,11 @@ FROM Restaurant
 WHERE rating > val;
 
 -- (IMPLEMENTED IN RESTAURANT.PHP)
--- 8) Projection Query: Find the date placed, food subtotal, and payment method for all orders.
+-- 8) Projection Query: Find the date placed, food subtotal, and payment method for all orders placed for a specified restaurant.
+-- Inputs to be provided by the user: res_id
 SELECT order_number, restaurant_id, customer_id, date_placed, food_subtotal 
 FROM Orders
+WHERE restaurant_id = res_id;
 
 -- IMPLEMENTED IN RESTAURANT.PHP
 -- 9) Join Query: For all restaurants that have a rating that is higher than some value, return the average food subtotal for 
