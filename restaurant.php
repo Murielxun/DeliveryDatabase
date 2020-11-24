@@ -176,7 +176,7 @@
 
         <hr>
 
-        <h2>View All Customers Who Have Placed Orders With Your Restaurant:</h2>
+        <h2>View All Orders That Have Been Placed With Your Restaurant:</h2>
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkAllCustomer" name="checkAllCustomer">
             <label>Your Restaurant ID: </label><input type="text" name="restaurant_id"><br /><br />
@@ -193,22 +193,23 @@
         <hr>
 
         <h2>Hardcoded Queries</h2>
-        <h3>Find all customers who have ordered from all restaurants in Montreal, Quebec:</h3>
+        <h3>Find All Customers Who Have Ordered From All Restaurants in Montreal, Quebec:</h3>
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkHardCodeCustomerQuery" name="checkHardCodeCustomerQuery">
             <input type="submit" name="displayHardCodeCustomerQuery"></p>
         </form>
 
-        <h3>Find IDs of Customers Who Have Placed At Least Three Orders With a Food Subtotal Greater Than $20:</h3>
+        <h3>Find All Customers Who Have Placed At Least Three Orders With a Food Subtotal Greater Than $20:</h3>
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkMoreOrderCustomerQuery" name="checkMoreOrderCustomerQuery">
             <input type="submit" name="displayMoreOrderCustomerQuery"></p>
         </form>
 
-        <h3>Return Info For The Orders Made At Each of Restaurant With Rating Higher Than Specific Value:</h3>
+        <h3>For All Restaurants That Have a Rating That is Higher Than a Specific Value, Return the Average Food Subtotal for 
+            the Orders Made at Each of Those Restaurants:</h3>
         <form method="GET" action="restaurant.php">
             <input type="hidden" id="checkHigherRatingRestaurantQuery" name="checkHigherRatingRestaurantQuery">
-            Rating: <input type="number" name="rating" step="0.01" min="0" max="10"> <br /><br />
+            Rating: <input type="number" name="rating" step="0.1" min="0" max="10"> <br /><br />
             <input type="submit" name="displayHigherRatingRestaurantQuery"></p>
         </form>
 
@@ -703,7 +704,7 @@
         }
         
         function printAllCustomer($result) {
-            echo "<br>Retrieved Customer Who Have Placed Orders In Your Restaurant:<br>";
+            echo "<br>Retrieved Information About All Orders Placed With Your Restaurant:<br>";
             echo "<table>";
             echo "<tr><th>Order_Number</th><th>Customer_ID</th><th>Email</th><th>Name</th><th>Phone_Number</th><th>Street_Address</th></tr>";
 
@@ -772,7 +773,7 @@
                                                             WHERE R2.rating > '$rating'
                                                             GROUP BY R2.restaurant_id)
                                         WHERE R.restaurant_id = res_id");
-            echo "<br>Return Info For The Orders Made At Each of Restaurant With Rating Higher Than Specific Value: <br>";
+            echo "<br>Retrieved Restaurant and Order Info: <br>";
             echo "<table>";
             echo "<tr><th>Average Food Subtotal</th><th>Restaurant ID</th><th>Name</th><th>Rating</th></tr>";
 
