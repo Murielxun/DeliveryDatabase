@@ -9,7 +9,7 @@
   <body class = "courierBody" >
   <div class = "restaurant">
       <h1>CPSC 304 Group Project - Delivery Database</h1>
-      <h3>Group Members: Victor Cheng, Jenni Park, Muriel Wang</h3>
+      <h3>Group Members: Victor Cheng, Jennifer Chan, XinYue Wang</h3>
       <hr />
   </div>
 
